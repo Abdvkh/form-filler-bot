@@ -14,15 +14,13 @@ let ruLang = {
       back: "Назад",
       menu: "Главное меню",
    },
-   greet: "Добро пожаловать {{first_name}}!",
+   greet: "Добро пожаловать %s!",
    mainMenuButtons: ["Заполнить форму", "Помощь"],
-   info_accepted: "Ваши данные получены: *{{message}}*",
+   info_accepted: "Ваши данные получены: *%s*",
    req_confirmed: "Ваша заявка была одобрена и опубликована! Спасибо!",
    req_denied: "Ваша заявка была откланена из-за несоответствия! Спасибо!",
-   completed: "Данные приняты! Пожалуйста ждите ответа, спасибо за ответы!"
+   completed: "Данные приняты! Пожалуйста ждите ответа, спасибо!"
 };
 
-if(true){
-   Libs.Lang.setup("ru", ruLang);
-   Bot.sendMessage("Languages are successfully set!");
-}
+Libs.Lang.setup("ru", ruLang);
+Bot.sendMessage("Languages are successfully set!");

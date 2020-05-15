@@ -50,7 +50,7 @@ function getQuestion() {
 }
 
 function saveAnswer(answerName, answerMessage) {
-   answerObj = {`${answerName}`: answerMessage}
+   answerObj = {answerName: answerMessage}
    addCurrentQuestionaryProperty('answers', getAnwers().push(answer));
 }
 

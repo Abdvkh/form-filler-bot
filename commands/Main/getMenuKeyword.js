@@ -23,6 +23,10 @@ switch (passedMenuKeyword) {
 }
 
 function askBox(){
-   Bot.sendMessage(questions['box']['text']);
-   Bot.runCommand('getBox');
+   let command = {
+      btns: utils.makeKeyboard([], 'bm'),
+      txt: questions['box']['text'],
+      cmd:'getBox'
+   }
+   utils.runCommandWithKeyboard(command);
 }
