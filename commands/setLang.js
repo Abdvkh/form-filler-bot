@@ -5,8 +5,8 @@
   auto_retry_time:
   folder:
   answer:
-  keyboard: Установить язык, \nСоздать организацию, \nСтатистика, Главное меню
-  aliases: Установить язык
+  keyboard:
+  aliases: 
 CMD*/
 
 let ruLang = {

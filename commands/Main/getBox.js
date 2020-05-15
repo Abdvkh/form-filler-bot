@@ -10,5 +10,23 @@
 CMD*/
 
 questionary.addAnswer('box', message);
-Bot.sendMessage(questions['price']['text']);
-Bot.runCommand('getPrice');
+setAsPreviousCommand();
+askPrice();
+
+function askPrice(){
+   let command = {
+      btns: utils.makeKeyboard([], 'bm'),
+      txt: questions['price']['text'],
+      cmd:'getPrice'
+   }
+   utils.runCommandWithKeyboard(command);
+}
+
+function setAsPreviousCommand() {
+   let previousCommand = {
+      cmd: 'getBox',
+      txt: questions['box']['text'],
+      btns: utils.makeKeyboard([],'bm')
+   };
+   utils.savePreviousCommand(previousCommand);
+}

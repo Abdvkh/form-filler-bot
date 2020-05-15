@@ -10,5 +10,23 @@
 CMD*/
 
 questionary.addAnswer('price', message);
-Bot.sendMessage(questions['price']['text']);
-Bot.runCommand('getLocation');
+setAsPreviousCommand();
+askLocation();
+
+function askLocation() {
+   let command = {
+      cmd: 'getLocation',
+      txt: questions['location']['text'],
+      btns: utils.makeKeyboard([],'bm')
+   };
+   utils.runCommandWithKeyboard(command);
+}
+
+function setAsPreviousCommand(){
+   let previousCommand = {
+      btns: utils.makeKeyboard([], 'bm'),
+      txt: questions['price']['text'],
+      cmd:'getPrice'
+   }
+   utils.savePreviousCommand(previousCommand);
+}

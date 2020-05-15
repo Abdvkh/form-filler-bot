@@ -4,7 +4,7 @@
   need_reply:
   auto_retry_time:
   folder:
-  answer: main
+  answer:
   keyboard:
   aliases: asosiy menyu, Главное меню, main menu
 CMD*/

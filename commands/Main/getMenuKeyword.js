@@ -11,6 +11,8 @@ CMD*/
 
 let passedMenuKeyword = message;
 
+setAsPreviousCommand();
+
 switch (passedMenuKeyword) {
    case lang.mainMenuButtons[0]://Заполнить форму
       startFillingForm();
@@ -29,4 +31,13 @@ function askBox(){
       cmd:'getBox'
    }
    utils.runCommandWithKeyboard(command);
+}
+
+function setAsPreviousCommand() {
+   let previousCommand = {
+      cmd: '/menu',
+      txt: wordsLikeButton.mainmenu,
+      btns: utils.makeKeyboard(lang.mainMenuButtons, '')
+   };
+   utils.savePreviousCommand(previousCommand);
 }
