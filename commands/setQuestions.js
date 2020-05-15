@@ -1,4 +1,4 @@
-let questionary = {
+let questions = {
    box: {
       text: "Какой бокс вы выиграли?"
    },
@@ -9,7 +9,8 @@ let questionary = {
       text: "Из какого вы города?"
    },
    mail: {
-      text: "Какое отделение или адрес?"
+      text: "Какое отделение или адрес?",
+      keyboard: ['Отделение', "Адрес"]
    },
    phone: {
       text: "Номер телефона получателя"
@@ -25,5 +26,5 @@ let questionary = {
       text: "Реквизиты карты"
    }
 }
-Bot.setProperty('questionary', questionary, 'JSON');
+Bot.setProperty('questionary', questions, 'JSON');
 Bot.sendMessage('Questions are set!');
