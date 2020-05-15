@@ -14,10 +14,11 @@ setAsPreviousCommand();
 askLocation();
 
 function askLocation() {
+   let locations = questionary.getLocations();
    let command = {
       cmd: 'getLocation',
       txt: questions['location']['text'],
-      btns: utils.makeKeyboard([],'bm')
+      btns: utils.makeKeyboard(locations, 'bm')
    };
    utils.runCommandWithKeyboard(command);
 }

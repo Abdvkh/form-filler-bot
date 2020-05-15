@@ -12,11 +12,12 @@ CMD*/
 let locations = questionary.getLocations();
 
 setAsPreviousCommand();
+
 if (message in locations) {
    questionary.addAnswer('location', message);
    return askPhone();
 }
-askMail();
+askDelivery();
 
 function askPhone() {
    let command = {
@@ -27,18 +28,18 @@ function askPhone() {
    utils.runCommandWithKeyboard(command);
 }
 
-function askMail() {
+function askDelivery() {
    let command = {
       cmd: 'getMail',
-      txt: questions['mail']['text'],
-      btns: utils.makeKeyboard([],'bm')
+      txt: questions['delivery']['text'],
+      btns: utils.makeKeyboard(questions['delivery']['keyboard'],'bm')
    };
    utils.runCommandWithKeyboard(command);
 }
 
 function setAsPreviousCommand(){
    let previousCommand = {
-      btns: utils.makeKeyboard([], 'bm'),
+      btns: utils.makeKeyboard(locations, 'bm'),
       txt: questions['location']['text'],
       cmd:'getLocation'
    }

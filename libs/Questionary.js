@@ -7,6 +7,10 @@ function setup() {
    User.setProperty('currentQuestionary', currentQuestionary, 'JSON');
 }
 
+function getLocations() {
+   return Bot.getProperty('locations');
+}
+
 function getCurrentQuestionary() {
    let curQuiz = User.getProperty('currentQuestionary');
    if (curQuiz) { return curQuiz; }
