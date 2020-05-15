@@ -19,44 +19,40 @@ function setCurrentQuestionary(data) {
    User.setProperty('currentQuestionary', data, 'JSON');
 }
 
-function getAnwers() {
-   return getCurrentQuestionary()['answers'];
-}
-
 function addAnswer(propertyName, value) {
    let curQuiz = User.getProperty('currentQuestionary');
    curQuiz[propertyName] = value;
    setCurrentQuestionary(curQuiz);
 }
-
-function getCurrentQuestionaryProperty(propertyName) {
-   return User.getProperty('currentQuestionary')['propertyName'];
-}
+//
+// function getCurrentQuestionaryProperty(propertyName) {
+//    return User.getProperty('currentQuestionary')['propertyName'];
+// }
 
 function getQuestions() {
    return Bot.getProperty('questionary');
 }
-
-function getQuestion() {
-   let answers = getCurrentQuestionary();
-   let questions = getQuestions();
-   let questionsName = Object.keys(questions).length;
-   let curQuizLength = Object.keys(answers).length;
-
-   if (questions) { return questionsName[quizLength]; }
-
-   Bot.sendMessage('Nothing to ask');
-   return;
-}
-
-function saveAnswer(answerName, answerMessage) {
-   answerObj = {answerName: answerMessage}
-   addCurrentQuestionaryProperty('answers', getAnwers().push(answer));
-}
+//
+// function getQuestion() {
+//    let answers = getCurrentQuestionary();
+//    let questions = getQuestions();
+//    let questionsName = Object.keys(questions).length;
+//    let curQuizLength = Object.keys(answers).length;
+//
+//    if (questions) { return questionsName[quizLength]; }
+//
+//    Bot.sendMessage('Nothing to ask');
+//    return;
+// }
+//
+// function saveAnswer(answerName, answerMessage) {
+//    answerObj = {answerName: answerMessage}
+//    addCurrentQuestionaryProperty('answers', getAnwers().push(answer));
+// }
 
 function sendForm() {
    let admin = Bot.getProperty('admin');
-   let answers = getAnwers();
+   let answers = getCurrentQuestionary();
 
    let answer = new Object();
    Object.entries(answers).forEach(([key, value]) => {
@@ -65,7 +61,7 @@ function sendForm() {
 
    let template = curChannelQuiz[type]['template'];
    Bot.sendMessage(template);
-   saveUserRequest(user.id, {req: template, channel: curChannel['id']});
+   // saveUserRequest(user.id, {req: template, channel: curChannel['id']});
 
    Bot.sendInlineKeyboardToChatWithId(
       admin,
@@ -79,39 +75,33 @@ function sendForm() {
    );
 }
 
-function clearAnsewrs() {
-   addCurrentQuestionaryProperty('answers', new Array());
-}
-
-function getRequests() {
-   let requests = Bot.getProperty('requests');
-   return requests ? requests : {};
-}
-
-function saveUserRequest(userId, req) {
-   clearAnswers();
-   let requests = getRequests();
-   let requests = utils.obj.setDefault(requests, userId, new Array());
-   if (!req) { return }
-   Bot.setProperty('requests', requests[userId].push(req), 'JSON');
-}
-
-function getRequest(userId) {
-   let requests = getRequests()
-   return requests[userId];
-}
+// function clearAnsewrs() {
+//    addCurrentQuestionaryProperty('answers', new Array());
+// }
+//
+// function getRequests() {
+//    let requests = Bot.getProperty('requests');
+//    return requests ? requests : {};
+// }
+//
+// function saveUserRequest(userId, req) {
+//    clearAnswers();
+//    let requests = getRequests();
+//    let requests = utils.obj.setDefault(requests, userId, new Array());
+//    if (!req) { return }
+//    Bot.setProperty('requests', requests[userId].push(req), 'JSON');
+// }
+//
+// function getRequest(userId) {
+//    let requests = getRequests()
+//    return requests[userId];
+// }
 
 publish({
    user: {
       setup: setup,
-      saveAnswer: saveAnswer,
-      addCurQuizProp: addCurrentQuestionaryProperty,
-      getCurQuizProp: getCurrentQuestionaryProperty,
-      getAnswers: getAnswers,
    },
    addAnswer: addAnswer,
-   getRequest: getRequest,
    sendForm: sendForm,
-   getQuestion: getQuestion,
    getQuestions: getQuestions,
 })
