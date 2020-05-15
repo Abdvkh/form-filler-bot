@@ -12,6 +12,7 @@ CMD*/
 let lang = Libs.Lang.get();
 let questionary = Libs.Questionary;
 let utils = Libs.Utils;
+let questions = questionary.getQuestions();
 let wordsLikeButton = lang.buttons;
 
 if (message == wordsLikeButton.mainmenu) {

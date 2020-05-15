@@ -13,7 +13,7 @@ questionary.user.setup();
 
 function setLangAndRunMenu(code){
    Libs.Lang.user.setLang(code);
-   let msg = utils.stringTemplateParser(lang.greet, user)
+   let msg = utils.json.stringTemplateParser(lang.greet, user)
    Bot.runCommand("/menu");
 }
 

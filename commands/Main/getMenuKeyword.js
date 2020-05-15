@@ -12,8 +12,8 @@ CMD*/
 let passedMenuKeyword = message;
 
 switch (passedMenuKeyword) {
-   case lang.mainMenuButtons[0]://Разместить пост
-      fillForm();
+   case lang.mainMenuButtons[0]://Заполнить форму
+      startFillingForm();
       break;
    case lang.mainMenuButtons[1]://Помощь
       Bot.runCommand('/help');
@@ -22,12 +22,7 @@ switch (passedMenuKeyword) {
       utils.onWrongInput('/menu');
 }
 
-function fillForm(){
-   let channels = Bot.getProperty('channels');
-   let channelsArr = Object.keys(channels);
-   utils.runCommandWithKeyboard({
-      btns: utils.makeKeyboard(channelsArr, 'm'),
-      txt: lang['chooseChannel'],
-      cmd: 'getChannel'
-   });
+function askBox(){
+   Bot.sendMessage(questions['box']['text']);
+   Bot.runCommand('getBox');
 }
