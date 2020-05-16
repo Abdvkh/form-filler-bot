@@ -61,6 +61,7 @@ function clearAnswers() {
 
 function sendForm() {
    let lang = Libs.Lang.get();
+   let utils = Libs.Utils;
    let admin = Bot.getProperty('admin');
    let answers = getCurrentQuestionary();
    let req = '';
