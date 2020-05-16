@@ -9,18 +9,17 @@
   aliases:
 CMD*/
 
-questionary.addAnswer('price', message);
 setAsPreviousCommand();
-askLocation();
+acceptPriceAndAskLocation();
 
-function askLocation() {
-   let locations = questionary.getLocations();
-   let command = {
-      cmd: 'getLocation',
-      txt: questions['location']['text'],
-      btns: utils.makeKeyboard(locations, 'bm')
-   };
-   utils.runCommandWithKeyboard(command);
+
+function acceptPriceAndAskLocation() {
+   let price = parseInt(message);
+   if (!isNaN(price)) {
+      questionary.addAnswer('price', message);
+      return askLocation();
+   }
+   utils.onWrongInputRun('getPrice');
 }
 
 function setAsPreviousCommand(){
@@ -30,4 +29,14 @@ function setAsPreviousCommand(){
       cmd:'getPrice'
    }
    utils.savePreviousCommand(previousCommand);
+}
+
+function askLocation() {
+   let locations = questionary.getLocations();
+   let command = {
+      cmd: 'getLocation',
+      txt: questions['location']['text'],
+      btns: utils.makeKeyboard(locations, 'bm')
+   };
+   utils.runCommandWithKeyboard(command);
 }

@@ -10,24 +10,23 @@
 CMD*/
 
 questionary.addAnswer('branch', message);
-Bot.sendMessage(questions['phone']['text']);
-Bot.runCommand('getPhone');
 setAsPreviousCommand();
-askPrice();
+askPhone();
 
-function askPrice(){
+
+function askPhone(){
    let command = {
       btns: utils.makeKeyboard([], 'bm'),
-      txt: questions['price']['text'],
-      cmd:'getPrice'
+      txt: questions['phone']['text'],
+      cmd:'getPhone'
    }
    utils.runCommandWithKeyboard(command);
 }
 
 function setAsPreviousCommand() {
    let previousCommand = {
-      cmd: 'getDelivery',
-      txt: questions['delivery']['text'],
+      cmd: 'getBranch',
+      txt: questions['branch']['text'],
       btns: utils.makeKeyboard([],'bm')
    };
    utils.savePreviousCommand(previousCommand);

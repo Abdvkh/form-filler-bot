@@ -10,4 +10,4 @@
 CMD*/
 
 Bot.runCommand('setLang');
-Bot.runCommand('setQuestions');
+Bot.runCommand('setup');

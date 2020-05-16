@@ -9,11 +9,7 @@ function setup() {
 
 function getLocations() {
    let locations = Bot.getProperty('locations');
-   if (typeof(locations) != 'array') {
-      newLocations = new Array();
-      return newLocations.push(locations);
-   }
-   return locations;
+   return locations.cities;
 }
 
 function getCurrentQuestionary() {
@@ -62,54 +58,62 @@ function getQuestions() {
 function sendForm() {
    let admin = Bot.getProperty('admin');
    let answers = getCurrentQuestionary();
+   let req = '';
 
-   let answer = new Object();
    Object.entries(answers).forEach(([key, value]) => {
-      answer[key] = value;
+      req += lang['template'][key] + value;
    });
 
-   let template = curChannelQuiz[type]['template'];
-   Bot.sendMessage(template);
-   // saveUserRequest(user.id, {req: template, channel: curChannel['id']});
+   clearCurrentQuestionary();
+   addRequest({req: req, filled_by: user.id});
 
    Bot.sendInlineKeyboardToChatWithId(
       admin,
       [
          [
-            {text: 'Одобрить', command: 'request 1|' + curChannel['id'] + '|' + user.id},
-            {text: 'Отказать', command: 'request 0|' + curChannel['id'] + '|' + user.id}
+            {text: 'Одобрить', command: 'request 1|' + user.id},
+            {text: 'Отказать', command: 'request 0|' + user.id}
          ]
       ],
-      'Request from ' + utils.getLinkFor(user) + ':\n' + template
+      'Запрос от ' + utils.getLinkFor(user) + ':\n\n' + req
    );
 }
 
-// function clearAnsewrs() {
-//    addCurrentQuestionaryProperty('answers', new Array());
-// }
-//
-// function getRequests() {
-//    let requests = Bot.getProperty('requests');
-//    return requests ? requests : {};
-// }
-//
-// function saveUserRequest(userId, req) {
-//    clearAnswers();
-//    let requests = getRequests();
-//    let requests = utils.obj.setDefault(requests, userId, new Array());
-//    if (!req) { return }
-//    Bot.setProperty('requests', requests[userId].push(req), 'JSON');
-// }
-//
-// function getRequest(userId) {
-//    let requests = getRequests()
-//    return requests[userId];
-// }
+function clearAnsewrs() {
+   setCurrentQuestionary(new Object());
+}
+
+function getRequests() {
+   let requests = Bot.getProperty('requests');
+   if (requests != undefined) {
+      return requests;
+   }
+   let queries = new Array()
+   Bot.setProperty('requests', {queries: queries}, 'JSON');
+   return queries;
+}
+
+function addRequest(query) {
+   let req = query['req'];
+   let userId = query['filled_by'];
+   clearAnswers();
+   let requests = getRequests();
+   let requests = utils.obj.setDefault(requests, userId, new Array());
+   if (!req) { return }
+   requests[userId].push(req)
+   Bot.setProperty('requests', requests, 'JSON');
+}
+
+function getRequest(userId) {
+   let requests = getRequests();
+   return requests[userId];
+}
 
 publish({
    user: {
       setup: setup,
    },
+   getRequest: getRequest,
    getLocations: getLocations,
    addAnswer: addAnswer,
    sendForm: sendForm,

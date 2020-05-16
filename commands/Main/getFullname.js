@@ -10,5 +10,24 @@
 CMD*/
 
 questionary.addAnswer('fullname', message);
-Bot.sendMessage(questions['payment']['text']);
-Bot.runCommand('getPayment');
+setAsPreviousCommand();
+askPayment();
+
+
+function askPayment(){
+   let command = {
+      btns: utils.makeKeyboard([], 'bm'),
+      txt: questions['payment']['text'],
+      cmd:'getPayment'
+   }
+   utils.runCommandWithKeyboard(command);
+}
+
+function setAsPreviousCommand() {
+   let previousCommand = {
+      cmd: 'getFullname',
+      txt: questions['fullname']['text'],
+      btns: utils.makeKeyboard([],'bm')
+   };
+   utils.savePreviousCommand(previousCommand);
+}

@@ -10,5 +10,24 @@
 CMD*/
 
 questionary.addAnswer('address', message);
-Bot.sendMessage(questions['phone']['text']);
-Bot.runCommand('getPhone');
+setAsPreviousCommand();
+askPhone();
+
+
+function askPhone(){
+   let command = {
+      btns: utils.makeKeyboard([], 'bm'),
+      txt: questions['phone']['text'],
+      cmd:'getPhone'
+   }
+   utils.runCommandWithKeyboard(command);
+}
+
+function setAsPreviousCommand() {
+   let previousCommand = {
+      cmd: 'getAddress',
+      txt: questions['address']['text'],
+      btns: utils.makeKeyboard([],'bm')
+   };
+   utils.savePreviousCommand(previousCommand);
+}
