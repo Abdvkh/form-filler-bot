@@ -56,6 +56,7 @@ function getQuestions() {
 // }
 
 function sendForm() {
+   let lang = Libs.Lang.get();
    let admin = Bot.getProperty('admin');
    let answers = getCurrentQuestionary();
    let req = '';

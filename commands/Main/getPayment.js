@@ -14,7 +14,7 @@ acceptTypeAndAskDetailsOrComplete();
 
 
 function acceptTypeAndAskDetailsOrComplete() {
-   if ((message == questions['payment']['keyboard'][1]) {//card
+   if (message == questions['payment']['keyboard'][1]) {//card
       questionary.addAnswer('payment', message);
       return askDetails();
    } else if (message == questions['payment']['keyboard'][0]) {//naoljniy
@@ -34,11 +34,10 @@ function setAsPreviousCommand(){
 }
 
 function askDetails() {
-   let locations = questionary.getLocations();
    let command = {
       cmd: 'getCard',
       txt: questions['card']['text'],
-      btns: utils.makeKeyboard(locations, 'bm')
+      btns: utils.makeKeyboard([], 'bm')
    };
    utils.runCommandWithKeyboard(command);
 }
