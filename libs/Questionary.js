@@ -65,7 +65,7 @@ function sendForm() {
       req += lang['template'][key] + value;
    });
 
-   clearCurrentQuestionary();
+   clearAnswers();
    addRequest({req: req, filled_by: user.id});
 
    Bot.sendInlineKeyboardToChatWithId(
