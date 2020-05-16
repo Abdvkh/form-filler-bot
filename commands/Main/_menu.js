@@ -1,6 +1,6 @@
 /*CMD
   command: /menu
-  help: главное меню | asosiy menyu
+  help: главное меню
   need_reply:
   auto_retry_time:
   folder:

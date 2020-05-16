@@ -23,11 +23,8 @@ switch (message) {
 function next(type) {
    questionary.addAnswer('delivery', message);
    setAsPreviousCommand();
-   if (type == 'branch') {
-      askBranch();
-   } else {
-      askAddress();
-   }
+   if (type == 'branch') { return askBranch(); }
+   askAddress();
 }
 
 function askBranch() {
