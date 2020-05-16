@@ -55,6 +55,10 @@ function getQuestions() {
 //    addCurrentQuestionaryProperty('answers', getAnwers().push(answer));
 // }
 
+function clearAnsewrs() {
+   setCurrentQuestionary(new Object());
+}
+
 function sendForm() {
    let lang = Libs.Lang.get();
    let admin = Bot.getProperty('admin');
@@ -78,10 +82,6 @@ function sendForm() {
       ],
       'Запрос от ' + utils.getLinkFor(user) + ':\n\n' + req
    );
-}
-
-function clearAnsewrs() {
-   setCurrentQuestionary(new Object());
 }
 
 function getRequests() {
