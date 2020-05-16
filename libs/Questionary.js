@@ -99,7 +99,6 @@ function addRequest(query) {
    let userId = query['filled_by'];
    clearAnswers();
    let requests = getRequests();
-   let requests = utils.obj.setDefault(requests, userId, new Array());
    if (!req) { return }
    requests[userId].push(req)
    Bot.setProperty('requests', requests, 'JSON');
