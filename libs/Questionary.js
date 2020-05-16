@@ -55,7 +55,7 @@ function getQuestions() {
 //    addCurrentQuestionaryProperty('answers', getAnwers().push(answer));
 // }
 
-function clearAnsewrs() {
+function clearAnswers() {
    setCurrentQuestionary(new Object());
 }
 
