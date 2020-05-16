@@ -75,8 +75,8 @@ function sendForm() {
       admin,
       [
          [
-            {text: 'Одобрить', command: 'request 1|' + user.telegramid},
-            {text: 'Отказать', command: 'request 0|' + user.telegramid}
+            {title: 'Одобрить', command: 'request 1|' + user.telegramid},
+            {title: 'Отказать', command: 'request 0|' + user.telegramid}
          ]
       ],
       'Запрос от ' + utils.getLinkFor(user) + ':\n\n' + req
