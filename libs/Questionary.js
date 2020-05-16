@@ -66,19 +66,17 @@ function sendForm() {
    let answers = getCurrentQuestionary();
    let req = '';
 
-   Object.entries(answers).forEach(([key, value]) => {
-      req += lang['template'][key] + value;
-   });
+   Object.entries(answers).forEach(([key, value]) => req += lang['template'][key] + value);
 
    clearAnswers();
-   addRequest({req: req, filled_by: user.id});
+   addRequest({req: req, filled_by: user.telegramid});
 
    Bot.sendInlineKeyboardToChatWithId(
       admin,
       [
          [
-            {text: 'Одобрить', command: 'request 1|' + user.id},
-            {text: 'Отказать', command: 'request 0|' + user.id}
+            {text: 'Одобрить', command: 'request 1|' + user.telegramid},
+            {text: 'Отказать', command: 'request 0|' + user.telegramid}
          ]
       ],
       'Запрос от ' + utils.getLinkFor(user) + ':\n\n' + req
@@ -90,20 +88,19 @@ function getRequests() {
    if (requests != undefined) {
       return requests;
    }
-   let queries = {}
-   Bot.setProperty('requests', {queries: queries}, 'JSON');
+   let queries = {};
+   Bot.setProperty('requests', queries, 'JSON');
    return queries;
 }
 
 function addRequest(query) {
    let req = query['req'];
    let userId = query['filled_by'];
-   clearAnswers();
    let requests = getRequests();
-   if (!req) { return }
-   let userRequests = requests[userId]
-   userRequests = new Array();
+   let userRequests = requests[userId];
+   userRequests = [];
    userRequests.push(req);
+   clearAnswers();
    Bot.setProperty('requests', requests, 'JSON');
 }
 
