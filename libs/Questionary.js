@@ -9,7 +9,7 @@ function setup() {
 
 function getLocations() {
    let locations = Bot.getProperty('locations');
-   return locations.cities;
+   return locations['cities'];
 }
 
 function getCurrentQuestionary() {

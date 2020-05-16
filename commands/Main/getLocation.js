@@ -9,19 +9,20 @@
   aliases:
 CMD*/
 
+let locations = questionary.getLocations();
 setAsPreviousCommand();
 
 if (locations.includes(message)) {
    questionary.addAnswer('location', message);
-   return askPhone();
+   return askAddress();
 }
 askDelivery();
 
 
-function askPhone() {
+function askAddress() {
    let command = {
-      cmd: 'getPhone',
-      txt: questions['phone']['text'],
+      cmd: 'getAddress',
+      txt: questions['address']['text'],
       btns: utils.makeKeyboard([],'bm')
    };
    utils.runCommandWithKeyboard(command);
@@ -37,7 +38,6 @@ function askDelivery() {
 }
 
 function setAsPreviousCommand(){
-   let locations = questionary.getLocations();
    let previousCommand = {
       btns: utils.makeKeyboard(locations, 'bm'),
       txt: questions['location']['text'],

@@ -26,10 +26,10 @@ function acceptTypeAndAskDetailsOrComplete() {
 
 function setAsPreviousCommand(){
    let previousCommand = {
-      btns: utils.makeKeyboard([], 'bm'),
+      btns: utils.makeKeyboard(questions['payment']['keyboard'], 'bm'),
       txt: questions['payment']['text'],
       cmd:'getPayment'
-   }
+   };
    utils.savePreviousCommand(previousCommand);
 }
 
