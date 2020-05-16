@@ -21,7 +21,7 @@ switch (passedMenuKeyword) {
       Bot.runCommand('/help');
       break;
    default:
-      utils.onWrongInput('/menu');
+      utils.onWrongInputRun('getMenuKeyword');
 }
 
 function askBox(){

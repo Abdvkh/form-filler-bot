@@ -17,7 +17,7 @@ switch (message) {
       next('address');
       break;
    default:
-      utils.onWrongInput('getDelivery');
+      utils.onWrongInputRun('getDelivery');
 }
 
 function next(type) {
