@@ -15,7 +15,7 @@ setAsPreviousCommand();
 
 switch (passedMenuKeyword) {
    case lang.mainMenuButtons[0]://Заполнить форму
-      startFillingForm();
+      askBox();
       break;
    case lang.mainMenuButtons[1]://Помощь
       Bot.runCommand('/help');

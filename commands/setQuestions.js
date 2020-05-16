@@ -33,8 +33,8 @@ let questionsSet = {
    }
 }
 
-let locations = ['Харьков'];
-
+let locations = new Array();
+locations.push('Харьков');
 Bot.setProperty('questionary', questionsSet, 'JSON');
 Bot.sendMessage('Questions are set!');
 Bot.setProperty('locations', locations, 'JSON');
