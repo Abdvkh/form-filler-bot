@@ -66,7 +66,7 @@ function sendForm() {
    let answers = getCurrentQuestionary();
    let req = '';
 
-   Object.entries(answers).forEach(([key, value]) => req += lang['template'][key] + value);
+   Object.entries(answers).forEach(([key, value]) => req += '*' + lang['template'][key] + '*' + value+'\n');
 
    clearAnswers();
    addRequest({req: req, filled_by: user.telegramid});
