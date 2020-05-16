@@ -56,7 +56,7 @@ function getQuestions() {
 // }
 
 function clearAnswers() {
-   setCurrentQuestionary(new Object());
+   setCurrentQuestionary({});
 }
 
 function sendForm() {
@@ -89,7 +89,7 @@ function getRequests() {
    if (requests != undefined) {
       return requests;
    }
-   let queries = new Array()
+   let queries = {}
    Bot.setProperty('requests', {queries: queries}, 'JSON');
    return queries;
 }
@@ -100,7 +100,9 @@ function addRequest(query) {
    clearAnswers();
    let requests = getRequests();
    if (!req) { return }
-   requests[userId].push(req)
+   let userRequests = requests[userId]
+   userRequests = new Array();
+   userRequests.push(req);
    Bot.setProperty('requests', requests, 'JSON');
 }
 
