@@ -11,7 +11,7 @@ CMD*/
 
 let command = {
    btns: utils.makeKeyboard(lang.mainMenuButtons,''),
-   txt: wordsLikeButton.menu,
+   txt: wordsLikeButton.mainmenu,
    cmd: 'getMenuKeyword'
 };
 utils.runCommandWithKeyboard(command);

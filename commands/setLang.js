@@ -12,7 +12,7 @@ CMD*/
 let ruLang = {
    buttons: {
       back: "Назад",
-      menu: "Главное меню",
+      mainmenu: "Главное меню",
    },
    greet: "Добро пожаловать %s!",
    mainMenuButtons: ["Заполнить форму", "Помощь"],

@@ -8,7 +8,12 @@ function setup() {
 }
 
 function getLocations() {
-   return Bot.getProperty('locations');
+   let locations = Bot.getProperty('locations');
+   if (typeof(locations) != 'array') {
+      newLocations = new Array();
+      return newLocations.push(locations);
+   }
+   return locations;
 }
 
 function getCurrentQuestionary() {
@@ -105,6 +110,7 @@ publish({
    user: {
       setup: setup,
    },
+   getLocations: getLocations,
    addAnswer: addAnswer,
    sendForm: sendForm,
    getQuestions: getQuestions,
