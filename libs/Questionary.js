@@ -52,7 +52,8 @@ function sendForm() {
          Api.sendPhoto({
             chat_id: admin,
             photo: value,
-            caption: req
+            caption: req,
+            parse_mode: 'Markdown'
          });
          value = 'фотография';
       }

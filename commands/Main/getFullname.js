@@ -9,7 +9,7 @@
   aliases:
 CMD*/
 
-if (message.length >= questions['fullname']['min_length']) {
+if (message.length >= questions['fullname']['min_length'] && message.split(' ').length >= 2) {
    questionary.addAnswer('fullname', message);
    setAsPreviousCommand();
    return askPayment();
