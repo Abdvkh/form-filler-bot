@@ -38,7 +38,17 @@ function clearAnswers() {
    setCurrentQuestionary({});
 }
 
+function getRequestsRecievedCount() {
+   let requestsRecievedCount = Bot.getProperty('requestsRecievedCount');
+   if (requestsRecievedCount == undefined) {
+      Bot.setProperty('requestsRecievedCount', 0, 'Number');
+      return 0;
+   }
+   return requestsRecievedCount;
+}
+
 function sendForm() {
+   let requestsRecievedCount = getRequestsRecievedCount();
    let lang = Libs.Lang.get();
    let utils = Libs.Utils;
    let admin = Bot.getProperty('admin');
@@ -46,7 +56,7 @@ function sendForm() {
    let req = 'Запрос от ' + utils.getLinkFor(user) + ':\n\n';
 
    clearAnswers();
-
+//goes through the answers and creates request
    Object.entries(answers).forEach(([key, value]) => {
       if (key == 'confirmation' && value.length > 10) {
          Api.sendPhoto({
@@ -55,11 +65,20 @@ function sendForm() {
             caption: req,
             parse_mode: 'Markdown'
          });
+         Bot.sendMessage(lang['completed']);
+         Bot.sendMessage('⏳');
          value = 'фотография';
       }
-      req += '*' + lang['template'][key] + '*' + value+'\n';
+      req += lang['template'][key] + '`' + value + '`\n';
    });
-
+//counts requests
+   if (Object.keys(answers).length > 2) {
+      Bot.setProperty(
+         'requestsRecievedCount',
+         requestsRecievedCount+1,
+         'Number'
+      );
+   }
    addRequest({req: req, filled_by: user.telegramid});
    Bot.sendInlineKeyboardToChatWithId(
       admin,

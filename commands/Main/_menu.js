@@ -6,7 +6,7 @@
   folder:
   answer:
   keyboard:
-  aliases: asosiy menyu, Главное меню, main menu
+  aliases: asosiy menyu, 🔝Главное меню, main menu
 CMD*/
 
 let command = {
