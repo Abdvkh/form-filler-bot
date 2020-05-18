@@ -19,9 +19,19 @@ function acceptTypeAndAskDetailsOrComplete() {
       return askDetails();
    } else if (message == questions['payment']['keyboard'][0]) {//naoljniy
       questionary.addAnswer('payment', message);
-      return complete();
+      questionary.sendForm();
+      return askConfirmation();
    }
    utils.onWrongInputRun('getPayment');
+}
+
+function askConfirmation() {
+   let command = {
+      cmd: 'getConfirmation',
+      txt: questions['confirmation']['text'],
+      btns: utils.makeKeyboard(questions['confirmation']['keyboard'],'bm')
+   };
+   utils.runCommandWithKeyboard(command);
 }
 
 function setAsPreviousCommand(){
@@ -40,9 +50,4 @@ function askDetails() {
       btns: utils.makeKeyboard([], 'bm')
    };
    utils.runCommandWithKeyboard(command);
-}
-
-function complete() {
-   questionary.sendForm();
-   Bot.runCommand('/menu')
 }

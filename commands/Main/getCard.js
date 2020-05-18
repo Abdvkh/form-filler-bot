@@ -10,12 +10,18 @@
 CMD*/
 
 setAsPreviousCommand();
-acceptDetailsAndComplete();
+questionary.addAnswer('card', message);
+questionary.sendForm();
+askConfirmation();
 
 
-function acceptDetailsAndComplete() {
-   questionary.addAnswer('card', message);
-   complete();
+function askConfirmation() {
+   let command = {
+      cmd: 'getConfirmation',
+      txt: questions['confirmation']['text'],
+      btns: utils.makeKeyboard(questions['confirmation']['keyboard'],'bm')
+   };
+   utils.runCommandWithKeyboard(command);
 }
 
 function setAsPreviousCommand(){
@@ -25,9 +31,4 @@ function setAsPreviousCommand(){
       cmd:'getCard'
    }
    utils.savePreviousCommand(previousCommand);
-}
-
-function complete() {
-   questionary.sendForm();
-   Bot.runCommand('/menu')
 }
