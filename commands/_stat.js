@@ -17,15 +17,15 @@ if (user.telegramid == admin) {
    let recieved = Bot.getProperty('requestsRecievedCount');
    let accepted = Bot.getProperty('requestsAcceptedCount');
    let refused = Bot.getProperty('requestsDeniedCount');
-   let msg = wordsLikeButton.stat + "\n\n📑Запросы\n" +
-             st_tr['recieved'] + recieved + '\n' +
-             st_tr['accepted'] + accepted + '\n' +
-             st_tr['refused'] + refused + '\n\n🐾Пользователи\n' +
-             st_tr['total'] + st['total'] + '\n' +
-             st_tr['users'] + st['user_chats_count'] + '\n' +
-             st_tr['groups'] + st['group_chats_count'] + '\n' +
+   let msg = wordsLikeButton.stat + "\n\n\n📑Запросы\n\n" +
+             st_tr['recieved'] + recieved + '\n\n' +
+             st_tr['accepted'] + accepted + '\n\n' +
+             st_tr['refused'] + refused + '\n\n\n🐾Пользователи\n\n' +
+             st_tr['total'] + st['total'] + '\n\n' +
+             st_tr['users'] + st['user_chats_count'] + '\n\n' +
+             st_tr['groups'] + st['group_chats_count'] + '\n\n' +
              st_tr['super_groups'] + st['super_group_chats_count'] + '\n\n' +
-             st_tr['active_day'] + st['active_during_last_day'] + '\n' +
+             st_tr['active_day'] + st['active_during_last_day'] + '\n\n' +
              st_tr['active_week'] + st['active_during_last_week'];
    Bot.sendMessage(msg);
 }
