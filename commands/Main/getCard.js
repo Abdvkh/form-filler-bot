@@ -15,7 +15,7 @@ if (message.length >= questions['card']['min_length']) {
    questionary.sendForm();
    return askConfirmation();
 }
-utils.onWrongInputRun('getFullname');
+utils.onWrongInputRun('getCard');
 
 
 function askConfirmation() {
