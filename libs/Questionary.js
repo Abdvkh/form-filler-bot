@@ -29,31 +29,10 @@ function addAnswer(propertyName, value) {
    curQuiz[propertyName] = value;
    setCurrentQuestionary(curQuiz);
 }
-//
-// function getCurrentQuestionaryProperty(propertyName) {
-//    return User.getProperty('currentQuestionary')['propertyName'];
-// }
 
 function getQuestions() {
    return Bot.getProperty('questionary');
 }
-//
-// function getQuestion() {
-//    let answers = getCurrentQuestionary();
-//    let questions = getQuestions();
-//    let questionsName = Object.keys(questions).length;
-//    let curQuizLength = Object.keys(answers).length;
-//
-//    if (questions) { return questionsName[quizLength]; }
-//
-//    Bot.sendMessage('Nothing to ask');
-//    return;
-// }
-//
-// function saveAnswer(answerName, answerMessage) {
-//    answerObj = {answerName: answerMessage}
-//    addCurrentQuestionaryProperty('answers', getAnwers().push(answer));
-// }
 
 function clearAnswers() {
    setCurrentQuestionary({});
@@ -64,13 +43,23 @@ function sendForm() {
    let utils = Libs.Utils;
    let admin = Bot.getProperty('admin');
    let answers = getCurrentQuestionary();
-   let req = '';
-
-   Object.entries(answers).forEach(([key, value]) => req += '*' + lang['template'][key] + '*' + value+'\n');
+   let req = 'Запрос от ' + utils.getLinkFor(user) + ':\n\n';
 
    clearAnswers();
-   addRequest({req: req, filled_by: user.telegramid});
 
+   Object.entries(answers).forEach(([key, value]) => {
+      if (key == 'confirmation' && value.length > 10) {
+         Api.sendPhoto({
+            chat_id: admin,
+            photo: value,
+            caption: req
+         });
+         value = 'фотография';
+      }
+      req += '*' + lang['template'][key] + '*' + value+'\n';
+   });
+
+   addRequest({req: req, filled_by: user.telegramid});
    Bot.sendInlineKeyboardToChatWithId(
       admin,
       [
@@ -79,7 +68,7 @@ function sendForm() {
             {title: 'Отказать', command: 'request 0|' + user.telegramid}
          ]
       ],
-      'Запрос от ' + utils.getLinkFor(user) + ':\n\n' + req
+      req
    );
 }
 

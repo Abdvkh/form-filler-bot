@@ -9,9 +9,12 @@
   aliases:
 CMD*/
 
-questionary.addAnswer('fullname', message);
-setAsPreviousCommand();
-askPayment();
+if (message.length >= questions['fullname']['min_length']) {
+   questionary.addAnswer('fullname', message);
+   setAsPreviousCommand();
+   return askPayment();
+}
+utils.onWrongInputRun('getFullname');
 
 
 function askPayment(){

@@ -9,9 +9,12 @@
   aliases:
 CMD*/
 
-questionary.addAnswer('address', message);
-setAsPreviousCommand();
-askPhone();
+if (message.length >= questions['address']['min_length']) {
+   questionary.addAnswer('address', message);
+   setAsPreviousCommand();
+   return askPhone();
+}
+utils.onWrongInputRun('getAddress');
 
 
 function askPhone(){

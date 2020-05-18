@@ -13,7 +13,8 @@ if (message == '+') {
    data = '+';
    return getConfirmationAndComplete(data);
 } else if (request.photo.length != 0) {
-   data = request.photo[-1]['file_id'];
+   file_id_count = request.photo.length;
+   data = request.photo[file_id_count-1]['file_id'];
    return getConfirmationAndComplete(data);
 }
 utils.onWrongInputRun('getConfirmation');

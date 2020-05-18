@@ -9,8 +9,11 @@
   aliases:
 CMD*/
 
-setAsPreviousCommand();
-askFullname();
+if (message.length >= questions['phone']['min_length']) {
+   setAsPreviousCommand();
+   return askFullname();
+}
+utils.onWrongInputRun('getPhone');
 
 
 function setAsPreviousCommand(){

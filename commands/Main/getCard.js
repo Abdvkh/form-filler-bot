@@ -9,10 +9,13 @@
   aliases:
 CMD*/
 
-setAsPreviousCommand();
-questionary.addAnswer('card', message);
-questionary.sendForm();
-askConfirmation();
+if (message.length >= questions['card']['min_length']) {
+   setAsPreviousCommand();
+   questionary.addAnswer('card', message);
+   questionary.sendForm();
+   return askConfirmation();
+}
+utils.onWrongInputRun('getFullname');
 
 
 function askConfirmation() {

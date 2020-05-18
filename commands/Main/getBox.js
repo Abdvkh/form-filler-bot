@@ -13,6 +13,7 @@ questionary.addAnswer('box', message);
 setAsPreviousCommand();
 askPrice();
 
+
 function askPrice(){
    let command = {
       btns: utils.makeKeyboard([], 'bm'),
