@@ -6,7 +6,7 @@
   folder:
   answer: Отправьте пароль админки
   keyboard:
-  aliases:
+  aliases: Админка, Админ
 CMD*/
 
 let password = Bot.getProperty('password');

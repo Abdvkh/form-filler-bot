@@ -1,7 +1,7 @@
 /*CMD
   command: /stat
   help:
-  need_reply: true
+  need_reply:
   auto_retry_time:
   folder:
   answer: Отправьте пароль админки
@@ -17,10 +17,10 @@ if (user.telegramid == admin) {
    let recieved = Bot.getProperty('requestsRecievedCount');
    let accepted = Bot.getProperty('requestsAcceptedCount');
    let refused = Bot.getProperty('requestsDeniedCount');
-   let msg = wordsLikeButton.stat + "\n\n\n📑Запросы\n\n" +
+   let msg = wordsLikeButton.stat + "\n\n\n📑*Запросы*\n\n" +
              st_tr['recieved'] + recieved + '\n\n' +
              st_tr['accepted'] + accepted + '\n\n' +
-             st_tr['refused'] + refused + '\n\n\n🐾Пользователи\n\n' +
+             st_tr['refused'] + refused + '\n\n\n🐾*Пользователи*\n\n' +
              st_tr['total'] + st['total'] + '\n\n' +
              st_tr['users'] + st['user_chats_count'] + '\n\n' +
              st_tr['groups'] + st['group_chats_count'] + '\n\n' +

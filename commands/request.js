@@ -3,7 +3,7 @@ let acception = details[0];
 let userId = details[1];
 
 if (acception == '0') {
-   let requestsAcceptedCount = Bot.getProperty('requestsDeniedCount');
+   let requestsDeniedCount = Bot.getProperty('requestsDeniedCount');
    if (requestsDeniedCount == undefined) {
       requestsDeniedCount = 0;
    }
