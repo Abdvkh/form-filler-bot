@@ -87,8 +87,8 @@ function sendForm() {
       sheet.addRow({
          sheetName: "Auction",  // sheet name
          row: answers,
-         onSuccess: 'sheetSuccess',
-         onError: 'sheetError'
+         onSuccess: 'onSuccess',
+         onError: 'onError'
       });
    }
    addRequest({req: req, filled_by: user.telegramid});
