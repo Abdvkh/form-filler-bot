@@ -33,7 +33,7 @@ function checkOptions(options){
 function getCallback(options){
   let onError = " ";
   if(onError){ onError = options.onError }
-  
+
   return libPrefix + "onSuccess " + options.onSuccess + " " + onError;
 }
 
@@ -98,12 +98,12 @@ function onSuccess(){
   if(!result){
     // error
     var arr = content.split("width:600px");
-    var error = arr[1].split("<")[0]
+    var error = arr[1].split("<")[0];
     return Bot.runCommand(errCalback, {error: error});
   }
 
   result = decodeURI(result);
-  result = JSON.parse(result)
+  result = JSON.parse(result);
   Bot.runCommand(callback, result);
 }
 
