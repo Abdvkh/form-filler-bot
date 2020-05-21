@@ -10,14 +10,11 @@
 CMD*/
 
 setAsPreviousCommand();
-acceptTypeAndAskDetailsOrComplete();
+acceptTypeAndComplete();
 
 
-function acceptTypeAndAskDetailsOrComplete() {
-   if (message == questions['payment']['keyboard'][1]) {//card
-      questionary.addAnswer('payment', message);
-      return askDetails();
-   } else if (message == questions['payment']['keyboard'][0]) {//naoljniy
+function acceptTypeAndComplete() {
+   if (questions['payment']['keyboard'].includes(message)) {
       questionary.addAnswer('payment', message);
       questionary.sendForm();
       return askConfirmation();
@@ -43,7 +40,7 @@ function setAsPreviousCommand(){
    utils.savePreviousCommand(previousCommand);
 }
 
-function askDetails() {
+function askDetails() {//when asking card details required can be used
    let command = {
       cmd: 'getCard',
       txt: questions['card']['text'],

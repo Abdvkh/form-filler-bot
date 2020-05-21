@@ -48,11 +48,15 @@ function getRequestsRecievedCount() {
 }
 
 function sendForm() {
-   let requestsRecievedCount = getRequestsRecievedCount();
-   let lang = Libs.Lang.get();
    let utils = Libs.Utils;
+   let lang = Libs.Lang.get();
+   let sheet = Libs.GoogleSpreadSheet;
+
    let admin = Bot.getProperty('admin');
+
+   let requestsRecievedCount = getRequestsRecievedCount();
    let answers = getCurrentQuestionary();
+
    let req = 'Запрос от ' + utils.getLinkFor(user) + ':\n\n';
 
    clearAnswers();
@@ -78,6 +82,12 @@ function sendForm() {
          requestsRecievedCount+1,
          'Number'
       );
+
+      // saving data in google spread sheet
+      sheet.addRow({
+         sheetName: "Auction",  // sheet name
+         row: answers,
+      });
    }
    addRequest({req: req, filled_by: user.telegramid});
    Bot.sendInlineKeyboardToChatWithId(
