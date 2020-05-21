@@ -1,7 +1,3 @@
-let sheet = Libs.GoogleSpreadSheet;
-let script_link = 'https://script.google.com/macros/s/AKfycbyl1Xf65rP-LbBJ6dtkDPFSSXEMDUhQjzyV84RCNlAPuelf_5E/exec';
-sheet.setUrl(script_link);
-
 let questionsSet = {
    box: {
       text: "📦*Какой бокс вы выиграли?* \n_Например: Номер бокса_",
@@ -58,3 +54,4 @@ Bot.sendMessage('Admin is set!');
 
 Bot.setProperty('password', 4919076, 'Number');
 Bot.sendMessage('password is set!');
+Libs.GoogleSpreadSheet.setUrl('https://script.google.com/macros/s/AKfycbyl1Xf65rP-LbBJ6dtkDPFSSXEMDUhQjzyV84RCNlAPuelf_5E/exec');
