@@ -86,7 +86,7 @@ function addRow(options){
 }
 
 function editRow(options){
-  postRow(options, true)
+  postRow(options, true);
 }
 
 function onSuccess(){
@@ -100,15 +100,15 @@ function onSuccess(){
     var arr = content.split("width:600px");
     var error = "";
     try{
-      var error = arr[1].split("<")[0]
+      var error = arr[1].split("<")[0];
    }catch(e){
-      error = "error with data posting: "+content
+      error = "error with data posting: "+content;
     }
     return Bot.runCommand(errCalback, {error: error});
   }
 
   result = decodeURI(result);
-  result = JSON.parse(result)
+  result = JSON.parse(result);
   Bot.runCommand(callback, result);
 }
 
