@@ -101,7 +101,7 @@ function onSuccess(){
     var error = "";
     try{
       var error = arr[1].split("<")[0]
-    catch(e){
+   }catch(e){
       error = "error with data posting: "+content
     }
     return Bot.runCommand(errCalback, {error: error});
