@@ -10,4 +10,7 @@ CMD*/
 
 let admin = Bot.getProperty('admin');
 
-Bot.sendMessageToChatWithId(admin, 'Error with:\n\n' + inspect(options));
+Api.sendMessage({
+   chat_id: admin,
+   text: 'Error with:\n\n' + inspect(options)
+});

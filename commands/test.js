@@ -11,7 +11,7 @@ let prms = {
    sheetName: 'Auction',
    row: data,
    onSuccess:'onSuccess',
-   onError: onError
+   onError: 'onError'
 };
 
 sheet.addRow(prms);
