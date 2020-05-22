@@ -91,25 +91,25 @@ function editRow(options){
 
 function onSuccess(){
    let callback = params.split(" ")[0];
-   let errCalback = params.split(" ")[1];
+  let errCalback = params.split(" ")[1];
 
-   var result = content.split("APP-RESULT")[1];
+  var result = content.split("APP-RESULT")[1];
 
-   if(!result){
+  if(!result){
     // error
     var arr = content.split("width:600px");
     var error = "";
     try{
       var error = arr[1].split("<")[0]
-   }catch(e){
-      error = "error with data posting"
+    catch(e){
+      error = "error with data posting: "+content
     }
     return Bot.runCommand(errCalback, {error: error});
-   }
+  }
 
-   result = decodeURI(result);
-   result = JSON.parse(result)
-   Bot.runCommand(callback, result);
+  result = decodeURI(result);
+  result = JSON.parse(result)
+  Bot.runCommand(callback, result);
 }
 
 function onError(){
