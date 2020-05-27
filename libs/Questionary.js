@@ -73,7 +73,7 @@ function sendForm() {
          Bot.sendMessage('⏳');
          value = 'фотография';
       }
-      req += lang['template'][key] + '`' + value + '`\n\n';
+      req += lang['template'][key] + '`' + value + '`\n';
    });
 //counts requests
    if (Object.keys(answers).length > 2) {
