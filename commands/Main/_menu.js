@@ -6,7 +6,7 @@
   folder:
   answer:
   keyboard:
-  aliases: asosiy menyu, 🔝Главное меню, main menu
+  aliases: asosiy menyu, 🔝Главное меню, main menu,  главное меню, меню, /start
 CMD*/
 
 let command = {
@@ -15,3 +15,5 @@ let command = {
    cmd: 'getMenuKeyword'
 };
 utils.runCommandWithKeyboard(command);
+questionary.user.setup();
+Libs.Lang.user.setLang('ru');

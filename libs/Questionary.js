@@ -92,16 +92,10 @@ function sendForm() {
       });
    }
    addRequest({req: req, filled_by: user.telegramid});
-   Bot.sendInlineKeyboardToChatWithId(
-      admin,
-      [
-         [
-            {title: 'Одобрить', command: 'request 1|' + user.telegramid},
-            {title: 'Отказать', command: 'request 0|' + user.telegramid}
-         ]
-      ],
-      req
-   );
+   Api.sendMessage({
+      chat_id: admin,
+      text: req
+   });
 }
 
 function getRequests() {

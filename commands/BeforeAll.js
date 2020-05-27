@@ -15,7 +15,7 @@ let utils = Libs.Utils;
 let questions = questionary.getQuestions();
 let wordsLikeButton = lang.buttons;
 
-if (message == wordsLikeButton.mainmenu) {
+if ([wordsLikeButton.mainmenu, '/start'].includes(message)) {
    return Bot.runCommand('/menu');
 }
 

@@ -9,7 +9,7 @@ if (acception == '0') {
    }
    Bot.setProperty(
       'requestsDeniedCount',
-      requestsAcceptedCount+1,
+      requestsDeniedCount+1,
       'Number'
    );
    Api.sendMessage({
