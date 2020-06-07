@@ -69,13 +69,13 @@ function sendForm() {
             caption: req,
             parse_mode: 'Markdown'
          });
-         Bot.sendMessage(lang['completed']);
          value = 'фотография';
       }
       req += lang['template'][key] + '`' + value + '`\n';
    });
 //counts requests
    if (Object.keys(answers).length > 2) {
+      Bot.sendMessage(lang['completed']);
       Bot.setProperty(
          'requestsRecievedCount',
          requestsRecievedCount+1,
