@@ -1,6 +1,6 @@
 {
   "bb_sync_version":"1.0",
-  "name":"Abduvakhidovsbot",
+  "name":"Form filler bot fot Auction",
   "csv_url":null,
   "git_remote":"git@github.com:Abdvkh/form-filler-bot.git"
 }

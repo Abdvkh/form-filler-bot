@@ -12,8 +12,9 @@ CMD*/
 let locations = questionary.getLocations();
 setAsPreviousCommand();
 
+questionary.addAnswer('location', message);
+
 if (locations.includes(message)) {
-   questionary.addAnswer('location', message);
    return askAddress();
 }
 askDelivery();

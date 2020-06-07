@@ -68,26 +68,7 @@ function getLinkFor(member){
   return "[" + getNameFor(member) + "](tg://user?id=" + member.telegramid + ")";
 }
 
-function setDefault(obj, prop, deflt) {
-  return obj.hasOwnProperty(prop) ? obj[prop] : (obj[prop] = deflt);
-}
-
-function stringTemplateParser(expression, valueObj) {
-  const templateMatcher = /{{\s?([^{}\s]*)\s?}}/g;
-  let text = expression.replace(templateMatcher, (substring, value, index) => {
-    value = valueObj[value];
-    return value;
-  });
-  return text
-}
-
 publish({
-   obj: {
-      setDefault: setDefault
-   },
-   json: {
-      stringTemplateParser: stringTemplateParser
-   },
    getLinkFor: getLinkFor,
    getNameFor: getNameFor,
    getPreviousCommand: getPreviousCommand,

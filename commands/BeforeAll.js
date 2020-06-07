@@ -28,3 +28,17 @@ if (message == wordsLikeButton.back) {
    };
    return utils.runCommandWithKeyboard(commandToRun);
 }
+
+if (message == lang.mainMenuButtons[0]) {
+   return startFilling();
+}
+
+
+function startFilling(){
+   let command = {
+      btns: utils.makeKeyboard([], 'bm'),
+      txt: questions['box']['text'],
+      cmd:'getBox'
+   }
+   utils.runCommandWithKeyboard(command);
+}

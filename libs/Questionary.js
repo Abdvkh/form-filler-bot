@@ -62,7 +62,7 @@ function sendForm() {
    clearAnswers();
 //goes through the answers and creates request
    Object.entries(answers).forEach(([key, value]) => {
-      if (key == 'confirmation' && value.length > 10) {
+      if (key == 'confirmation' && value.length > 0) {
          Api.sendPhoto({
             chat_id: admin,
             photo: value,
@@ -70,7 +70,6 @@ function sendForm() {
             parse_mode: 'Markdown'
          });
          Bot.sendMessage(lang['completed']);
-         Bot.sendMessage('⏳');
          value = 'фотография';
       }
       req += lang['template'][key] + '`' + value + '`\n';
