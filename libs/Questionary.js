@@ -93,7 +93,8 @@ function sendForm() {
    addRequest({req: req, filled_by: user.telegramid});
    Api.sendMessage({
       chat_id: admin,
-      text: req
+      text: req,
+      parse_mode: 'Markdown'
    });
 }
 

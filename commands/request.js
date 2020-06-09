@@ -14,7 +14,8 @@ if (acception == '0') {
    );
    Api.sendMessage({
       chat_id: userId,
-      text: lang['req_denied']
+      text: lang['req_denied'],
+      parse_mode: 'Markdown'
    });
 }
 
@@ -25,7 +26,8 @@ if (acception == '1') {
    }
    Api.sendMessage({
       chat_id: userId,
-      text: lang['req_confirmed']
+      text: lang['req_confirmed'],
+      parse_mode: 'Markdown'
    });
    Bot.setProperty(
       'requestsAcceptedCount',
