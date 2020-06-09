@@ -65,7 +65,7 @@ function getNameFor(member){
 }
 
 function getLinkFor(member){
-  return "[" + getNameFor(member) + "](tg://user?id=" + member.telegramid + ")";
+  return "[" + getNameFor(member) + "](tg://user?id=" + member.telegramid + " )";
 }
 
 publish({
