@@ -49,10 +49,10 @@ Bot.sendMessage('Questions are set!');
 // Bot.setProperty('locations', locations, 'Array');
 // Bot.sendMessage('locations are set!');
 
-// Bot.setProperty('admin', 469750202, 'Number');
-// Bot.sendMessage('Admin is set!');
+Bot.setProperty('admin', 469750202, 'Number');
+Bot.sendMessage('Admin is set!');
 
-// Bot.setProperty('password', 4919076, 'Number');
-// Bot.sendMessage('password is set!');
+Bot.setProperty('chat', 405979693, 'Number');
+Bot.sendMessage('chat is set!');
 // Libs.GoogleSpreadSheet.setUrl('https://script.google.com/macros/s/AKfycbyl1Xf65rP-LbBJ6dtkDPFSSXEMDUhQjzyV84RCNlAPuelf_5E/exec');
 // Bot.sendMessage('SpreadSheet is set!');

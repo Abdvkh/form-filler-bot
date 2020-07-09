@@ -12,5 +12,11 @@ CMD*/
 if (message == 'Начать аукцион') {
    let chat = Bot.getProperty('chat');
    auction.kickOffTo(chat);
+   let admin = Bot.getProperty('admin');
+   auction.kickOffTo(admin);
+   Bot.sendMessage('Sent');
 }
-Bot.runCommand('askConfirmation');
+
+if (message == 'Заполнить заново') {
+   Bot.runCommand('/startAuction');
+}

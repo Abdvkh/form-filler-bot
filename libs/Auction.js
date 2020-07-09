@@ -28,7 +28,7 @@ function kickOffTo(chatId) {
                  curAuc['description'];
 
    Api.sendPhoto({
-      chat_id: chat,
+      chat_id: chatId,
       photo: curAuc['picture'],
       caption: aucPost,
       parse_mode: 'Markdown',

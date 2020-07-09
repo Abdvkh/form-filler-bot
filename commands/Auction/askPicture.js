@@ -4,7 +4,7 @@
   need_reply: true
   auto_retry_time:
   folder: Auction
-  answer: Введите описание аукциона
+  answer: Отправьте фотографию лота
   keyboard: Главное меню
   aliases:
 CMD*/
