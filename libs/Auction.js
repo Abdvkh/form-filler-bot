@@ -35,19 +35,21 @@ function kickOffTo(chatId) {
       reply_markup: {
          inline_keyboard: [
                [
-                  { text: 'Сделать ставку', callback_query: 'bet' },
-                  { text: 'Повысить на 5', callback_query: 'bet 5' },
+                  { text: 'Сделать ставку', callback_data: 'bet' },
+                  { text: 'Повысить на 5', callback_data: 'bet 5' },
                ]
          ],
-         resize_keyboard: true
       }
    })
 }
 
 function sendBetTo(betAmount, chatId) {
-   
+
 }
 
 publish({
-
+   kickOffTo: kickOffTo,
+   getCurrectAuction: getCurrectAuction,
+   setCurrentAuction: setCurrentAuction,
+   setAuction: setAuction
 })

@@ -9,5 +9,5 @@
   aliases:
 CMD*/
 
-auction.setCurrentAuction('picture', message);
+auction.setCurrentAuction('picture', request.photo[1]['file_id']);
 Bot.runCommand('askConfirmation');

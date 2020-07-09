@@ -11,6 +11,7 @@ CMD*/
 
 let lang = Libs.Lang.get();
 let questionary = Libs.Questionary;
+let auction = Libs.Auction;
 let utils = Libs.Utils;
 let questions = questionary.getQuestions();
 let wordsLikeButton = lang.buttons;
