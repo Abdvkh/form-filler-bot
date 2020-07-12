@@ -9,7 +9,7 @@
   aliases:
 CMD*/
 
-let lang = Libs.Lang.get();
+let lang = Libs.Lang.get('ru');
 let questionary = Libs.Questionary;
 let auction = Libs.Auction;
 let utils = Libs.Utils;
