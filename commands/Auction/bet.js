@@ -1,7 +1,7 @@
 let group = Bot.getProperty('chat');
 
 if (params && !isNaN(params)) {
-   if(!(request.caption!=undefined)){
+   if(!(request.message.caption!=undefined)){
       Api.deleteMessage({
          chat_id: request.message.chat.id,
          message_id: request.message.message_id,
