@@ -43,13 +43,39 @@ function kickOffTo(chatId) {
    })
 }
 
-function sendBetTo(betAmount, chatId) {
+function getCurBetPrice() {
+   let curAuc = getCurrectAuction();
+   let curBetPrice = curAuc['betPrice'];
 
+   if (curBetPrice != undefined) { return curBetPrice }
+
+   setCurrentAuction('betPrice', 0);
+   return 0;
+}
+
+function setCurrentBetDetails(betUser, betPrice) {
+   setCurrentAuction('betUser', betUser);
+   setCurrentAuction('betPrice', betPrice);
+}
+
+function getCurrentBetDetails() {
+   return {
+      user: getCurrectAuction()['betUser'],
+      price: getCurBetPrice()
+   };
+}
+
+function isOver() {
+   let betStep = getCurAuction('betStep');
+   return betStep != 3;
 }
 
 publish({
+   getCurPrice: getCurPrice,
    kickOffTo: kickOffTo,
    getCurrectAuction: getCurrectAuction,
    setCurrentAuction: setCurrentAuction,
-   setAuction: setAuction
+   setAuction: setAuction,
+   setCurBet: setCurrentBetDetails,
+   getCurBet: getCurrentBetDetails,
 })

@@ -20,7 +20,7 @@ if ([wordsLikeButton.mainmenu, '/start'].includes(message)) {
    return Bot.runCommand('/menu');
 }
 
-if (message == wordsLikeButton.back) {
+if (message == wordsLikeButton.back && !([wordsLikeButton.mainmenu, '/start'].includes(message))) {
    let previousCommand = utils.getPreviousCommand();
    let commandToRun = {
       cmd: previousCommand.cmd,
