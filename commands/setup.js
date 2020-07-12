@@ -51,7 +51,7 @@ Bot.sendMessage('Questions are set!');
 Bot.setProperty('admin', 469750202, 'Number');
 Bot.sendMessage('Admin is set!');
 
-Bot.setProperty('chat', 405979693, 'Number');
+Bot.setProperty('chat', -405979693, 'Number');
 Bot.sendMessage('chat is set!');
 // Libs.GoogleSpreadSheet.setUrl('https://script.google.com/macros/s/AKfycbyl1Xf65rP-LbBJ6dtkDPFSSXEMDUhQjzyV84RCNlAPuelf_5E/exec');
 // Bot.sendMessage('SpreadSheet is set!');
