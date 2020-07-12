@@ -1,3 +1,14 @@
+/*CMD
+  command: getBet
+  help:
+  need_reply: true
+  auto_retry_time:
+  folder: Auction
+  answer: 
+  keyboard: Главное меню
+  aliases:
+CMD*/
+
 let curBet = auction.getCurBetPrice();
 
 let group = Bot.getProperty('chat');

@@ -1,7 +1,7 @@
 let group = Bot.getProperty('chat');
 
 if (params && !isNaN(params)) {
-   if(!(request.caption)){
+   if(!(request.caption!=undefined)){
       Api.deleteMessage({
          chat_id: request.message.chat.id,
          message_id: request.message.message_id,
@@ -10,7 +10,7 @@ if (params && !isNaN(params)) {
 
    Api.sendMessage({
       chat_id: group,
-      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + message,
+      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + params,
       parse_mode: 'Markdown'
    });
    auction.setCurBet(user, params);

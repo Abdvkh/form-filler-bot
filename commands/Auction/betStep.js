@@ -15,7 +15,7 @@ if (auction.isOver()) {
    });
 }
 
-if (params) {
+if (params && betStep !=1) {
    Api.deleteMessage({
       chat_id: group,
       message_id: params,
@@ -24,12 +24,12 @@ if (params) {
 auction.setCurrentAuction('betStep', betStep+1);
 
 Api.sendMessage({
-   chat_id: chat,
-   text: 'Ставка от ' + utils.getLinkFor(curBet['user']) + ' ' + curBet['price'],
+   chat_id: group,
+   text: betStep + ' cтавка от ' + utils.getLinkFor(curBet['user']) + ' ' + curBet['price'],
    parse_mode: 'Markdown'
 });
 Bot.run({
    command: 'betStep',
    run_after: 60,
-   label: bet
+   label: 'bet'
 });
