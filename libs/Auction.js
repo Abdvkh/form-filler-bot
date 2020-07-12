@@ -71,7 +71,6 @@ function isOver() {
 }
 
 publish({
-   getCurPrice: getCurPrice,
    kickOffTo: kickOffTo,
    getCurrectAuction: getCurrectAuction,
    setCurrentAuction: setCurrentAuction,
