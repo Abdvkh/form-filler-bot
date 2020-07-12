@@ -15,8 +15,6 @@ if (message == 'Начать аукцион') {
    let admin = Bot.getProperty('admin');
    auction.kickOffTo(admin);
    Bot.sendMessage('Sent');
-}
-
-if (message == 'Заполнить заново') {
+} else if (message == 'Заполнить заново') {
    Bot.runCommand('/startAuction');
 }
