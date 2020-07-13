@@ -72,9 +72,11 @@ function isOver() {
 
 publish({
    kickOffTo: kickOffTo,
-   getCurAuction: getCurrectAuction,
    setCurrentAuction: setCurrentAuction,
    setAuction: setAuction,
    setCurBet: setCurrentBetDetails,
+   getCurAuction: getCurrectAuction,
    getCurBet: getCurrentBetDetails,
+   getCurBetPrice: getCurBetPrice,
+   isOver: isOver
 })

@@ -19,10 +19,11 @@ if (message && !isNaN(message)) {
       Bot.sendMessage('Вы ввели неправильную цену, попробуйте ещё');
       return Bot.runComman('getBet');
    }
+   let bet = (curAucPrice + parseInt(message);
 
    Api.sendMessage({
       chat_id: group,
-      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + (curBetPrice + message),
+      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + bet,
       parse_mode: 'Markdown',
       reply_markup: {
          inline_keyboard: [
