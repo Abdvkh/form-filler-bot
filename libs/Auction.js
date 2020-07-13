@@ -35,7 +35,7 @@ function kickOffTo(chatId) {
       reply_markup: {
          inline_keyboard: [
                [
-                  { text: 'Сделать ставку', callback_data: 'bet' },
+                  { text: 'Сделать ставку', url: 't.me/abduvakhidovsbot?start=bet' },
                   { text: 'Повысить на 5', callback_data: 'bet 5' },
                ]
          ],
@@ -72,7 +72,7 @@ function isOver() {
 
 publish({
    kickOffTo: kickOffTo,
-   getCurrectAuction: getCurrectAuction,
+   getCurAuction: getCurrectAuction,
    setCurrentAuction: setCurrentAuction,
    setAuction: setAuction,
    setCurBet: setCurrentBetDetails,

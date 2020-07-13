@@ -4,12 +4,12 @@
   need_reply: true
   auto_retry_time:
   folder: Auction
-  answer: 
+  answer:
   keyboard: Главное меню
   aliases:
 CMD*/
 
-let curBet = auction.getCurBetPrice();
+let curBetPrice = auction.getCurBetPrice();
 
 let group = Bot.getProperty('chat');
 
@@ -22,11 +22,19 @@ if (message && !isNaN(message)) {
 
    Api.sendMessage({
       chat_id: group,
-      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + message,
-      parse_mode: 'Markdown'
+      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + (curBetPrice + message),
+      parse_mode: 'Markdown',
+      reply_markup: {
+         inline_keyboard: [
+               [
+                  { text: 'Сделать ставку', url: 't.me/abduvakhidovsbot?start=bet' },
+                  { text: 'Повысить на 5', callback_data: 'bet 5' },
+               ]
+         ],
+      }
    });
 
-   auction.setCurBet(user, message);
+   auction.setCurBet(user, (curBetPrice + message));
    auction.setCurrentAuction('betStep', 1);
 
    Bot.clearRunAfter({

@@ -1,4 +1,5 @@
 let group = Bot.getProperty('chat');
+let curAucPrice = auction.getCurBet()['price'];
 if (params && !isNaN(params)) {
    if(!(request.message.caption!=undefined)){
       Api.deleteMessage({
@@ -9,10 +10,18 @@ if (params && !isNaN(params)) {
 
    Api.sendMessage({
       chat_id: group,
-      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + params,
-      parse_mode: 'Markdown'
+      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + (curAucPrice + params),
+      parse_mode: 'Markdown',
+      reply_markup: {
+         inline_keyboard: [
+               [
+                  { text: 'Сделать ставку', url: 't.me/abduvakhidovsbot?start=bet' },
+                  { text: 'Повысить на 5', callback_data: 'bet 5' },
+               ]
+         ],
+      }
    });
-   auction.setCurBet(user, auction.getCurBet()['price'] + params);
+   auction.setCurBet(user, curAucPrice + params);
    auction.setCurrentAuction('betStep', 1);
 
    Bot.clearRunAfter({
