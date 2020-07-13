@@ -1,5 +1,10 @@
 if (params && params == 'bet') {
-   return Bot.runCommand('getBet');
+   let command = {
+      cmd: 'getBet ' + request.message.message_id,
+      txt: lang['enterBetAmount'],
+      keys: wordsLikeButton.mainmenu
+   };
+   return utils.runCommandWithKeyboard(command);   
 }
 
 questionary.user.setup();
