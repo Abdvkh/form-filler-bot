@@ -34,7 +34,7 @@ if (message && !isNaN(message)) {
       }
    });
 
-   auction.setCurBet(user, (curBetPrice + message));
+   auction.setCurBet(user, bet);
    auction.setCurrentAuction('betStep', 1);
 
    Bot.clearRunAfter({
