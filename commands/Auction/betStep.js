@@ -7,14 +7,6 @@ if (betStep == undefined) {
    betStep = 1;
 }
 
-if (auction.isOver()) {
-   auction.setCurrentAuction('betStep', 1);
-   Bot.sendMessage(lang['aucOver'] + utils.getLinkFor(curBet['user']));
-   return Bot.clearRunAfter({
-      label: 'bet'
-   });
-}
-
 if (params && betStep !=1) {
    Api.deleteMessage({
       chat_id: group,
@@ -36,8 +28,17 @@ Api.sendMessage({
       ],
    }
 });
+
 Bot.run({
    command: 'betStep',
    run_after: 60,
    label: 'bet'
 });
+
+if (auction.isOver()) {
+   auction.setCurrentAuction('betStep', 1);
+   Bot.sendMessage(lang['aucOver'] + utils.getLinkFor(curBet['user']));
+   return Bot.clearRunAfter({
+      label: 'bet'
+   });
+}
