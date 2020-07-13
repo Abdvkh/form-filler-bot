@@ -66,7 +66,7 @@ function getCurrentBetDetails() {
 }
 
 function isOver() {
-   let betStep = getCurrectAuction('betStep');
+   let betStep = getCurrectAuction()['betStep'];
    return parseInt(betStep) == 3;
 }
 
