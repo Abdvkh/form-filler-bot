@@ -1,10 +1,14 @@
 if (params && params == 'bet') {
+   let statusIsOver = auction.getCurAuction()['isOver'];
+   if (statusIsOver) {
+      return Bot.sendMessage(lang['aucOver'] + utils.getLinkFor(curBet['user']))
+   }
    let command = {
-      cmd: 'getBet ' + request.message.message_id,
+      cmd: 'getBet',
       txt: lang['enterBetAmount'],
       keys: wordsLikeButton.mainmenu
    };
-   return utils.runCommandWithKeyboard(command);   
+   return utils.runCommandWithKeyboard(command);
 }
 
 questionary.user.setup();

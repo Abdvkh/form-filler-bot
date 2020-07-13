@@ -1,3 +1,7 @@
+let statusIsOver = auction.getCurAuction()['isOver'];
+if (statusIsOver) {
+   
+}
 let group = Bot.getProperty('chat');
 let curAucPrice = parseInt(auction.getCurBetPrice());
 if (params && !isNaN(params)) {

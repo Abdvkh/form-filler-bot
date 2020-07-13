@@ -36,8 +36,12 @@ Bot.run({
 });
 
 if (auction.isOver()) {
-   auction.setCurrentAuction('betStep', 1);
-   Bot.sendMessage(lang['aucOver'] + utils.getLinkFor(curBet['user']));
+   auction.setCurrentAuction('isOver', true);
+   Api.sendMessage({
+      chat_id: group,
+      text: lang['aucOver'] + utils.getLinkFor(curBet['user']),
+      parse_mode: 'Markdown',
+   });
    return Bot.clearRunAfter({
       label: 'bet'
    });
