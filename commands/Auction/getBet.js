@@ -9,8 +9,7 @@
   aliases:
 CMD*/
 
-let curBetPrice = auction.getCurBetPrice();
-
+let curBetPrice = parseInt(auction.getCurBetPrice());
 let group = Bot.getProperty('chat');
 
 if (message && !isNaN(message)) {

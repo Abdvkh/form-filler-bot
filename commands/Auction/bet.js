@@ -1,5 +1,5 @@
 let group = Bot.getProperty('chat');
-let curAucPrice = auction.getCurBetPrice();
+let curAucPrice = parseInt(auction.getCurBetPrice());
 if (params && !isNaN(params)) {
    if(!(request.message.caption!=undefined)){
       Api.deleteMessage({
@@ -8,11 +8,11 @@ if (params && !isNaN(params)) {
       });
    }
 
-   let bet = (curAucPrice + parseInt(params);
+   let bet = curAucPrice + parseInt(params);
 
    Api.sendMessage({
       chat_id: group,
-      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + bet),
+      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + bet,
       parse_mode: 'Markdown',
       reply_markup: {
          inline_keyboard: [
