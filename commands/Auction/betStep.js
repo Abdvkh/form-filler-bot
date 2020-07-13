@@ -1,6 +1,6 @@
 let curBet = auction.getCurBet();
 let group = Bot.getProperty('chat');
-let betStep = auction.getCurAuction()['betStep'];
+let betStep = parseInt(auction.getCurAuction()['betStep']);
 
 if (betStep == undefined) {
    auction.setCurrentAuction('betStep', 1);
