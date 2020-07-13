@@ -7,7 +7,7 @@ function getPreviousCommand() {
 
 //on wrong input sends a message and runs given command
 function onWrongInputRun(command) {
-   let lang = Libs.Lang.get();
+   let lang = Libs.Lang.get('ru');
    Bot.sendMessage(lang.wrongInput);
    Bot.runCommand(command);
 }
@@ -26,7 +26,7 @@ function saveAsPreviousCommandDetails(command){
 //makes keyboard from an array
 //adds 'back' and 'main menu' button regarding to code
 function makeKeyboard(buttonsArray, code){
-   let lang = Libs.Lang.get();
+   let lang = Libs.Lang.get('ru');
    let keyboard = '';
    let back = code.indexOf('b') > -1;
    let menu = code.indexOf('m') > -1;

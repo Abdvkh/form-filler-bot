@@ -49,7 +49,7 @@ function getRequestsRecievedCount() {
 
 function sendForm() {
    let utils = Libs.Utils;
-   let lang = Libs.Lang.get();
+   let lang = Libs.Lang.get('ru');
    let sheet = Libs.GoogleSpreadSheet;
 
    let admin = Bot.getProperty('admin');
