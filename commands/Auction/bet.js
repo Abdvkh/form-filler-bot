@@ -1,11 +1,14 @@
 let statusIsOver = auction.getCurAuction()['isOver'];
 if (statusIsOver) {
-   
+   return Api.answerCallbackQuery({
+      callback_query_id: request.id,
+      text: lang['aucOver'] + utils.getLinkFor(auction.getCurBet()['user']),
+   });
 }
 let group = Bot.getProperty('chat');
 let curAucPrice = parseInt(auction.getCurBetPrice());
 if (params && !isNaN(params)) {
-   if(!(request.message.caption!=undefined)){
+   if(request.message.caption==undefined){
       Api.deleteMessage({
          chat_id: request.message.chat.id,
          message_id: request.message.message_id,

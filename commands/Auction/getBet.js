@@ -16,7 +16,7 @@ if (message && !isNaN(message)) {
 
    if (message>curBetPrice) {
       Bot.sendMessage('Вы ввели неправильную цену, попробуйте ещё');
-      return Bot.runComman('getBet');
+      return Bot.runCommand('getBet');
    }
    let bet = curBetPrice + parseInt(message);
 

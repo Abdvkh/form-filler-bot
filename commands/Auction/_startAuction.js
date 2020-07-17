@@ -9,5 +9,8 @@
   aliases: Аукцион, Начать аукцион, Заполнить заново
 CMD*/
 
+if (message=='Главное меню') {
+   Bot.runCommand('/menu');
+}
 auction.setCurrentAuction('name', message);
 Bot.runCommand('askStartingPrice');
