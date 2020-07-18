@@ -1,3 +1,15 @@
+/*CMD
+  command: kickOffAuction
+  help:
+  need_reply:
+  auto_retry_time:
+  folder: Auction
+  answer:
+  keyboard:
+  aliases:
+CMD*/
+
+Bot.clearRunAfter({label: 'auction_start'});
 let group = Bot.getProperty('chat');
 auction.kickOffTo(group);
 let admin = Bot.getProperty('admin');
