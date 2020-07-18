@@ -19,7 +19,7 @@ if (message == 'Начать аукцион') {
    });
    Bot.run({
       command: 'kickOffAuction',
-      run_after: 10,
+      run_after: 15,
       label: 'auction_start'
    });
 } else if (message == 'Заполнить заново') {
