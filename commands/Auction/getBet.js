@@ -9,6 +9,10 @@
   aliases:
 CMD*/
 
+let betStep = auction.getCurAuction()['betStep'];
+if (betStep==3) {
+   auction.setCurrentAuction('isOver', true);
+}
 let curBetPrice = parseInt(auction.getCurBetPrice());
 let group = Bot.getProperty('chat');
 

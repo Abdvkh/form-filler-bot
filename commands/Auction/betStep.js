@@ -1,19 +1,23 @@
 let curBet = auction.getCurBet();
 let group = Bot.getProperty('chat');
-let betStep = parseInt(auction.getCurAuction()['betStep']);
+let betStep = auction.getCurAuction()['betStep'];
 
 if (betStep == undefined) {
    auction.setCurrentAuction('betStep', 1);
    betStep = 1;
 }
 
-if (params && betStep !=1) {
-   Api.deleteMessage({
-      chat_id: group,
-      message_id: params,
-   });
+if (betStep==3) {
+   auction.setCurrentAuction('isOver', true);
 }
-auction.setCurrentAuction('betStep', betStep+1);
+
+// if (params && betStep !=1) {
+//    Api.deleteMessage({
+//       chat_id: group,
+//       message_id: params,
+//    });
+// }
+auction.setCurrentAuction('betStep', parseInt(betStep)+1);
 
 Api.sendMessage({
    chat_id: group,
@@ -36,7 +40,6 @@ Bot.run({
 });
 
 if (auction.isOver()) {
-   auction.setCurrentAuction('isOver', true);
    Api.sendMessage({
       chat_id: group,
       text: lang['aucOver'] + utils.getLinkFor(curBet['user']),
