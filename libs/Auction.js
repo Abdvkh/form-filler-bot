@@ -49,7 +49,7 @@ function getCurBetPrice() {
    let curAuc = getCurrectAuction();
    let curBetPrice = curAuc['betPrice'];
 
-   if (curBetPrice != undefined) { return curBetPrice }
+   if (curBetPrice !== undefined) { return curBetPrice }
 
    setCurrentAuction('betPrice', 0);
    return 0;

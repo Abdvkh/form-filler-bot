@@ -9,9 +9,9 @@
   aliases:
 CMD*/
 
+Bot.clearRunAfter({label: 'auction_start'});
 let group = Bot.getProperty('chat');
 let admin = Bot.getProperty('admin');
 auction.kickOffTo(group);
 auction.kickOffTo(admin);
 Bot.sendMessage('Sent');
-Bot.clearRunAfter({label: 'auction_start'});
