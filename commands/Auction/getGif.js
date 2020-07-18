@@ -1,5 +1,5 @@
 /*CMD
-  command: getBet
+  command: getGif
   help:
   need_reply: true
   auto_retry_time:
@@ -15,8 +15,9 @@ if (gifs==undefined) {
    Bot.setProperty('gifs', gifs, 'JSON');
 }
 
-if (request.document.file_id) {
-   let file_id = request.document.file_id;
+let file_id = request.document.file_id;
+if (file_id) {
    gifs.file_ids.push(file_id);
-   Bot.sendMessage(file_id + ' this id is stored uder ' + (gifs.file_ids.length - 1) + ' index');
+   Bot.setProperty('gifs', gifs, 'JSON');
+   Bot.sendMessage(file_id + ' this id is stored under ' + gifs.file_ids.length + ' position');
 }
