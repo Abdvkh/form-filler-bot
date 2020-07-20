@@ -12,7 +12,7 @@ CMD*/
 if (message == 'Начать аукцион') {
    let group = Bot.getProperty('chat');
    let gifs = Bot.getProperty('gifs');
-   Bot.setProperty('sentGifIndex', 0, 'Number');
+   Bot.setProperty('sentGifIndex', '0', 'String');
    Api.sendDocument({
       chat_id: group,
       document: gifs.file_ids[0]

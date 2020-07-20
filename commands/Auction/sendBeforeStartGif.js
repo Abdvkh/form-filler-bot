@@ -11,14 +11,14 @@ CMD*/
 
 let sentGifIndex = parseInt(Bot.getProperty('sentGifIndex')) + 1;
 if (sentGifIndex >=5) {
-   Bot.setProperty('sentGifIndex', 0, 'Number');
+   Bot.setProperty('sentGifIndex', '0', 'String');
    return Bot.runCommand('kickOffAuction');
 }
 
 let group = Bot.getProperty('chat');
 let gifs = Bot.getProperty('gifs');
 
-Bot.setProperty('sentGifIndex', sentGifIndex, 'Number');
+Bot.setProperty('sentGifIndex', sentGifIndex, 'String');
 Api.sendDocument({
    chat_id: group,
    document: gifs.file_ids[sentGifIndex]

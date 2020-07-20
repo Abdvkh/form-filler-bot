@@ -9,7 +9,7 @@
   aliases:
 CMD*/
 
-Bot.clearRunAfter({label: 'auction_start'});
+Bot.clearRunAfter({label: 'start_gif'});
 let group = Bot.getProperty('chat');
 let admin = Bot.getProperty('admin');
 auction.kickOffTo(group);
