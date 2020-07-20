@@ -1,14 +1,19 @@
 let curBet = auction.getCurBet();
 let group = Bot.getProperty('chat');
-let betStep = auction.getCurAuction()['betStep'];
 
-if (betStep == undefined) {
-   auction.setCurrentAuction('betStep', 1);
-   betStep = 1;
-}
-
-if (betStep==3) {
-   auction.setCurrentAuction('isOver', true);
+if (auction.isOver()) {
+   Api.sendMessage({
+      chat_id: group,
+      text: lang['aucOver'] + utils.getLinkFor(curBet['user']),
+      parse_mode: 'Markdown',
+   });
+   Api.sendDocument({
+      chat_id: group,
+      document: gifs.file_ids[0]
+   });
+   return Bot.clearRunAfter({
+      label: 'bet'
+   });
 }
 
 // if (params && betStep !=1) {
@@ -17,6 +22,7 @@ if (betStep==3) {
 //       message_id: params,
 //    });
 // }
+let betStep = auction.getCurAuction()['betStep'];
 auction.setCurrentAuction('betStep', parseInt(betStep)+1);
 
 Api.sendMessage({
@@ -33,19 +39,22 @@ Api.sendMessage({
    }
 });
 
+let gif_id = utils.getRandomInt(5, 6);
+Api.sendDocument({
+   chat_id: group,
+   document: gifs.file_ids[gif_id]
+});
+
+if (betStep == 2) {
+   let gif_id = utils.getRandomInt(7, 9);
+   Api.sendDocument({
+      chat_id: group,
+      document: gifs.file_ids[gif_id]
+   });
+}
+
 Bot.run({
    command: 'betStep',
    run_after: 60,
    label: 'bet'
 });
-
-if (auction.isOver()) {
-   Api.sendMessage({
-      chat_id: group,
-      text: lang['aucOver'] + utils.getLinkFor(curBet['user']),
-      parse_mode: 'Markdown',
-   });
-   return Bot.clearRunAfter({
-      label: 'bet'
-   });
-}

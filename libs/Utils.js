@@ -68,6 +68,12 @@ function getLinkFor(member){
   return "[" + getNameFor(member) + "](tg://user?id=" + member.telegramid + " )";
 }
 
+function getRandomIntFromRange(min, max) {
+   /*get random int from range till the given numbers*/
+  return Math.floor(Math.random() * max) + min;;
+}
+
+
 publish({
    getLinkFor: getLinkFor,
    getNameFor: getNameFor,
@@ -77,4 +83,5 @@ publish({
    passwordIsValid: passwordIsValid,
    makeKeyboard: makeKeyboard,
    onWrongInputRun: onWrongInputRun,
+   getRandomInt: getRandomIntFromRange
 });
