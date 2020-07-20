@@ -17,9 +17,6 @@ if (message == 'Начать аукцион') {
       chat_id: group,
       document: gifs.file_ids[0]
    });
-   Bot.clearRunAfter({
-      label: 'start_gif',
-   });
    Bot.run({
       command: 'sendBeforeStartGif',
       run_after: 10,
