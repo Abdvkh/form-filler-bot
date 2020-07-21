@@ -9,6 +9,8 @@
   aliases:
 CMD*/
 
+let user = request.from;
+
 if (auction.isOver()) {
    return Api.answerCallbackQuery({
       callback_query_id: request.id,
