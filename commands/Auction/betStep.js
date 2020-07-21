@@ -50,7 +50,7 @@ Api.sendMessage({
       ],
    }
 });
-if (betStep==0) {
+if (betStep==1) {
    let gif_id = utils.getRandomInt(5, 6);
    Api.sendDocument({
       chat_id: group,
@@ -58,7 +58,7 @@ if (betStep==0) {
    });
 }
 
-if (betStep == 1) {
+if (betStep == 2) {
    let gif_id = utils.getRandomInt(7, 9);
    Api.sendDocument({
       chat_id: group,

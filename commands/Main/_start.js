@@ -1,7 +1,6 @@
 if (params && params == 'bet') {
    let curAuc = auction.getCurAuction();
-   let statusIsOver = curAuc['isOver'];
-   if (statusIsOver) {
+   if (auction.isOver()) {
       return Bot.sendMessage(lang['aucOver'] + utils.getLinkFor(curAuc['betUser']))
    }
    let command = {
