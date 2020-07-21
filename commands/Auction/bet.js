@@ -1,3 +1,14 @@
+/*CMD
+  command: bet
+  help:
+  need_reply:
+  auto_retry_time:
+  folder: Auction
+  answer: 
+  keyboard: Главное меню
+  aliases:
+CMD*/
+
 let statusIsOver = auction.getCurAuction()['isOver'];
 if (statusIsOver) {
    return Api.answerCallbackQuery({

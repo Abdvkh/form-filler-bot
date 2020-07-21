@@ -1,3 +1,14 @@
+/*CMD
+  command: betStep
+  help:
+  need_reply:
+  auto_retry_time:
+  folder: Auction
+  answer:
+  keyboard:
+  aliases:
+CMD*/
+
 let curBet = auction.getCurBet();
 let gifs = Bot.getProperty('gifs');
 let group = Bot.getProperty('chat');
