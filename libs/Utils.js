@@ -70,7 +70,7 @@ function getLinkFor(member){
 
 function getRandomIntFromRange(min, max) {
    /*get random int from range till the given numbers*/
-  return Math.floor(Math.random() * max) + min;;
+  return Math.floor(Math.random() * ((max+1) - min) + min);
 }
 
 
