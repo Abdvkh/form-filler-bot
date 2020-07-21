@@ -19,7 +19,12 @@ if (message && !isNaN(message)) {
       return Bot.runCommand('getBet');
    }
    let bet = curBetPrice + parseInt(message);
+   let gif_id = utils.getRandomInt(5, 6);
 
+   Api.sendDocument({
+      chat_id: group,
+      document: gifs.file_ids[gif_id]
+   });
    Api.sendMessage({
       chat_id: group,
       text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + bet,
