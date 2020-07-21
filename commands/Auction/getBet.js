@@ -20,7 +20,7 @@ if (message && !isNaN(message)) {
    }
    let bet = curBetPrice + parseInt(message);
    let gif_id = utils.getRandomInt(5, 6);
-
+   let gifs = Bot.getProperty('gifs');
    Api.sendDocument({
       chat_id: group,
       document: gifs.file_ids[gif_id]
