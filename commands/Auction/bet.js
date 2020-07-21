@@ -9,8 +9,6 @@
   aliases:
 CMD*/
 
-let betUser = request.from;
-
 if (auction.isOver()) {
    return Api.answerCallbackQuery({
       callback_query_id: request.id,
@@ -32,7 +30,7 @@ if (params && !isNaN(params)) {
 
    Api.sendMessage({
       chat_id: group,
-      text: 'Ставка от ' + utils.getLinkFor(betUser) + ' ' + bet,
+      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + bet,
       parse_mode: 'Markdown',
       reply_markup: {
          inline_keyboard: [
@@ -43,7 +41,7 @@ if (params && !isNaN(params)) {
          ],
       }
    });
-   auction.setCurBet(betUser, bet);
+   auction.setCurBet(user, bet);
    auction.setCurrentAuction('betStep', 1);
 
    Bot.clearRunAfter({

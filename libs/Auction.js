@@ -23,7 +23,7 @@ function getCurrectAuction() {
 function kickOffTo(chatId) {
    let curAuc = getCurrectAuction();
    setCurrentAuction('isOver', false);
-   setCurrentAuction('betUser', undefined);
+   setCurrentAuction('betUser', {});
    let aucPost = '📌' + curAuc['name'] + '\n\n' +
                  'Начальная цена: ' + curAuc['startingPrice'] + '\n\n' +
                  'Описание: ' + '\n\n' +
