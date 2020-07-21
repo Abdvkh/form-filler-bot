@@ -14,7 +14,7 @@ let group = Bot.getProperty('chat');
 
 if (message && !isNaN(message)) {
 
-   if (message>curBetPrice) {
+   if (message<curBetPrice) {
       Bot.sendMessage('Вы ввели неправильную цену, попробуйте ещё');
       return Bot.runCommand('getBet');
    }
@@ -33,7 +33,7 @@ if (message && !isNaN(message)) {
          ],
       }
    });
-
+   Bot.sendMessage('Ваша ставка сделана, спасибо!');
    auction.setCurBet(user, bet);
    auction.setCurrentAuction('betStep', 1);
 

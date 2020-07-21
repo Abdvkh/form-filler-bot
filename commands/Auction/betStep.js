@@ -1,4 +1,5 @@
 let curBet = auction.getCurBet();
+let gifs = Bot.getProperty('gifs');
 let group = Bot.getProperty('chat');
 
 if (auction.isOver()) {
@@ -38,12 +39,13 @@ Api.sendMessage({
       ],
    }
 });
-
-let gif_id = utils.getRandomInt(5, 6);
-Api.sendDocument({
-   chat_id: group,
-   document: gifs.file_ids[gif_id]
-});
+if (betStep==1) {
+   let gif_id = utils.getRandomInt(5, 6);
+   Api.sendDocument({
+      chat_id: group,
+      document: gifs.file_ids[gif_id]
+   });
+}
 
 if (betStep == 2) {
    let gif_id = utils.getRandomInt(7, 9);
