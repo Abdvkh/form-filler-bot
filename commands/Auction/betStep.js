@@ -37,14 +37,6 @@ if (auction.isOver()) {
 let betStep = auction.getCurAuction()['betStep'];
 auction.setCurrentAuction('betStep', parseInt(betStep)+1);
 
-if (betStep==1) {
-   let gif_id = utils.getRandomInt(7, 9);
-   Api.sendDocument({
-      chat_id: group,
-      document: gifs.file_ids[gif_id]
-   });
-}
-
 Api.sendMessage({
    chat_id: group,
    text: betStep + ' cтавка от ' + utils.getLinkFor(curBet['user']) + ' ' + curBet['price'],
@@ -58,6 +50,14 @@ Api.sendMessage({
       ],
    }
 });
+
+if (betStep==2) {
+   let gif_id = utils.getRandomInt(7, 9);
+   Api.sendDocument({
+      chat_id: group,
+      document: gifs.file_ids[gif_id]
+   });
+}
 
 Bot.run({
    command: 'betStep',
