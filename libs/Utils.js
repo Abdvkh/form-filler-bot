@@ -57,7 +57,7 @@ function getNameFor(member){
   let haveAnyNames = member.username||member.first_name||member.last_name;
   if(!haveAnyNames){ return ""}
 
-  if(member.username){
+  if(member.username!==undefined){
     return "@" + member.username
   }
 
