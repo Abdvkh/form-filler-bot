@@ -22,6 +22,7 @@ function getCurrectAuction() {
 
 function kickOffTo(chatId) {
    let curAuc = getCurrectAuction();
+   setCurrentAuction('betStep', 1);
    setCurrentAuction('isOver', false);
    setCurrentAuction('betUser', {});
    let aucPost = '📌' + curAuc['name'] + '\n\n' +
