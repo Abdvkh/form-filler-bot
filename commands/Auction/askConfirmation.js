@@ -13,10 +13,7 @@ if (message == 'Начать аукцион') {
    let group = Bot.getProperty('chat');
    let gifs = Bot.getProperty('gifs');
    Bot.setProperty('sentGifIndex', '0', 'String');
-   Api.sendDocument({
-      chat_id: group,
-      document: gifs.file_ids[0]
-   });
+   Bot.sendMessage('Аукцион начнется через 10 секунд');
    Bot.run({
       command: 'sendBeforeStartGif',
       run_after: 10,

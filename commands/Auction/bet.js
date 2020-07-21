@@ -4,18 +4,18 @@
   need_reply:
   auto_retry_time:
   folder: Auction
-  answer: 
+  answer:
   keyboard: Главное меню
   aliases:
 CMD*/
 
-let statusIsOver = auction.getCurAuction()['isOver'];
-if (statusIsOver) {
+if (auction.isOver()) {
    return Api.answerCallbackQuery({
       callback_query_id: request.id,
       text: lang['aucOver'] + utils.getLinkFor(auction.getCurBet()['user']),
    });
 }
+
 let group = Bot.getProperty('chat');
 let curAucPrice = parseInt(auction.getCurBetPrice());
 if (params && !isNaN(params)) {
