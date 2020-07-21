@@ -14,7 +14,7 @@ let group = Bot.getProperty('chat');
 
 if (message && !isNaN(message)) {
 
-   if (message<curBetPrice) {
+   if (message<0) {
       Bot.sendMessage('Вы ввели неправильную цену, попробуйте ещё');
       return Bot.runCommand('getBet');
    }
