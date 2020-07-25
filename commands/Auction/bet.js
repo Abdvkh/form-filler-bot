@@ -19,12 +19,12 @@ if (auction.isOver()) {
 let group = Bot.getProperty('chat');
 let curAucPrice = parseInt(auction.getCurBetPrice());
 if (params && !isNaN(params)) {
-   if(request.message.caption==undefined){
-      Api.deleteMessage({
-         chat_id: request.message.chat.id,
-         message_id: request.message.message_id,
-      });
-   }
+   // if(request.message.caption==undefined){
+   //    Api.deleteMessage({
+   //       chat_id: request.message.chat.id,
+   //       message_id: request.message.message_id,
+   //    });
+   // }
 
    let bet = curAucPrice + parseInt(params);
    let gifs = Bot.getProperty('gifs');
@@ -37,7 +37,7 @@ if (params && !isNaN(params)) {
 
    Api.sendMessage({
       chat_id: group,
-      text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + bet,
+      text: 'Ставка от ' + utils.getLinkFor(user ? user : request.from) + ' ' + bet,
       parse_mode: 'Markdown',
       reply_markup: {
          inline_keyboard: [
@@ -48,7 +48,7 @@ if (params && !isNaN(params)) {
          ],
       }
    });
-   auction.setCurBet(user, bet);
+   auction.setCurBet(user ? user : request.from, bet);
    auction.setCurrentAuction('betStep', 1);
 
    Bot.clearRunAfter({
