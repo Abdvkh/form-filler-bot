@@ -23,9 +23,9 @@ totalResult = 0;
 results.push({
   type: "article",
   id: totalResult,
-  title: "Request info",
+  title: "Сделать ставку",
   input_message_content:
-     { "message_text": JSON.stringify(request) }
+     { "message_text": '/bet '+request.query }
 })
 
 Api.answerInlineQuery({

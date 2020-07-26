@@ -5,7 +5,7 @@
   auto_retry_time:
   folder: Auction
   answer:
-  keyboard: Главное меню
+  keyboard:
   aliases:
 CMD*/
 
