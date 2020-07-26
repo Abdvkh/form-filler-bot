@@ -25,7 +25,7 @@ results.push({
   id: totalResult,
   title: "Text for item",
   input_message_content:
-     { "message_text": "This message will be in chat" }
+     { "message_text": request.query }
 })
 
 Api.answerInlineQuery({
