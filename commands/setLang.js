@@ -60,7 +60,7 @@ Bot.setProperty(
    {
       inline_keyboard: [
          [
-            { text: 'Inline ставка', switch_inline_query_current_chat: 'stavka >  ' },
+            { text: 'Inline ставка', switch_inline_query_current_chat: 'Ваша ставка: ' },
             { text: 'Повысить на 5', callback_data: 'bet 5' },
          ],
          [

@@ -9,19 +9,9 @@
   aliases:
 CMD*/
 
-if (request.from.is_bot) {
-   let bet = params.split(' ')[1];
-   if (!isNaN(bet)) {
-      let group = Bot.getProperty('chat');
-      let betKeyboard = Bot.getProperty('betKeyboard');
-
-      Api.sendMessage({
-         chat_id: group,
-         text: 'Ставка от ' + utils.getLinkFor(user ? user : request.from) + ' ' + bet,
-         parse_mode: 'Markdown',
-         reply_markup: betKeyboard
-      });
-   }
+let bet = params.split(' ')[2];
+if (!isNaN(bet) && bet > 0) {
+   Bot.runCommand('bet '+bet);
 } else {
-   Bot.sendMessage('Smth went wrong =)');
+   Bot.sendMessage('Вы набрали не верное значение');
 }
