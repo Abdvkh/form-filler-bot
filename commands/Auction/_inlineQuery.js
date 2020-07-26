@@ -25,7 +25,7 @@ results.push({
   id: totalResult,
   title: "Request info",
   input_message_content:
-     { "message_text": request }
+     { "message_text": JSON.stringify(request) }
 })
 
 Api.answerInlineQuery({
