@@ -1,5 +1,5 @@
 /*CMD
-  command: getInlineBet
+  command: /inlineQuery
   help:
   need_reply:
   auto_retry_time:
