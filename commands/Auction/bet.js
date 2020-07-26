@@ -28,7 +28,7 @@ if (params && !isNaN(params)) {
 
    let bet = curAucPrice + parseInt(params);
    let gifs = Bot.getProperty('gifs');
-   let gif_id = utils.getRandomInt(5, 6);
+   let gif_id = utils.getRandomInt(10, 15);
 
    Api.sendDocument({
       chat_id: group,
