@@ -39,7 +39,7 @@ auction.setCurrentAuction('betStep', parseInt(betStep)+1);
 
 Api.sendMessage({
    chat_id: group,
-   text: betStep + ' cтавка от ' + utils.getLinkFor(curBet['user']) + ' ' + curBet['price'],
+   text: betStep==1 ? "Раз" : betStep==2 ? "Два" : "Ошибочная" + ' cтавка от ' + utils.getLinkFor(curBet['user']) + ' ' + curBet['price'],
    parse_mode: 'Markdown',
    reply_markup: {
       inline_keyboard: [
