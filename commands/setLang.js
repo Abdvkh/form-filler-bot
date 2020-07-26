@@ -60,8 +60,8 @@ Bot.setProperty(
    {
       inline_keyboard: [
          [
-            { text: 'Inline ставка', switch_inline_query_current_chat: 'stavka >  ' }
-            { text: 'Повысить на 5', callback_data: 'bet 5' }
+            { text: 'Inline ставка', switch_inline_query_current_chat: 'stavka >  ' },
+            { text: 'Повысить на 5', callback_data: 'bet 5' },
          ],
          [
             { text: 'Сделать ставку через бот', url: 't.me/abduvakhidovsbot?start=bet' },
