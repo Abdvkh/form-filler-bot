@@ -25,21 +25,14 @@ if (message && !isNaN(message)) {
       chat_id: group,
       document: gifs.file_ids[gif_id]
    });
+   
+   let betKeyboard = Bot.getProperty('betKeyboard');
+
    Api.sendMessage({
       chat_id: group,
       text: 'Ставка от ' + utils.getLinkFor(user) + ' ' + bet,
       parse_mode: 'Markdown',
-      reply_markup: {
-         inline_keyboard: [
-            [
-               { text: 'Сделать ставку через бот', url: 't.me/abduvakhidovsbot?start=bet' },
-               { text: 'Inline ставка', switch_inline_query_current_chat: 'stavka >  ' }
-            ],
-            [
-               { text: 'Повысить на 5', callback_data: 'bet 5' }
-            ],
-         ],
-      }
+      reply_markup: betKeyboard
    });
    Bot.sendMessage('Ваша ставка сделана, спасибо!');
    auction.setCurBet(user, bet);
