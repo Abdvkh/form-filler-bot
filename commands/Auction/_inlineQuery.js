@@ -23,9 +23,9 @@ totalResult = 0;
 results.push({
   type: "article",
   id: totalResult,
-  title: "Text for item",
+  title: "Request info",
   input_message_content:
-     { "message_text": request.query }
+     { "message_text": request }
 })
 
 Api.answerInlineQuery({
