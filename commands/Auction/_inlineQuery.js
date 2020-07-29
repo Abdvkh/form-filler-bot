@@ -9,42 +9,39 @@
   aliases:
 CMD*/
 
-// result.query - it is query from inline searching
 if(!request.query){ return }
 
-results = [];
-totalResult = 0;
+let results = [];
+let totalResult = 0;
 
-// it is array of results.
-// we have InlineQueryResultArticle
-// core.telegram.org/bots/api#inlinequeryresultarticle
-// another types: https://core.telegram.org/bots/api#inlinequeryresult
+let pic_url = 'https://img.pngio.com/cross-png-transparent-84-images-in-collection-page-2-cross-pngs-260_280.jpg';
+
+let curAucPrice = auction.curBetPrice();
+
 let bet = parseInt(request.query.split(' ')[2]);
 
-if (bet % 5 != 0) {
-   results.push({
-     type: "article",
-     id: totalResult,
-     thumb_url: 'https://img.pngio.com/cross-png-transparent-84-images-in-collection-page-2-cross-pngs-260_280.jpg',
-     title: "Ставка должна быть кратной 5",
-     input_message_content:
-        { "message_text": 'Ставка должна быть кратной 5' }
-   });
+if(bet < 0 && bet < curAucPrice){
+   title = msg = lang['bet']['positive_above_cur'];
+} else if(bet % 5 != 0) {
+   title = msg = lang['bet']['multiple'];
 } else {
-   results.push({
-     type: "article",
-     id: totalResult,
-     thumb_url: 'https://static.appvn.com/a/uploads/thumbnails/032015/do-button-by-ifttt_icon.png',
-     title: "Нажмите чтобы сделать ставку",
-     input_message_content:
-        { "message_text": '/bet ' + request.query }
-   });
+   pic_url = 'https://static.appvn.com/a/uploads/thumbnails/032015/do-button-by-ifttt_icon.png';
+   title = "Нажмите чтобы сделать ставку в " + bet;
+   msg = '/bet ' + request.query;
 }
 
+results.push({
+   type: "article",
+   id: totalResult,
+   thumb_url: pic_url,
+   title: title,
+   input_message_content: {
+     "message_text": msg
+   }
+});
+
 Api.answerInlineQuery({
-  // see another fields at:
-  // core.telegram.org/bots/api#answerinlinequery
   inline_query_id: request.id,
   results: results,
-  cache_time: 30000 // cache time in sec
+  cache_time: 30000
 })
