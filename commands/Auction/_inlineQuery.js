@@ -19,7 +19,9 @@ totalResult = 0;
 // we have InlineQueryResultArticle
 // core.telegram.org/bots/api#inlinequeryresultarticle
 // another types: https://core.telegram.org/bots/api#inlinequeryresult
-if (parseInt(request.query) % 5 != 0) {
+let bet = parseInt(request.query.split(' ')[2]);
+
+if (bet % 5 != 0) {
    results.push({
      type: "article",
      id: totalResult,
@@ -27,7 +29,7 @@ if (parseInt(request.query) % 5 != 0) {
      title: "Ставка должна быть кратной 5",
      input_message_content:
         { "message_text": 'Ставка должна быть кратной 5' }
-   })
+   });
 } else {
    results.push({
      type: "article",
