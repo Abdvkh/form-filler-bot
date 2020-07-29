@@ -68,7 +68,7 @@ function isOver() {
       betStep = 1;
       setAuction('betStep', betStep);
    }
-   let status = betStep >= 3;
+   let status = betStep > 3;
    setAuction('isOver', status);
    return status;
 }

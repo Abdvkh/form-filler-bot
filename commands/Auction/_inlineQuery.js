@@ -19,14 +19,25 @@ totalResult = 0;
 // we have InlineQueryResultArticle
 // core.telegram.org/bots/api#inlinequeryresultarticle
 // another types: https://core.telegram.org/bots/api#inlinequeryresult
-
-results.push({
-  type: "article",
-  id: totalResult,
-  title: "Сделать ставку",
-  input_message_content:
-     { "message_text": '/bet '+request.query }
-})
+if (parseInt(request.query) % 5 != 0) {
+   results.push({
+     type: "article",
+     id: totalResult,
+     thumb_url: 'https://img.pngio.com/cross-png-transparent-84-images-in-collection-page-2-cross-pngs-260_280.jpg',
+     title: "Ставка должна быть кратной 5",
+     input_message_content:
+        { "message_text": 'Ставка должна быть кратной 5' }
+   })
+} else {
+   results.push({
+     type: "article",
+     id: totalResult,
+     thumb_url: 'https://static.appvn.com/a/uploads/thumbnails/032015/do-button-by-ifttt_icon.png',
+     title: "Нажмите чтобы сделать ставку",
+     input_message_content:
+        { "message_text": '/bet ' + request.query }
+   });
+}
 
 Api.answerInlineQuery({
   // see another fields at:

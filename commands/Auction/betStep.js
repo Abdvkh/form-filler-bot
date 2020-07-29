@@ -39,7 +39,7 @@ auction.setCurrentAuction('betStep', parseInt(betStep)+1);
 
 let betKeyboard = Bot.getProperty('betKeyboard');
 
-let betMsg = betStep==1 ? "Раз" : betStep==2 ? "Два" : "Ошибочная" + ' cтавка от ' + utils.getLinkFor(curBet['user']) + ' ' + curBet['price'];
+let betMsg = (betStep==1 ? "Раз" : betStep==2 ? "Два" : "Ошибочная") + ' cтавка от ' + utils.getLinkFor(curBet['user']) + ' ' + curBet['price'];
 
 Api.sendMessage({
    chat_id: group,
