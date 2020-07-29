@@ -9,8 +9,8 @@
   aliases:
 CMD*/
 
-let bet = params.split(' ')[2];
-let curAucPrice = auction.getCurBetPrice();
+let bet = parseInt(params.split(' ')[2]);
+let curAucPrice = parseInt(auction.getCurBetPrice());
 if (!isNaN(bet) && bet > 0){
    if (bet % 5 != 0) {
       return Bot.sendMessage(lang['bet']['multiple']);
