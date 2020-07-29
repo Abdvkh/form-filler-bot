@@ -16,7 +16,7 @@ let totalResult = 0;
 
 let pic_url = 'https://img.pngio.com/cross-png-transparent-84-images-in-collection-page-2-cross-pngs-260_280.jpg';
 
-let curAucPrice = auction.curBetPrice();
+let curAucPrice = auction.getCurBetPrice();
 
 let bet = parseInt(request.query.split(' ')[2]);
 
