@@ -25,7 +25,7 @@ if (message && !isNaN(message)) {
       chat_id: group,
       document: gifs.file_ids[gif_id]
    });
-   
+
    let betKeyboard = Bot.getProperty('betKeyboard');
 
    Api.sendMessage({
@@ -41,6 +41,7 @@ if (message && !isNaN(message)) {
    Bot.clearRunAfter({
       label: 'bet'
    });
+   
    Bot.run({
       command: 'betStep',
       run_after: 60,

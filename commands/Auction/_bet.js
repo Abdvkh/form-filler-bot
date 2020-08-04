@@ -17,7 +17,7 @@ if (!isNaN(bet) && bet > 0){
    }
    if(bet > curAucPrice) {
       let difference = bet - curAucPrice;
-      Bot.runCommand('bet '+bet);
+      Bot.runCommand('bet '+difference);
    } else if (bet < curAucPrice){
       Bot.sendMessage(lang['bet']['already_made']);
    }

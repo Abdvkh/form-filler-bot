@@ -68,9 +68,14 @@ function isOver() {
       betStep = 1;
       setAuction('betStep', betStep);
    }
-   let status = betStep > 3;
-   setAuction('isOver', status);
-   return status;
+   let is_over = betStep > 3;
+   if (is_over) {
+      Bot.clearRunAfter({
+         label: 'bet'
+      });
+   }
+   setAuction('isOver', is_over);
+   return is_over;
 }
 
 publish({

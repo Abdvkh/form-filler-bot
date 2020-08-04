@@ -28,18 +28,12 @@ if (auction.isOver()) {
    });
 }
 
-// if (params && betStep !=1) {
-//    Api.deleteMessage({
-//       chat_id: group,
-//       message_id: params,
-//    });
-// }
 let betStep = auction.getCurAuction()['betStep'];
 auction.setCurrentAuction('betStep', parseInt(betStep)+1);
 
 let betKeyboard = Bot.getProperty('betKeyboard');
-
-let betMsg = (betStep==1 ? "Раз" : betStep==2 ? "Два" : "Три") + ' cтавка от ' + utils.getLinkFor(curBet['user']) + ' ' + curBet['price'];
+let betStep_str = betStep==1 ? "Раз" : betStep==2 ? "Два" : "Три";
+let betMsg = betStep_str + ' cтавка от ' + utils.getLinkFor(curBet['user']) + ' ' + curBet['price'];
 
 Api.sendMessage({
    chat_id: group,
