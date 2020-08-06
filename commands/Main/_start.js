@@ -9,6 +9,8 @@ if (params && params == 'bet') {
       keys: wordsLikeButton.mainmenu
    };
    return utils.runCommandWithKeyboard(command);
+} else if (params == 'form') {
+   return Bot.runCommand('getBox');
 }
 
 questionary.user.setup();

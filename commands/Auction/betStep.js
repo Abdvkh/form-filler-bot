@@ -17,6 +17,14 @@ if (auction.isOver()) {
    Api.sendMessage({
       chat_id: group,
       text: lang['aucOver'] + utils.getLinkFor(curBet['user']),
+      reply_markup: {
+         inline_keyboard: [
+            [
+               { text: 'Заполнить форму', callback_data: '/start form' },
+               { text: 'Повысить на 5', callback_data: 'bet 5' },
+            ],
+         ],
+      },
       parse_mode: 'Markdown',
    });
    Api.sendDocument({

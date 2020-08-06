@@ -37,7 +37,7 @@ function kickOffTo(chatId) {
       caption: aucPost,
       parse_mode: 'Markdown',
       reply_markup: betKeyboard
-   })
+   });
 }
 
 function getCurBetPrice() {
@@ -68,7 +68,7 @@ function isOver() {
       betStep = 1;
       setAuction('betStep', betStep);
    }
-   let is_over = betStep > 3;
+   let is_over = betStep >= 3;
    if (is_over) {
       Bot.clearRunAfter({
          label: 'bet'
