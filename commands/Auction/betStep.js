@@ -20,8 +20,7 @@ if (auction.isOver()) {
       reply_markup: {
          inline_keyboard: [
             [
-               { text: 'Заполнить форму', callback_data: '/start form' },
-               { text: 'Повысить на 5', callback_data: 'bet 5' },
+               { text: 'Заполнить форму', url: 'tg://resolve?domain=abduvakhidovs&start=form' },
             ],
          ],
       },
