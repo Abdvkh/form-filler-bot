@@ -14,16 +14,24 @@ let gifs = Bot.getProperty('gifs');
 let group = Bot.getProperty('chat');
 
 if (auction.isOver()) {
+   let reply_keyboard = {
+      inline_keyboard: [
+         [
+            { text: 'Заполнить форму', url: 'tg://resolve?domain=abduvakhidovs&start=form' },
+         ],
+      ],
+   };
+
+   Api.sendMessage({
+      chat_id: curBet['user']['telegramid'],
+      text: lang['msg_to_winner'],
+      reply_markup: reply_keyboard,
+      parse_mode: 'Markdown',
+   });
    Api.sendMessage({
       chat_id: group,
       text: lang['aucOver'] + utils.getLinkFor(curBet['user']),
-      reply_markup: {
-         inline_keyboard: [
-            [
-               { text: 'Заполнить форму', url: 'tg://resolve?domain=abduvakhidovs&start=form' },
-            ],
-         ],
-      },
+      reply_markup: reply_keyboard,
       parse_mode: 'Markdown',
    });
    Api.sendDocument({
