@@ -10,7 +10,7 @@ if (params && params == 'bet') {
    };
    return utils.runCommandWithKeyboard(command);
 } else if (params == 'form') {
-   if (curAuc['betUser']['telegramid']==chat.id) {
+   if (curAuc['betUser']['telegramid']==user.telegramid) {
       return Bot.runCommand('getBox');
    }
    return Bot.sendMessage('Извините, но вы не победитель аукциона!')
