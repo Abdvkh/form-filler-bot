@@ -17,7 +17,7 @@ if (auction.isOver()) {
    let reply_keyboard = {
       inline_keyboard: [
          [
-            { text: 'Заполнить форму', url: 'tg://resolve?domain=abduvakhidovs&start=form' },
+            { text: 'Заполнить форму', url: 'tg://resolve?domain=abduvakhidovsbot&start=form' },
          ],
       ],
    };

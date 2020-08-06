@@ -20,9 +20,10 @@ let curAucPrice = auction.getCurBetPrice();
 
 let bet = parseInt(request.query.split(' ')[2]);
 
-if(bet < 0 && bet < curAucPrice){
+let bet_is_approp = bet > 0 && bet > curAucPrice
+if(!bet_is_approp){
    title = msg = lang['bet']['positive_above_cur'];
-} else if(bet % 5 != 0) {
+} else if(!bet_is_approp && bet % 5 != 0) {
    title = msg = lang['bet']['multiple'];
 } else {
    pic_url = 'https://static.appvn.com/a/uploads/thumbnails/032015/do-button-by-ifttt_icon.png';

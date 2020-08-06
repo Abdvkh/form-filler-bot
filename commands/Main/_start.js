@@ -1,5 +1,5 @@
+let curAuc = auction.getCurAuction();
 if (params && params == 'bet') {
-   let curAuc = auction.getCurAuction();
    if (auction.isOver()) {
       return Bot.sendMessage(lang['aucOver'] + utils.getLinkFor(curAuc['betUser']))
    }
@@ -10,7 +10,10 @@ if (params && params == 'bet') {
    };
    return utils.runCommandWithKeyboard(command);
 } else if (params == 'form') {
-   return Bot.runCommand('getBox');
+   if (curAuc['betUser']['telegramid']==chat.id) {
+      return Bot.runCommand('getBox');
+   }
+   return Bot.sendMessage('Извините, но вы не победитель аукциона!')
 }
 
 questionary.user.setup();
