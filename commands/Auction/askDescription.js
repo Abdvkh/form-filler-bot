@@ -4,10 +4,13 @@
   need_reply: true
   auto_retry_time:
   folder: Auction
-  answer: Введите описание аукциона
-  keyboard: Главное меню
-  aliases:
+  answer: 3. Введите описание лота
+  keyboard: Главное меню, Заголовок
+  aliases: Описание
 CMD*/
 
-auction.setCurrentAuction('description', message);
-Bot.runCommand('askPicture');
+auction.setCurrentLot('description', message);
+
+Bot.run({
+   command: 'askStartingPrice',
+});

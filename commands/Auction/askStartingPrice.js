@@ -4,11 +4,13 @@
   need_reply: true
   auto_retry_time:
   folder: Auction
-  answer: Введите начальную цену аукциона
-  keyboard: Главное меню
-  aliases:
+  answer: 4. Введите начальную цену аукциона
+  keyboard: Главное меню, Описание
+  aliases: Начальная цена
 CMD*/
 
-auction.setCurrentAuction('startingPrice', message);
-auction.setCurrentAuction('betPrice', message);
-Bot.runCommand('askDescription');
+auction.setCurrentLot('start_price', parseInt(message));
+
+Bot.run({
+   command: 'askPicture',
+});

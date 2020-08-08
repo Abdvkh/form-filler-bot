@@ -124,6 +124,10 @@ function getRequest(userId) {
    return requests[userId];
 }
 
+function setCurrentLot(propertyName, propertyValue) {
+   return 'succeed'
+}
+
 publish({
    user: {
       setup: setup,
@@ -133,4 +137,5 @@ publish({
    addAnswer: addAnswer,
    sendForm: sendForm,
    getQuestions: getQuestions,
+   setCurrentLot: setCurrentLot
 })

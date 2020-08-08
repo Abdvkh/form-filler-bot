@@ -4,10 +4,13 @@
   need_reply: true
   auto_retry_time:
   folder: Auction
-  answer: Отправьте фотографию лота
-  keyboard: Главное меню
-  aliases:
+  answer: 5. Отправьте картинку лота
+  keyboard: Главное меню, Начальная цена
+  aliases: Картинка
 CMD*/
 
-auction.setCurrentAuction('picture', request.photo[1]['file_id']);
-Bot.runCommand('askConfirmation');
+auction.setCurrentLot('picture', request.photo[1]['file_id']);
+
+Bot.run({
+   command: 'askTime',
+});

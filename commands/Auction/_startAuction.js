@@ -4,13 +4,10 @@
   need_reply: true
   auto_retry_time:
   folder: Auction
-  answer: Чтобы начать аукцион введите заголовок/номер/идентификатор лота. Чтобы отменить команду нажмите на "Главное меню"
+  answer: Начать аукцион
   keyboard: Главное меню
-  aliases: Аукцион, Заполнить заново
+  aliases: Аукцион, Начать аукцион
 CMD*/
 
-if (message=='Главное меню') {
-   Bot.runCommand('/menu');
-}
 auction.setCurrentAuction('name', message);
 Bot.runCommand('askStartingPrice');
