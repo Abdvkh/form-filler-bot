@@ -20,7 +20,10 @@ if (inputs.length > 2) {
    return Bot.run({command: '/test'});
 }
 
-let inputDate, inputTime = inputs;
+let inputDate = inputs[0];
+let inputTime = inputs[1];
+
+Bot.sendMessage(inputDate+" "+inputTime);
 
 let date = utils.time.checkDate(inputDate);
 let time = utils.time.checkTime(inputTime);
