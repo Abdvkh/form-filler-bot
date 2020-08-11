@@ -10,7 +10,7 @@
 CMD*/
 
 
-auction.setCurrentLot('title', message);
+auction.lot.setCurrentLot('title', message);
 
 Bot.run({
    command: 'askDescription',

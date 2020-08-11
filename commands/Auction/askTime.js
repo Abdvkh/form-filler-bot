@@ -20,13 +20,13 @@ let time = utils.time.checkTime(inputTime);
 let time_info = time['isValid'] ? 'Time is valid.' : 'Time is invalid.';
 let date_info = date['isValid'] ? 'Date is valid.' : 'Date is invalid.';
 
-let scheduled_time = new Date(date['standardDate']+" "+time['standardTime']);
+let scheduled_time = (new Date(date['standardDate']+" "+time['standardTime'])).getTime();
 let cur_time = Date.now();
-let diff =  parseInt((scheduled_time.getTime() - cur_time)/1000)
+let diff =  parseInt((scheduled_time - cur_time)/1000)
 
-let lot_number = auction.getLotsCount();
+let lot_number = auction.lot.getLotsCount();
 
-if (inputs.length > 2 || message.length > 15) {
+if (inputs.length > 2 || message.length > 15 || diff < 1) {
    Bot.sendMessage(
       'Please enter datetime in right way "dd/mm/yy HH:MM"'
     + ' a space between date(dd/mm/yy) and time(HH:MM) is required.\n'
@@ -37,16 +37,15 @@ if (inputs.length > 2 || message.length > 15) {
 
 Bot.sendMessage(inputDate+" "+inputTime);
 
-
 if (date['isValid'] && time['isValid']) {
-   auction.setCurrentLot('time', message);
+   auction.lot.setCurrentLot('time', message);
 
    Bot.run({
-      command: '/startAuction ' + lot_umber,
+      command: '/startAuction ' + lot_number,
       label: 'startAuction',
       run_after: diff
    });
-
+   auction.lot.saveCurLot();
    Bot.sendMessage("Success");
    Bot.run({
       command: 'askConfirmation',

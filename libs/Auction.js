@@ -1,5 +1,20 @@
 let libPrefix = 'auction_';
+
+
 /* LOTS */
+function removeLotFromLotsById(id) {
+   let lots = getLots();
+   if (!lots) { throw new Exception("No lots were provided"); }
+   lots.forEach((lot, i) => {
+      if (lot['id'] == id) {
+         lots.pop();
+         setLots(lots);
+         break;
+      }
+   });
+   return '200';
+}
+
 function setLots(lots) {
    Bot.setProperty(libPrefix + 'lots', {data: lots}, 'JSON');
    return '200';
@@ -41,19 +56,21 @@ function getCurrentLot() {
    return data;
 }
 
-function setCurrentLot(propName, propValue) {
+function setCurrentLotProperty(propName, propValue) {
    let curLot = getCurrentLot();
    if (!curLot) { return '404'; }
    curLot[propName] = propValue;
-   setLot('current', curLot);
+   Bot.setProperty(libPrefix + 'currentLot', curLot, "JSON");
    return '200'
 }
 
 function setLotID(id) {
-   setCurrentLot('id', id);
+   setCurrentLotProperty('id', id);
 }
 
 /* LOTS */
+
+
 function setAuction(auction) {
    Bot.setProperty(libPrefix + 'current', auction, 'JSON');
 }
@@ -140,5 +157,10 @@ publish({
    getCurAuction: getCurrentAuction,
    getCurBet: getCurrentBetDetails,
    getCurBetPrice: getCurBetPrice,
-   isOver: isOver
+   isOver: isOver,
+   lots: {
+      removeLot: removeLotFromLotsById,
+      setCurrentLot: setCurrentLotProperty,
+      saveCurLot: addCurrentLotToLots,
+   }
 })
