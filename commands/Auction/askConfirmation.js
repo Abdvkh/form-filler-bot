@@ -5,20 +5,13 @@
   auto_retry_time:
   folder: Auction
   answer: Подтвердите лот
-  keyboard: Начать аукцион, Заполнить заново, Главное меню
+  keyboard: Сохранить лот, Заполнить заново, Главное меню
   aliases:
 CMD*/
 
-if (message == 'Начать аукцион') {
-   let group = Bot.getProperty('chat');
-   let gifs = Bot.getProperty('gifs');
-   Bot.setProperty('sentGifIndex', '0', 'String');
-   Bot.sendMessage('Аукцион начнется через 10 секунд');
-   Bot.run({
-      command: 'sendBeforeStartGif',
-      run_after: 10,
-      label: 'start_gif'
-   });
+if (message == 'Сохранить лот') {
+   Bot.sendMessage('Lot is saved');
+   Bot.sendMessage('In order to fill new lot enter /startFillingLot');
 } else if (message == 'Заполнить заново') {
-   Bot.runCommand('/startAuction');
+   Bot.runCommand('/startFillingLot');
 }

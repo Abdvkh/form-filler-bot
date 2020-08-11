@@ -1,16 +1,70 @@
 let libPrefix = 'auction_';
+/* LOTS */
+function setLots(lots) {
+   Bot.setProperty(libPrefix + 'lots', {data: lots}, 'JSON');
+   return '200';
+}
 
-function setAuction(name, data) {
-   Bot.setProperty(libPrefix + name, data, 'JSON');
+function addCurrentLotToLots() {
+   let curLot = getCurrentLot();
+   let lots = getLots();
+   if (!curLot) { return '400'; }
+   lots.push(curLot);
+   setLots(lots);
+   return '200';
+}
+
+function getLots() {
+   let lots = Bot.getProperty(libPrefix + 'lots');
+
+   if (lots != undefined) { return lots['data']; }
+
+   let lots = {
+      data:[]
+   };
+   Bot.setProperty(libPrefix + 'lots', lots, 'JSON');
+   return lots['data'];
+}
+
+function getLotsCount(){
+   let lots = getLots();
+   return lots.length;
+}
+
+function getCurrentLot() {
+   let curLot = Bot.getProperty(libPrefix + 'currentLot');
+
+   if (curLot != undefined) { return curLot; }
+
+   let data = {};
+   Bot.setProperty(libPrefix + 'currentLot', data, 'JSON');
+   return data;
+}
+
+function setCurrentLot(propName, propValue) {
+   let curLot = getCurrentLot();
+   if (!curLot) { return '404'; }
+   curLot[propName] = propValue;
+   setLot('current', curLot);
+   return '200'
+}
+
+function setLotID(id) {
+   setCurrentLot('id', id);
+}
+
+/* LOTS */
+function setAuction(auction) {
+   Bot.setProperty(libPrefix + 'current', auction, 'JSON');
 }
 
 function setCurrentAuction(propName, propValue) {
-   let curAuc = getCurrectAuction();
+   let curAuc = getCurrentAuction();
    curAuc[propName] = propValue;
    setAuction('current', curAuc);
 }
 
-function getCurrectAuction() {
+function getCurrentAuction() {
    let curAuc = Bot.getProperty(libPrefix + 'current');
 
    if (curAuc != undefined) { return curAuc;}
@@ -21,7 +75,7 @@ function getCurrectAuction() {
 }
 
 function kickOffTo(chatId) {
-   let curAuc = getCurrectAuction();
+   let curAuc = getCurrentAuction();
    setCurrentAuction('betStep', 1);
    setCurrentAuction('isOver', false);
    setCurrentAuction('betUser', {});
@@ -41,7 +95,7 @@ function kickOffTo(chatId) {
 }
 
 function getCurBetPrice() {
-   let curAuc = getCurrectAuction();
+   let curAuc = getCurrentAuction();
    let curBetPrice = curAuc['betPrice'];
 
    if (curBetPrice !== undefined) { return curBetPrice }
@@ -57,13 +111,13 @@ function setCurrentBetDetails(betUser, betPrice) {
 
 function getCurrentBetDetails() {
    return {
-      user: getCurrectAuction()['betUser'],
+      user: getCurrentAuction()['betUser'],
       price: getCurBetPrice()
    };
 }
 
 function isOver() {
-   let betStep = parseInt(getCurrectAuction()['betStep']);
+   let betStep = parseInt(getCurrentAuction()['betStep']);
    if (betStep==undefined) {
       betStep = 1;
       setAuction('betStep', betStep);
@@ -83,7 +137,7 @@ publish({
    setCurrentAuction: setCurrentAuction,
    setAuction: setAuction,
    setCurBet: setCurrentBetDetails,
-   getCurAuction: getCurrectAuction,
+   getCurAuction: getCurrentAuction,
    getCurBet: getCurrentBetDetails,
    getCurBetPrice: getCurBetPrice,
    isOver: isOver

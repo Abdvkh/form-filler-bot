@@ -10,7 +10,7 @@
 CMD*/
 
 let command = '/startFillingLot';
-let operation = auction.setLotID('name', message);
+let operation = auction.setLotID(message);
 
 if (operation == 'succeed') {
    let command = 'askTitle';

@@ -9,6 +9,7 @@
   aliases: Заголовок
 CMD*/
 
+
 auction.setCurrentLot('title', message);
 
 Bot.run({

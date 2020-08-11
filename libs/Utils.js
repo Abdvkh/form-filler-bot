@@ -77,7 +77,7 @@ function checkDate(input) {
    //Checks date format of string in form of dd/mm/yy
    var allowBlank = false;
    var minYear = 0;
-   var maxYear = 100 - (new Date()).getYear();
+   var maxYear = (new Date()).getYear() - 100;
 
    var errorMsg = "";
 
@@ -104,13 +104,15 @@ function checkDate(input) {
       Bot.sendMessage(errorMsg);
       return {
          isValid: false,
-         data: regs
+         data: regs,
+         standardDate: regs[2] + "/" + regs[1] + "/" + regs[3]//changed format to mm/dd/yy
       };
    }
 
    return {
       isValid: true,
-      data: regs
+      data: regs,
+      standardDate: regs[2] + "/" + regs[1] + "/" + regs[3]//changed format to mm/dd/yy
    };
 }
 
@@ -146,13 +148,15 @@ function checkTime(input) {
       Bot.sendMessage(errorMsg);
       return {
          isValid: false,
-         data: regs
+         data: regs,
+         standardTime: parseInt(regs[1])-5 + ":" + regs[2]
       };
    }
 
    return {
          isValid: true,
-         data: regs
+         data: regs,
+         standardTime: parseInt(regs[1])-5 + ":" + regs[2]
    };
 }
 
