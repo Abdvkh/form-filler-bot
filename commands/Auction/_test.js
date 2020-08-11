@@ -20,10 +20,10 @@ if (inputs.length > 2) {
    return Bot.run({command: '/test'});
 }
 
-let date,time = inputs;
+let inputDate, inputTime = inputs;
 
-let date = utils.checkDate(date);
-let time = utils.checkTime(time);
+let date = utils.checkDate(inputDate);
+let time = utils.checkTime(inputTime);
 
 let time_info = time['isValid'] ? 'Time is valid.' : 'Time is invalid.';
 let date_info = date['isValid'] ? 'Date is valid.' : 'Date is invalid.';
