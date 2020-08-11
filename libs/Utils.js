@@ -76,8 +76,8 @@ function getRandomIntFromRange(min, max) {
 function checkDate(input) {
    //Checks date format of string in form of dd/mm/yy
    var allowBlank = false;
-   var minYear = 1902;
-   var maxYear = (new Date()).getFullYear();
+   var minYear = 0;
+   var maxYear = 100 - (new Date()).getYear();
 
    var errorMsg = "";
 
