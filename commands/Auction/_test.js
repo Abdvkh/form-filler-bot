@@ -22,8 +22,8 @@ if (inputs.length > 2) {
 
 let inputDate, inputTime = inputs;
 
-let date = utils.checkDate(inputDate);
-let time = utils.checkTime(inputTime);
+let date = utils.time.checkDate(inputDate);
+let time = utils.time.checkTime(inputTime);
 
 let time_info = time['isValid'] ? 'Time is valid.' : 'Time is invalid.';
 let date_info = date['isValid'] ? 'Date is valid.' : 'Date is invalid.';

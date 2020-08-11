@@ -158,6 +158,10 @@ function checkTime(input) {
 
 
 publish({
+   time: {
+      checkDate: checkDate,
+      checkTime: checkTime,
+   },
    getLinkFor: getLinkFor,
    getNameFor: getNameFor,
    getPreviousCommand: getPreviousCommand,
