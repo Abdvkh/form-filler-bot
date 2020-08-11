@@ -4,7 +4,7 @@
   need_reply: true
   auto_retry_time:
   folder: Auction
-  answer: 2. Введите заголовок лота
+  answer: 6. Введите запланированное время лота
   keyboard: Главное меню, Идентификатор
   aliases: Заголовок
 CMD*/

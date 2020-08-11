@@ -73,6 +73,89 @@ function getRandomIntFromRange(min, max) {
   return Math.floor(Math.random() * ((max+1) - min) + min);
 }
 
+function checkDate(input) {
+   //Checks date format of string in form of dd/mm/yy
+   var allowBlank = false;
+   var minYear = 1902;
+   var maxYear = (new Date()).getFullYear();
+
+   var errorMsg = "";
+
+   // regular expression to match required date format
+   let re = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](\d{2})$/;
+
+   if (input != '') {
+      if (regs = input.match(re)) {
+         if (regs[1] < 1 || regs[1] > 31) {
+            errorMsg = "Invalid value for day: " + regs[1];
+         } else if (regs[2] < 1 || regs[2] > 12) {
+            errorMsg = "Invalid value for month: " + regs[2];
+         } else if (regs[3] < minYear || regs[3] > maxYear) {
+            errorMsg = "Invalid value for year: " + regs[3] + " - must be between " + minYear + " and " + maxYear;
+         }
+      } else {
+         errorMsg = "Invalid date format: " + input;
+      }
+   } else if (!allowBlank) {
+      errorMsg = "Empty date not allowed!";
+   }
+
+   if (errorMsg != "") {
+      Bot.sendMessage(errorMsg);
+      return {
+         isValid: false,
+         data: regs
+      };
+   }
+
+   return {
+      isValid: true,
+      data: regs
+   };
+}
+
+function checkTime(input) {
+   //Checks time format of string in form of HH/MM
+   var errorMsg = "";
+
+   // regular expression to match required time format
+   re = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/;
+
+   if (input != "") {
+      if (regs = input.match(re)) {
+         if (regs[4]) {
+            // 12-hour time format with am/pm
+            if (regs[1] < 1 || regs[1] > 12) {
+               errorMsg = "Invalid value for hours: " + regs[1];
+            }
+         } else {
+            // 24-hour time format
+            if (regs[1] > 23) {
+               errorMsg = "Invalid value for hours: " + regs[1];
+            }
+         }
+         if (!errorMsg && regs[2] > 59) {
+            errorMsg = "Invalid value for minutes: " + regs[2];
+         }
+      } else {
+         errorMsg = "Invalid time format: " + input;
+      }
+   }
+
+   if (errorMsg != "") {
+      Bot.sendMessage(errorMsg);
+      return {
+         isValid: false,
+         data: regs
+      };
+   }
+
+   return {
+         isValid: true,
+         data: regs
+   };
+}
+
 
 publish({
    getLinkFor: getLinkFor,
