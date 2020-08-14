@@ -10,7 +10,8 @@
 CMD*/
 
 if (message == 'Сохранить лот') {
-   Bot.sendMessage('Lot is saved');
+   let lot_number = auction.lot.getLotsCount();
+   Bot.sendMessage('Lot is saved under '+lot_number);
    Bot.sendMessage('In order to fill new lot enter /startFillingLot');
 } else if (message == 'Заполнить заново') {
    Bot.runCommand('/startFillingLot');
