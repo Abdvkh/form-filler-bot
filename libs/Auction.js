@@ -158,7 +158,7 @@ publish({
    getCurBet: getCurrentBetDetails,
    getCurBetPrice: getCurBetPrice,
    isOver: isOver,
-   lots: {
+   lot: {
       setLotID: setLotID,
       getLotsCount: getLotsCount,
       saveCurLot: addCurrentLotToLots,
