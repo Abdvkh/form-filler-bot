@@ -1,5 +1,5 @@
 /*CMD
-  command: askTitle
+  command: askTime
   help:
   need_reply: true
   auto_retry_time:
