@@ -9,7 +9,7 @@
   aliases: Описание
 CMD*/
 
-auction.lot.setCurrentLot('description', message);
+auction.lot.setCurLot('description', message);
 
 Bot.run({
    command: 'askStartingPrice',

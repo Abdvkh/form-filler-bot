@@ -9,7 +9,7 @@
   aliases: Картинка
 CMD*/
 
-auction.lot.setCurrentLot('picture', request.photo[1]['file_id']);
+auction.lot.setCurLot('picture', request.photo[1]['file_id']);
 
 Bot.run({
    command: 'askTime',

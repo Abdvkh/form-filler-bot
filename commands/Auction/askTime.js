@@ -38,7 +38,7 @@ if (inputs.length > 2 || message.length > 15 || diff < 1) {
 Bot.sendMessage(inputDate+" "+inputTime);
 
 if (date['isValid'] && time['isValid']) {
-   auction.lot.setCurrentLot('time', message);
+   auction.lot.setCurLot('time', message);
 
    Bot.run({
       command: '/startAuction ' + lot_number,

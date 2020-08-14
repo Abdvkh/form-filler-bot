@@ -159,8 +159,10 @@ publish({
    getCurBetPrice: getCurBetPrice,
    isOver: isOver,
    lots: {
-      removeLot: removeLotFromLotsById,
-      setCurrentLot: setCurrentLotProperty,
+      setLotID: setLotID,
+      getLotsCount: getLotsCount,
       saveCurLot: addCurrentLotToLots,
+      removeLot: removeLotFromLotsById,
+      setCurLot: setCurrentLotProperty,
    }
 })
