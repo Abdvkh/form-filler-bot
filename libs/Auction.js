@@ -65,7 +65,7 @@ function setCurrentLotProperty(propName, propValue) {
 }
 
 function setLotID(id) {
-   setCurrentLotProperty('id', id);
+   return setCurrentLotProperty('id', id);
 }
 
 /* LOTS */
