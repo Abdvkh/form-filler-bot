@@ -34,7 +34,7 @@ function getLots() {
 
    if (lots != undefined) { return lots['data']; }
 
-   let lots = {
+   lots = {
       data:[]
    };
    Bot.setProperty(libPrefix + 'lots', lots, 'JSON');

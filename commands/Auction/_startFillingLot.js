@@ -13,7 +13,7 @@ let command = '/startFillingLot';
 let operation = auction.lot.setLotID(message);
 
 if (operation == '200') {
-   let command = 'askTitle';
+   command = 'askTitle';
 }
 
 Bot.run({
