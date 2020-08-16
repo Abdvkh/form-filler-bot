@@ -35,18 +35,9 @@ if (inputs.length > 2 || message.length > 15 || diff < 1) {
    return Bot.run({command: 'askTime'});
 }
 
-Bot.sendMessage(inputDate+" "+inputTime);
-
 if (date['isValid'] && time['isValid']) {
    auction.lot.setCurLot('time', message);
 
-   Bot.run({
-      command: '/startAuction ' + lot_number,
-      label: 'startAuction',
-      run_after: diff
-   });
-   auction.lot.saveCurLot();
-   Bot.sendMessage("Success");
    Bot.run({
       command: 'askConfirmation',
    });

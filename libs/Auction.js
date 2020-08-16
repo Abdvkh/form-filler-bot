@@ -15,6 +15,16 @@ function removeLotFromLotsById(id) {
    return '200';
 }
 
+function getIDs() {
+   let lots = getLots();
+   let ids = [];
+   lots.forEach((lot, i) => {
+      ids.push(lot['id']);
+   });
+   return ids;
+
+}
+
 function setLots(lots) {
    Bot.setProperty(libPrefix + 'lots', {data: lots}, 'JSON');
    return '200';
@@ -54,6 +64,11 @@ function getCurrentLot() {
    let data = {};
    Bot.setProperty(libPrefix + 'currentLot', data, 'JSON');
    return data;
+}
+
+function getCurrentLotProperty(propName) {
+   let lot = getCurrentLot();
+   return lot[propName];
 }
 
 function setCurrentLotProperty(propName, propValue) {
@@ -164,5 +179,6 @@ publish({
       saveCurLot: addCurrentLotToLots,
       removeLot: removeLotFromLotsById,
       setCurLot: setCurrentLotProperty,
+      getCurLot: getCurrentLotProperty,
    }
 })
