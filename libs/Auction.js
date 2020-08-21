@@ -13,7 +13,7 @@ function removeLotFromLotsById(id) {
          setLots(lots);
          break;
       }
-   });
+   };
    return '200';
 }
 
