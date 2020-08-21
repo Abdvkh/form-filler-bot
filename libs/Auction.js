@@ -9,11 +9,10 @@ function removeLotFromLotsById(id) {
       let lot = lots[i];
 
       if (lot['id'] == id) {
-         let newAuc = lots.pop();
+         let newAuc = lots.pop(i);
          setAuction(newAuc);
          setLots(lots);
          return '200';
-         break;
       }
    };
    return '400';
@@ -97,7 +96,7 @@ function setAuction(auction) {
 function setCurrentAuction(propName, propValue) {
    let curAuc = getCurrentAuction();
    curAuc[propName] = propValue;
-   setAuction('current', curAuc);
+   setAuction(curAuc);
 }
 
 function getCurrentAuction() {
@@ -116,7 +115,7 @@ function kickOffTo(chatId) {
    setCurrentAuction('isOver', false);
    setCurrentAuction('betUser', {});
    let aucPost = '📌' + curAuc['title'] + '\n\n' +
-                 'Начальная цена: ' + curAuc['startingPrice'] + '\n\n' +
+                 'Начальная цена: ' + curAuc['start_price'] + '\n\n' +
                  'Описание: ' + '\n\n' +
                  curAuc['description'];
   let betKeyboard = Bot.getProperty('betKeyboard');
@@ -156,7 +155,7 @@ function isOver() {
    let betStep = parseInt(getCurrentAuction()['betStep']);
    if (betStep==undefined) {
       betStep = 1;
-      setAuction('betStep', betStep);
+      setCurrentAuction('betStep', betStep);
    }
    let is_over = betStep >= 3;
    if (is_over) {
@@ -164,7 +163,7 @@ function isOver() {
          label: 'bet'
       });
    }
-   setAuction('isOver', is_over);
+   setCurrentAuction('isOver', is_over);
    return is_over;
 }
 
