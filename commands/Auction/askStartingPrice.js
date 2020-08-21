@@ -9,7 +9,8 @@
   aliases: Начальная цена
 CMD*/
 
-auction.lot.setCurLot('start_price', parseInt(message));
+auction.lot.setCurLot('startingPrice', parseInt(message));
+auction.lot.setCurLot('betPrice', 0);
 
 Bot.run({
    command: 'askPicture',

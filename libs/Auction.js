@@ -115,7 +115,7 @@ function kickOffTo(chatId) {
    setCurrentAuction('isOver', false);
    setCurrentAuction('betUser', {});
    let aucPost = '📌' + curAuc['title'] + '\n\n' +
-                 'Начальная цена: ' + curAuc['start_price'] + '\n\n' +
+                 'Начальная цена: ' + curAuc['startingPrice'] + '\n\n' +
                  'Описание: ' + '\n\n' +
                  curAuc['description'];
   let betKeyboard = Bot.getProperty('betKeyboard');
