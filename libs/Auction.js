@@ -9,12 +9,14 @@ function removeLotFromLotsById(id) {
       let lot = lots[i];
 
       if (lot['id'] == id) {
-         lots.pop();
+         let newAuc = lots.pop();
+         setAuction(newAuc);
          setLots(lots);
+         return '200';
          break;
       }
    };
-   return '200';
+   return '400';
 }
 
 function getIDs() {
@@ -113,7 +115,7 @@ function kickOffTo(chatId) {
    setCurrentAuction('betStep', 1);
    setCurrentAuction('isOver', false);
    setCurrentAuction('betUser', {});
-   let aucPost = '📌' + curAuc['name'] + '\n\n' +
+   let aucPost = '📌' + curAuc['title'] + '\n\n' +
                  'Начальная цена: ' + curAuc['startingPrice'] + '\n\n' +
                  'Описание: ' + '\n\n' +
                  curAuc['description'];
