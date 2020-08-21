@@ -1,6 +1,6 @@
 /*CMD
   command: /menu
-  help: главное меню
+  help: 
   need_reply:
   auto_retry_time:
   folder:
