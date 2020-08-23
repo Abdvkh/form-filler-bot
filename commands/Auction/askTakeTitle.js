@@ -5,7 +5,7 @@
   auto_retry_time:
   folder: Auction
   answer: 7. Введите заголовок "Беру" лота
-  keyboard: Главное меню
+  keyboard: Главное меню, Время
   aliases: Заголовок Беру
 CMD*/
 

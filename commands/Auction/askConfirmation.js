@@ -5,7 +5,7 @@
   auto_retry_time:
   folder: Auction
   answer: Подтвердите лот
-  keyboard: Сохранить лот, Заполнить заново, Главное меню
+  keyboard: Сохранить лот, Картинка Беру,\nЗаполнить заново, Главное меню
   aliases:
 CMD*/
 
