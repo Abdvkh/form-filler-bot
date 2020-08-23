@@ -30,6 +30,6 @@ if (message == 'Сохранить лот') {
       label: 'startAuction',
       run_after: diff
    });
-   Bot.sendMessage('Lot is saved under '+lot_number);
+   Bot.sendMessage('Lot is saved under '+ lot_id);
    Bot.sendMessage('In order to fill new lot enter /startFillingLot');
 }

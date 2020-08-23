@@ -71,7 +71,7 @@ function getCurrentLot() {
 
 function getCurrentLotProperty(propName) {
    let lot = getCurrentLot();
-   return lot[propName];
+   return propName == undefined ? lot : lot[propName];
 }
 
 function setCurrentLotProperty(propName, propValue) {

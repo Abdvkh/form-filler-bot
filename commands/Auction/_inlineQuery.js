@@ -24,7 +24,8 @@ let bet_is_approp = bet > 0 && bet > curAucPrice
 if(!bet_is_approp){
    title = msg = lang['bet']['positive_above_cur'];
 } else if(!bet_is_approp && bet % 5 != 0) {
-   title = msg = lang['bet']['multiple'];
+   title = lang['bet']['multiple'];
+   msg = lang['bet']['multiple'];
 } else {
    pic_url = 'https://static.appvn.com/a/uploads/thumbnails/032015/do-button-by-ifttt_icon.png';
    title = "Нажмите чтобы сделать ставку в " + bet;
