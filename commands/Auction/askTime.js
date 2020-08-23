@@ -39,7 +39,7 @@ if (date['isValid'] && time['isValid']) {
    auction.lot.setCurLot('time', message);
 
    Bot.run({
-      command: 'askConfirmation',
+      command: 'askTakeTitle',
    });
 } else {
    Bot.sendMessage(date_info + " and " + time_info);
