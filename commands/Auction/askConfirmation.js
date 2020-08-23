@@ -24,7 +24,10 @@ let diff =  parseInt((scheduled_time - cur_time)/1000)
 
 if (message == 'Сохранить лот') {
    let lot_id = auction.lot.getCurLot('id');
-   auction.lot.saveCurLot();
+   let saving_lot = auction.lot.saveCurLot();
+   if (saving_lot != '200') {
+      return Bot.sendMessage('Issue occured during saving lot');
+   }
    Bot.run({
       command: 'startAuction ' + lot_id,
       label: 'startAuction',
