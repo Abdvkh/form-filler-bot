@@ -14,6 +14,7 @@ let gifs = Bot.getProperty('gifs');
 let group = Bot.getProperty('chat');
 
 if (auction.isOver()) {
+   // sending winner message
    let reply_keyboard = {
       inline_keyboard: [
          [
@@ -21,7 +22,6 @@ if (auction.isOver()) {
          ],
       ],
    };
-
    Api.sendMessage({
       chat_id: curBet['user']['telegramid'],
       text: lang['msg_to_winner'],
@@ -38,6 +38,24 @@ if (auction.isOver()) {
       chat_id: group,
       document: gifs.file_ids[0]
    });
+
+   // sending "Беру"
+   let curAuc = auction.getCurAuction();
+   let take_keyboard = {
+      inline_keyboard: [
+         [
+            { text: '+', callback_data: 'take ' + curAuc['id'] },
+         ],
+      ],
+   };
+   Api.sendPhoto({
+      chat_id: group,
+      photo: curAuc['take_picture'],
+      caption: curAuc['take_title'],
+      parse_mode: 'Markdown',
+      reply_markup: take_keyboard
+   });
+
    return Bot.clearRunAfter({
       label: 'bet'
    });
