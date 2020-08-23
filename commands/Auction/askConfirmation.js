@@ -22,13 +22,11 @@ let scheduled_time = (new Date(date['standardDate']+" "+time['standardTime'])).g
 let cur_time = Date.now();
 let diff =  parseInt((scheduled_time - cur_time)/1000)
 
-let lot_number = auction.lot.getLotsCount();
-
 if (message == 'Сохранить лот') {
-   let lot_number = auction.lot.getLotsCount();
+   let lot_id = auction.lot.getCurLot('id');
    auction.lot.saveCurLot();
    Bot.run({
-      command: 'startAuction ' + lot_number,
+      command: 'startAuction ' + lot_id,
       label: 'startAuction',
       run_after: diff
    });
