@@ -13,6 +13,7 @@ if (auction.isOver()) {
    return Api.answerCallbackQuery({
       callback_query_id: request.id,
       text: lang['aucOver'] + utils.getLinkFor(auction.getCurBet()['user']),
+      show_alert: true
    });
 }
 
