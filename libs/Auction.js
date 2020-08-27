@@ -157,7 +157,7 @@ function isOver() {
       betStep = 1;
       setCurrentAuction('betStep', betStep);
    }
-   let is_over = betStep > 3;
+   let is_over = betStep > 2;
    if (is_over) {
       Bot.clearRunAfter({
          label: 'bet'

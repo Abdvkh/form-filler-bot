@@ -42,7 +42,7 @@ if (auction.isOver()) {
    Api.sendPhoto({
       chat_id: group,
       photo: curAuc['take_picture'],
-      caption: curAuc['take_title'],
+      caption: curAuc['take_title'] ? curAuc['take_title'] : "Секция Беру",
       parse_mode: 'Markdown',
       reply_markup: reply_keyboard
    });
