@@ -38,6 +38,9 @@ if (auction.isOver()) {
       chat_id: group,
       document: gifs.file_ids[0]
    });
+   
+   // sending "Беру"
+   let curAuc = auction.getCurAuction();
 
    Api.sendPhoto({
       chat_id: group,
