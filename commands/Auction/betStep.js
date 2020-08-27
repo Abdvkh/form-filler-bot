@@ -38,7 +38,7 @@ if (auction.isOver()) {
       chat_id: group,
       document: gifs.file_ids[0]
    });
-   
+
    // sending "Беру"
    let curAuc = auction.getCurAuction();
 
@@ -47,7 +47,7 @@ if (auction.isOver()) {
       photo: curAuc['take_picture'],
       caption: curAuc['take_title'] ? curAuc['take_title'] : "Секция Беру",
       parse_mode: 'Markdown',
-      reply_markup: reply_keyboard
+      reply_markup: reply_keyboard,
    });
 
    return Bot.clearRunAfter({
