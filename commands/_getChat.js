@@ -9,4 +9,4 @@
   aliases:
 CMD*/
 
-Bot.sendMessage('Chat ID: `' + message.chat.id + '`');
+Bot.sendMessage('Chat ID: `' + chat.chatid + '`');
