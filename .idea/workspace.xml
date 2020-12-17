@@ -20,10 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="02f9c13e-fd86-40f4-a55c-f873e29babf9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/commands/_getChat.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commands/_setAdmin.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/commands/_setChat.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/_getChat.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/_getChat.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/setup.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/setup.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608196375210</updated>
-      <workItem from="1608196377037" duration="1804000" />
+      <workItem from="1608196377037" duration="2071000" />
     </task>
     <servers />
   </component>
