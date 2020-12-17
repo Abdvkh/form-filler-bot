@@ -17,7 +17,7 @@ function setUrlApp(appUrl) {
 }
 
 function getAppUrl() {
-   result = Bot.getProperty(libPrefix + "app-url");
+   let result = Bot.getProperty(libPrefix + "app-url");
    if (!result) {
       throwError("Need set Google App url before using")
    }
@@ -107,14 +107,14 @@ function onSuccess() {
    let callback = params.split(" ")[0];
    let errCalback = params.split(" ")[1];
 
-   var result = content.split("APP-RESULT")[1];
+   let result = content.split("APP-RESULT")[1];
 
    if (!result) {
       // error
-      var arr = content.split("width:600px");
-      var error = "";
+      let arr = content.split("width:600px");
+      let error = "";
       try {
-         var error = arr[1].split("<")[0];
+         let error = arr[1].split("<")[0];
       } catch (e) {
          error = "error with data posting: " + content;
       }
