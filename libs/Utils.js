@@ -118,6 +118,7 @@ function checkDate(input) {
 }
 
 function checkTime(input) {
+   let regs;
    //Checks time format of string in form of HH/MM
    let errorMsg = "";
 
