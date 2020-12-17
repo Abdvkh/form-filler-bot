@@ -179,5 +179,6 @@ publish({
       removeLot: removeLotFromLotsById,
       setCurLot: setCurrentLotProperty,
       getCurLot: getCurrentLotProperty,
+      getIDs: getIDs,
    }
 })
