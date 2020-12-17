@@ -31,7 +31,7 @@ function makeKeyboard(buttonsArray, code){
    let back = code.indexOf('b') > -1;
    let menu = code.indexOf('m') > -1;
 
-   for(i = 1; i <= buttonsArray.length; i++){
+   for(let i = 1; i <= buttonsArray.length; i++){
       keyboard += buttonsArray[i-1] + ',' ;
 
       if(i % 2 == 0){
@@ -75,11 +75,11 @@ function getRandomIntFromRange(min, max) {
 
 function checkDate(input) {
    //Checks date format of string in form of dd/mm/yy
-   var allowBlank = false;
-   var minYear = 0;
-   var maxYear = (new Date()).getYear() - 100;
+   let allowBlank = false;
+   let minYear = 0;
+   let maxYear = (new Date()).getYear() - 100;
 
-   var errorMsg = "";
+   let errorMsg = "";
 
    // regular expression to match required date format
    let re = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](\d{2})$/;
@@ -118,7 +118,7 @@ function checkDate(input) {
 
 function checkTime(input) {
    //Checks time format of string in form of HH/MM
-   var errorMsg = "";
+   let errorMsg = "";
 
    // regular expression to match required time format
    re = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/;
