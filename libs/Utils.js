@@ -122,7 +122,7 @@ function checkTime(input) {
    let errorMsg = "";
 
    // regular expression to match required time format
-   re = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/;
+   let re = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/;
 
    if (input != "") {
       if (regs = input.match(re)) {
