@@ -10,3 +10,4 @@
 CMD*/
 
 Bot.setProperty('chat', message, 'Number');
+Bot.sendMessage('Chat id['+message+'] is set');

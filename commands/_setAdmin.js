@@ -10,3 +10,4 @@
 CMD*/
 
 Bot.setProperty('admin', message, 'Number');
+Bot.sendMessage('Admin id['+message+'] is set');

@@ -9,8 +9,6 @@
   aliases: Картинка Беру
 CMD*/
 
-
-
 auction.lot.setCurLot('take_picture', request.photo[1]['file_id']);
 
 Bot.run({
