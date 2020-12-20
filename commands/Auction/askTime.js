@@ -15,10 +15,10 @@ let inputDate = inputs[0];
 let inputTime = inputs[1];
 
 let date = utils.time.checkDate(inputDate);
-let time = utils.time.checkTime(inputTime);
+let time = utils.time.checkTime(inputTime, gmt_hours=2);
 
-let time_info = time['isValid'] ? 'Time is valid.' : 'Time is invalid.';
-let date_info = date['isValid'] ? 'Date is valid.' : 'Date is invalid.';
+let time_info = time['isValid'] ? 'Время варидно.' : 'Время не валидно.';
+let date_info = date['isValid'] ? 'Дата валидна.' : 'Дата не валидна.';
 
 let scheduled_time = (new Date(date['standardDate']+" "+time['standardTime'])).getTime();
 let cur_time = Date.now();
@@ -28,9 +28,9 @@ let lot_number = auction.lot.getLotsCount();
 
 if (inputs.length > 2 || message.length > 15 || diff < 1) {
    Bot.sendMessage(
-      'Please enter datetime in right way "dd/mm/yy HH:MM"'
-    + ' a space between date(dd/mm/yy) and time(HH:MM) is required.\n'
-    + 'Try again please!'
+      'Пожалуйста введите дату в данном формате "дд/мм/гг ЧЧ:ММ"'
+    + ' пробел между датой(дд/мм/гг) и временем(ЧЧ:ММ) обязателен.\n'
+    + 'Попробуйте ещё раз пожалуйста!'
    );
    return Bot.run({command: 'askTime'});
 }
@@ -42,5 +42,5 @@ if (date['isValid'] && time['isValid']) {
       command: 'askTakeTitle',
    });
 } else {
-   Bot.sendMessage(date_info + " and " + time_info);
+   Bot.sendMessage(date_info + " и " + time_info);
 }

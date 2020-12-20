@@ -26,7 +26,7 @@ if (message == 'Сохранить лот') {
    let lot_id = auction.lot.getCurLot('id');
    let saving_lot = auction.lot.saveCurLot();
    if (saving_lot != '200') {
-      return Bot.sendMessage('Issue occured during saving lot');
+      return Bot.sendMessage('Что-то пошло не так во время сохранения лота');
    }
    Bot.run({
       command: 'startAuction ' + lot_id,

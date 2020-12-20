@@ -75,7 +75,7 @@ function getRandomIntFromRange(min, max) {
 
 function checkDate(input) {
    //Checks date format of string in form of dd/mm/yy
-   let regs;
+   let matches, day, month, year;
    let allowBlank = false;
    let minYear = 0;
    let maxYear = (new Date()).getYear() - 100;
@@ -85,80 +85,88 @@ function checkDate(input) {
    // regular expression to match required date format
    let re = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](\d{2})$/;
 
-   if (input != '') {
-      if (regs = input.match(re)) {
-         if (regs[1] < 1 || regs[1] > 31) {
-            errorMsg = "Invalid value for day: " + regs[1];
-         } else if (regs[2] < 1 || regs[2] > 12) {
-            errorMsg = "Invalid value for month: " + regs[2];
-         } else if (regs[3] < minYear || regs[3] > maxYear) {
-            errorMsg = "Invalid value for year: " + regs[3] + " - must be between " + minYear + " and " + maxYear;
+   if (input !== '') {
+      if (matches = input.match(re)) {
+         day = matches[1];
+         month = matches[2];
+         year = matches[3];
+
+         if (day < 1 || day > 31) {
+            errorMsg = "Неверно дан день: " + day;
+         } else if (month < 1 || month > 12) {
+            errorMsg = "Неверно дан месяц: " + month;
+         } else if (year < minYear || year > maxYear) {
+            errorMsg = "Неверно дан год: " + year + " - должно быть между " + minYear + " и " + maxYear;
          }
       } else {
-         errorMsg = "Invalid date format: " + input;
+         errorMsg = "Неверный формат даты: " + input;
       }
    } else if (!allowBlank) {
-      errorMsg = "Empty date not allowed!";
+      errorMsg = "Пустая дата не принимается!";
    }
 
    if (errorMsg != "") {
       Bot.sendMessage(errorMsg);
       return {
          isValid: false,
-         data: regs,
-         standardDate: regs[2] + "/" + regs[1] + "/" + regs[3]//changed format to mm/dd/yy
+         data: matches,
+         standardDate: month + "/" + day + "/" + year//changed format to mm/dd/yy
       };
    }
 
    return {
       isValid: true,
-      data: regs,
-      standardDate: regs[2] + "/" + regs[1] + "/" + regs[3]//changed format to mm/dd/yy
+      data: matches,
+      standardDate: month + "/" + day + "/" + year//changed format to mm/dd/yy
    };
 }
 
-function checkTime(input) {
-   let regs;
+function checkTime(input, gmt_hours=5) {
+   /*GMT by default +05 hours*/
+   let matches, hours, minutes;
    //Checks time format of string in form of HH/MM
    let errorMsg = "";
 
    // regular expression to match required time format
-   let re = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/;
+   let date_format = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/;
 
-   if (input != "") {
-      if (regs = input.match(re)) {
-         if (regs[4]) {
+   if (input !== "") {
+      if (matches = input.match(date_format)) {
+         hours = matches[1];
+         minutes = matches[2];
+
+         if (matches[4]) {
             // 12-hour time format with am/pm
-            if (regs[1] < 1 || regs[1] > 12) {
-               errorMsg = "Invalid value for hours: " + regs[1];
+            if (hours < 1 || hours > 12) {
+               errorMsg = "Неверно дан часы: " + hours;
             }
          } else {
             // 24-hour time format
-            if (regs[1] > 23) {
-               errorMsg = "Invalid value for hours: " + regs[1];
+            if (hours > 23) {
+               errorMsg = "Неверно дан часы: " + hours;
             }
          }
-         if (!errorMsg && regs[2] > 59) {
-            errorMsg = "Invalid value for minutes: " + regs[2];
+         if (!errorMsg && minutes > 59) {
+            errorMsg = "Неверно даны минуты: " + minutes;
          }
       } else {
-         errorMsg = "Invalid time format: " + input;
+         errorMsg = "Неверный формат времени: " + input;
       }
    }
 
-   if (errorMsg != "") {
+   if (errorMsg !== "") {
       Bot.sendMessage(errorMsg);
       return {
          isValid: false,
-         data: regs,
-         standardTime: parseInt(regs[1])-5 + ":" + regs[2]
+         data: matches,
+         standardTime: parseInt(hours) - gmt_hours + ":" + minutes
       };
    }
 
    return {
          isValid: true,
-         data: regs,
-         standardTime: parseInt(regs[1])-5 + ":" + regs[2]
+         data: matches,
+         standardTime: parseInt(hours) - gmt_hours + ":" + minutes
    };
 }
 

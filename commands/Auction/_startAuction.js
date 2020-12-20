@@ -16,5 +16,5 @@ if (message < lotsCount || ids.includes(message)) {
       command: 'startAuction '+message
    })
 } else {
-   Bot.sendMessage('There is no such lot!');
+   Bot.sendMessage('Такого лота не существует!');
 }

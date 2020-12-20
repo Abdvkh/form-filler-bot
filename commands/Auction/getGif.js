@@ -19,5 +19,5 @@ let file_id = request.document.file_id;
 if (file_id) {
    gifs.file_ids.push(file_id);
    Bot.setProperty('gifs', gifs, 'JSON');
-   Bot.sendMessage(file_id + ' this id is stored under ' + gifs.file_ids.length + ' position');
+   Bot.sendMessage(file_id + ' this file_id is stored under ' + gifs.file_ids.length + ' position');
 }
