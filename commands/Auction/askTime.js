@@ -15,7 +15,7 @@ let inputDate = inputs[0];
 let inputTime = inputs[1];
 
 let date = utils.time.checkDate(inputDate);
-let time = utils.time.checkTime(inputTime, gmt_hours=2);
+let time = utils.time.checkTime(inputTime, 2);
 
 let time_info = time['isValid'] ? 'Время варидно.' : 'Время не валидно.';
 let date_info = date['isValid'] ? 'Дата валидна.' : 'Дата не валидна.';

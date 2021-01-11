@@ -24,11 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="02f9c13e-fd86-40f4-a55c-f873e29babf9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commands/Auction/_startAuction.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/Auction/_startAuction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commands/Auction/askConfirmation.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/Auction/askConfirmation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commands/Auction/askTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/Auction/askTime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commands/Auction/getGif.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/Auction/getGif.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/Utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/Utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +33,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1lmJXgWNfOof1D6NcIkMEIedjlG" />
   <component name="ProjectLevelVcsManager">
@@ -49,6 +53,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/commands" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -71,7 +76,10 @@
       <workItem from="1608309082470" duration="903000" />
       <workItem from="1608361339553" duration="490000" />
       <workItem from="1608408105520" duration="51000" />
-      <workItem from="1608445032506" duration="1847000" />
+      <workItem from="1608445032506" duration="2529000" />
+      <workItem from="1608569377477" duration="171000" />
+      <workItem from="1608613667251" duration="45000" />
+      <workItem from="1610373612991" duration="113000" />
     </task>
     <servers />
   </component>
@@ -92,11 +100,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1608446551179">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1608446551179" />
   </component>
 </project>
