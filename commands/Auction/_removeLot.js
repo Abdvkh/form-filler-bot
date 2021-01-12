@@ -9,14 +9,15 @@
   aliases:
 CMD*/
 
-if (!params)
+if (!params) {
     return Bot.sendMessage('❌ Параметры не заданы. Попробуйте `/removeLot идентификатор`');
+}
+const lotRemovingStatus = parseInt(auction.lot.removeLot(params));
 
-const lotRemovingStatus = parseInt(auction.lot.removeLot(params);
-
-if (lotRemovingStatus === 400)
+if (lotRemovingStatus === 400) {
     Bot.sendMessage('❌ Такого лота не существует или не удалён по некоторым причинам');
-else if (lotRemovingStatus === 200)
+} else if (lotRemovingStatus === 200) {
     Bot.sendMessage('✅ Лот успешно удалён');
-else
+}  else {
     Bot.sendMessage('🤔Что-то пошло не так');
+}
