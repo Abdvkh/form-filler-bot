@@ -8,7 +8,7 @@ function setup() {
 }
 
 function getLocations() {
-   let locations = Bot.getProperty('locations');
+   let locations = Libs.Lang.get('ru')['locations'];
    return locations['cities'];
 }
 
@@ -31,7 +31,7 @@ function addAnswer(propertyName, value) {
 }
 
 function getQuestions() {
-   return Bot.getProperty('questionary');
+   return Libs.Lang.get('ru')['questions'];
 }
 
 function clearAnswers() {
@@ -62,7 +62,7 @@ function sendForm() {
    clearAnswers();
 //goes through the answers and creates request
    Object.entries(answers).forEach(([key, value]) => {
-      if (key == 'confirmation' && value.length > 10) {
+      if (key === 'confirmation' && value.length > 10) {
          Api.sendPhoto({
             chat_id: admin,
             photo: value,
@@ -100,7 +100,7 @@ function sendForm() {
 
 function getRequests() {
    let requests = Bot.getProperty('requests');
-   if (requests != undefined) {
+   if (requests !== undefined) {
       return requests;
    }
    let queries = {};
