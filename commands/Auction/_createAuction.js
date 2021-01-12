@@ -6,5 +6,13 @@
   folder: Auction
   answer:
   keyboard: Главное меню
-  aliases:
+  aliases: Создать аукцион
 CMD*/
+
+const auctionQuestionsTranslations = lang['auction']['questions'];
+
+Api.sendMessage({
+   text: `${auctionQuestionsTranslations['id']['phrase']}`
+});
+
+Bot.run({command: 'askAuctionID'});
