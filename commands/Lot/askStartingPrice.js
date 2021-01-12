@@ -3,7 +3,7 @@
   help:
   need_reply: true
   auto_retry_time:
-  folder: Auction
+  folder: Lot
   answer: 4. Введите начальную цену аукциона
   keyboard: Главное меню, Описание
   aliases: Начальная цена

@@ -13,7 +13,7 @@ let lotsCount = auction.lot.getLotsCount();
 let ids = auction.lot.getIDs();
 if (message < lotsCount || ids.includes(message)) {
    Bot.run({
-      command: 'startAuction '+message
+      command: 'startAuction ' + message
    })
 } else {
    Bot.sendMessage('Такого лота не существует!');

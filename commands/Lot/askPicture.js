@@ -3,7 +3,7 @@
   help:
   need_reply: true
   auto_retry_time:
-  folder: Auction
+  folder: Lot
   answer: 5. Отправьте картинку лота
   keyboard: Главное меню, Начальная цена
   aliases: Картинка

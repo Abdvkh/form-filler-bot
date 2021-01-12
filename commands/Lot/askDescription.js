@@ -3,7 +3,7 @@
   help:
   need_reply: true
   auto_retry_time:
-  folder: Auction
+  folder: Lot
   answer: 3. Введите описание лота
   keyboard: Главное меню, Заголовок
   aliases: Описание

@@ -3,7 +3,7 @@
   help:
   need_reply: true
   auto_retry_time:
-  folder: Auction
+  folder: Lot
   answer: Подтвердите лот
   keyboard: Сохранить лот, Картинка Беру,\nЗаполнить заново, Главное меню
   aliases:

@@ -3,7 +3,7 @@
   help:
   need_reply: true
   auto_retry_time:
-  folder: Auction
+  folder: Lot
   answer: Заполнение лота: \n1. Введите номер/идентификатор лота. Чтобы отменить команду нажмите на "Главное меню"
   keyboard: Главное меню
   aliases: Заполнить лот, Заполнить заново, Идентификатор

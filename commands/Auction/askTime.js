@@ -9,7 +9,9 @@
   aliases: Время
 CMD*/
 
-let inputs = message.split(' ');
+const inputs = message.split(' ');
+const translationKeywords = lang['keywords'];
+const auctionTranslations = lang['auction'];
 
 let inputDate = inputs[0];
 let inputTime = inputs[1];
@@ -17,21 +19,17 @@ let inputTime = inputs[1];
 let date = utils.time.checkDate(inputDate);
 let time = utils.time.checkTime(inputTime, 2);
 
-let time_info = time['isValid'] ? 'Время варидно.' : 'Время не валидно.';
-let date_info = date['isValid'] ? 'Дата валидна.' : 'Дата не валидна.';
+const time_info = `${auctionTranslations['time']} ${time['isValid'] ? translationKeywords['valid'] : translationKeywords['invalid']}`;
+const date_info = `${auctionTranslations['date']} ${date['isValid'] ? translationKeywords['valid'] : translationKeywords['invalid']}`;
 
-let scheduled_time = (new Date(date['standardDate']+" "+time['standardTime'])).getTime();
+let scheduled_time = (new Date(date['standardDate'] + " " + time['standardTime'])).getTime();
 let cur_time = Date.now();
 let diff =  parseInt((scheduled_time - cur_time)/1000)
 
 let lot_number = auction.lot.getLotsCount();
 
 if (inputs.length !== 2 || message.length > 15 || diff < 1) {
-   Bot.sendMessage(
-      'Пожалуйста введите дату в данном формате "дд/мм/гг ЧЧ:ММ"'
-    + ' пробел между датой(дд/мм/гг) и временем(ЧЧ:ММ) обязателен.\n'
-    + 'Попробуйте ещё раз пожалуйста!'
-   );
+   Bot.sendMessage(auctionTranslations['datetimeWrong']);
    return Bot.run({command: 'askTime'});
 }
 
