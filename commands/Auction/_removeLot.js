@@ -1,21 +1,20 @@
 /*CMD
-  command: /startFillingLot
+  command: /removeLot
   help:
-  need_reply: true
+  need_reply:
   auto_retry_time:
   folder: Auction
-  answer: Заполнение лота: \n1. Введите номер/идентификатор лота. Чтобы отменить команду нажмите на "Главное меню"
+  answer:
   keyboard: Главное меню
-  aliases: Заполнить лот, Заполнить заново, Идентификатор
+  aliases:
 CMD*/
 
-let command = '/startFillingLot';
-let operation = auction.lot.setLotID(message);
+if (!params)
+    return Bot.sendMessage('❌ Параметры не заданы. Попробуйте `/removeLot идентификатор`');
 
-if (operation == '200') {
-   command = 'askTitle';
-}
-
-Bot.run({
-   command: command,
-});
+if (auction.lot.removeLot(params) === '400')
+    Bot.sendMessage('❌ Такого лота не существует или не удалён по некоторым причинам');
+else if (auction.lot.removeLot(params) === '200')
+    Bot.sendMessage('✅ Лот успешно удалён');
+else
+    Bot.sendMessage('Что-то пошло не так');

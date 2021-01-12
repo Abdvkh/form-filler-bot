@@ -180,5 +180,6 @@ publish({
       setCurLot: setCurrentLotProperty,
       getCurLot: getCurrentLotProperty,
       getIDs: getIDs,
+      getLots: getLots,
    }
 })

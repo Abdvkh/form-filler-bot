@@ -26,7 +26,7 @@ let diff =  parseInt((scheduled_time - cur_time)/1000)
 
 let lot_number = auction.lot.getLotsCount();
 
-if (inputs.length > 2 || message.length > 15 || diff < 1) {
+if (inputs.length !== 2 || message.length > 15 || diff < 1) {
    Bot.sendMessage(
       'Пожалуйста введите дату в данном формате "дд/мм/гг ЧЧ:ММ"'
     + ' пробел между датой(дд/мм/гг) и временем(ЧЧ:ММ) обязателен.\n'

@@ -24,7 +24,10 @@
   <component name="ChangeListManager">
     <list default="true" id="02f9c13e-fd86-40f4-a55c-f873e29babf9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/Auction/_removeLot.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/Auction/_removeLot.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commands/Auction/_showLots.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/Auction/_showLots.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commands/Auction/askTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/Auction/askTime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/Auction.js" beforeDir="false" afterPath="$PROJECT_DIR$/libs/Auction.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,12 +58,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/commands" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/commands/Auction" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/commands/Auction" />
       <recent name="$PROJECT_DIR$/commands" />
     </key>
   </component>
@@ -79,7 +83,8 @@
       <workItem from="1608445032506" duration="2529000" />
       <workItem from="1608569377477" duration="171000" />
       <workItem from="1608613667251" duration="45000" />
-      <workItem from="1610373612991" duration="113000" />
+      <workItem from="1610373612991" duration="471000" />
+      <workItem from="1610445883557" duration="3180000" />
     </task>
     <servers />
   </component>

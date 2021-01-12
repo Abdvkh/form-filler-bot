@@ -1,21 +1,24 @@
 /*CMD
-  command: /startFillingLot
+  command: /showLots
   help:
-  need_reply: true
+  need_reply:
   auto_retry_time:
   folder: Auction
-  answer: Заполнение лота: \n1. Введите номер/идентификатор лота. Чтобы отменить команду нажмите на "Главное меню"
+  answer:
   keyboard: Главное меню
-  aliases: Заполнить лот, Заполнить заново, Идентификатор
+  aliases: Лоты
 CMD*/
 
-let command = '/startFillingLot';
-let operation = auction.lot.setLotID(message);
+const lots = auction.getLots();
+let msg = 'В текущий момент имеется ' + (lots.length + 1) + ' лотов:\n\n';
 
-if (operation == '200') {
-   command = 'askTitle';
-}
-
-Bot.run({
-   command: command,
-});
+lots.sort((a, b) => new Date(a.time) - new Date(a.time))
+    .forEach(lot => {
+      msg += `\nИдентификатор: ` + lot.id;
+      msg += `\nВремя проведения: ` + lot.time;
+      msg += `\nНаименование: ` + lot.title;
+      msg += `\nОписание: ` + lot.description;
+      msg += `\nИдентификатор: ` + lot.startingPrice;
+      msg += `\nОписание беру: ` + lot.title;
+      msg += '\n\n';
+   });
