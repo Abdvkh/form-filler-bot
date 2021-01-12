@@ -12,9 +12,11 @@ CMD*/
 if (!params)
     return Bot.sendMessage('❌ Параметры не заданы. Попробуйте `/removeLot идентификатор`');
 
-if (auction.lot.removeLot(params) === '400')
+const lotRemovingStatus = parseInt(auction.lot.removeLot(params);
+
+if (lotRemovingStatus === 400)
     Bot.sendMessage('❌ Такого лота не существует или не удалён по некоторым причинам');
-else if (auction.lot.removeLot(params) === '200')
+else if (lotRemovingStatus === 200)
     Bot.sendMessage('✅ Лот успешно удалён');
 else
-    Bot.sendMessage('Что-то пошло не так');
+    Bot.sendMessage('🤔Что-то пошло не так');
