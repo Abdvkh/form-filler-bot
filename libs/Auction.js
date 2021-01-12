@@ -5,7 +5,7 @@ let libPrefix = 'auction_';
 function removeLotFromLotsById(id) {
    let lots = getLots();
    if (!lots) { throw new Exception("No lots were provided"); }
-   for (var i = 0; i < lots.length; i++) {
+   for (let i = 0; i < lots.length; i++) {
       let lot = lots[i];
 
       if (lot['id'] == id) {
