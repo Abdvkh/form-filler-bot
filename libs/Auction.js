@@ -172,6 +172,7 @@ publish({
    getCurBet: getCurrentBetDetails,
    getCurBetPrice: getCurBetPrice,
    isOver: isOver,
+   getLots: getLots,
    lot: {
       setLotID: setLotID,
       getLotsCount: getLotsCount,
@@ -180,6 +181,5 @@ publish({
       setCurLot: setCurrentLotProperty,
       getCurLot: getCurrentLotProperty,
       getIDs: getIDs,
-      getLots: getLots,
    }
 })
