@@ -36,7 +36,7 @@ if (inputs.length !== 2 || message.length > 15 || diff < 1) {
 }
 
 if (date['isValid'] && time['isValid']) {
-   auction.lot.setCurLot('time', message);
+   auction.lot.setCurLot('time', `${inputDate} ${time['standardTime']}`);
 
    Bot.run({
       command: 'askTakeTitle',
