@@ -10,7 +10,8 @@
 CMD*/
 
 const lots = auction.getLots();
-let msg = '📭Нету лотов';
+let msg;
+
 if (lots.length > 0) {
    msg = `📬В текущий момент имеется ${lots.length} лотов:\n\n`;
 
@@ -24,5 +25,7 @@ if (lots.length > 0) {
           msg += `\n🥡Описание беру: ` + lot.title;
           msg += '\n\n';
        });
+} else {
+   msg = '📭Нету лотов';
 }
 Bot.sendMessage(msg);

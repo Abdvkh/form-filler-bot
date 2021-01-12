@@ -24,7 +24,6 @@
   <component name="ChangeListManager">
     <list default="true" id="02f9c13e-fd86-40f4-a55c-f873e29babf9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/commands/Auction/_removeLot.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/Auction/_removeLot.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/commands/Auction/_showLots.js" beforeDir="false" afterPath="$PROJECT_DIR$/commands/Auction/_showLots.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,7 +81,7 @@
       <workItem from="1608569377477" duration="171000" />
       <workItem from="1608613667251" duration="45000" />
       <workItem from="1610373612991" duration="471000" />
-      <workItem from="1610445883557" duration="6276000" />
+      <workItem from="1610445883557" duration="6755000" />
     </task>
     <servers />
   </component>
