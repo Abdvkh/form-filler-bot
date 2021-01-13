@@ -9,9 +9,16 @@
   aliases:
 CMD*/
 
+const { sent } = lang['keywords'];
+
+const group = Bot.getProperty('chat');
+const admin = Bot.getProperty('admin');
+
 Bot.clearRunAfter({label: 'start_gif'});
-let group = Bot.getProperty('chat');
-let admin = Bot.getProperty('admin');
-auction.kickOffTo(group);
-auction.kickOffTo(admin);
-Bot.sendMessage('Sent');
+
+auction.launchAuctionAt(group);
+auction.launchAuctionAt(admin);
+
+Api.sendMessage({
+    text: sent
+});

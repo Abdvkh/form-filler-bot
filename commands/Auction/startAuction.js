@@ -9,12 +9,20 @@
   aliases:
 CMD*/
 
-auction.lot.removeLot(params);
+const auctionID = params;
+auction.setupCurAuc(auctionID);
+startAuction();
 
-Bot.setProperty('sentGifIndex', '0', 'String');
-Bot.sendMessage('Аукцион начнется через 10 секунд');
-Bot.run({
-   command: 'sendBeforeStartGif',
-   run_after: 10,
-   label: 'start_gif',
-});
+
+function startAuction() {
+   const { startingAuction } = lang['auction'];
+
+   Bot.setProperty('sentGifIndex', '0', 'String');
+
+   Bot.sendMessage(startingAuction);
+   Bot.run({
+      command: 'sendBeforeStartGif',
+      run_after: 10,
+      label: 'start_gif',
+   });
+}

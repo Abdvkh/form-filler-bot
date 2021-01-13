@@ -9,7 +9,11 @@
   aliases:
 CMD*/
 
-let sentGifIndex = parseInt(Bot.getProperty('sentGifIndex')) + 1;
+const gifs = Bot.getProperty('gifs');
+const group = Bot.getProperty('chat');
+
+const sentGifIndex = parseInt(Bot.getProperty('sentGifIndex')) + 1;
+
 if (sentGifIndex >=5) {
    Bot.clearRunAfter({
       label: 'start_gif',
@@ -18,10 +22,9 @@ if (sentGifIndex >=5) {
    return Bot.runCommand('kickOffAuction');
 }
 
-let group = Bot.getProperty('chat');
-let gifs = Bot.getProperty('gifs');
 
 Bot.setProperty('sentGifIndex', sentGifIndex.toString(), 'String');
+
 Api.sendDocument({
    chat_id: group,
    document: gifs.file_ids[sentGifIndex]
