@@ -4,13 +4,29 @@
   need_reply: true
   auto_retry_time:
   folder: Auction
-  answer: 8. Отправьте картинку "Беру"
-  keyboard: Главное меню, Заголовок Беру
-  aliases: Картинка Беру
+  answer:
+  keyboard:
+  aliases: 🖼Картинка беру
 CMD*/
 
-auction.lot.setCurLot('take_picture', request.photo[1]['file_id']);
+let commandDetails;
+const { takeCaption, takePicture, save, wrongPicture } = lang['auction'];
 
-Bot.run({
-   command: 'askConfirmation',
-});
+if (request.photo.length > 0) {
+   auction.setCreatingAucProp('takePicture', request.photo[1]['file_id']);
+
+   commandDetails = {
+      btns: [takePicture, save],
+      txt: auctionTranslations['questions']['confirmation']['phrase'],
+      cmd: 'askAuctionConfirmation'
+   };
+} else {
+
+   commandDetails = {
+      btns: [takeCaption],
+      txt: wrongPicture,
+      cmd: 'askTakePicture'
+   };
+}
+
+utils.runCommandWithKeyboard(commandDetails);

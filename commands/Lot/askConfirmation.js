@@ -22,7 +22,7 @@ let scheduled_time = (new Date(date['standardDate']+" "+time['standardTime'])).g
 let cur_time = Date.now();
 let diff =  parseInt((scheduled_time - cur_time)/1000)
 
-if (message == 'Сохранить лот') {
+if (message === 'Сохранить лот') {
    let lot_id = auction.lot.getCurLot('id');
    let saving_lot = auction.lot.saveCurLot();
    if (saving_lot != '200') {

@@ -14,6 +14,7 @@ const auctionQuestionsTranslations = auctionTranslations['questions'];
 
 auction.setCreatingAucProp('id', message);
 auction.setCreatingAucProp('status', 'active');
+auction.setCreatingAucProp('lots', []);
 askAuctionDatetime();
 
 function askAuctionDatetime(){

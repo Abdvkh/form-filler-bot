@@ -1,17 +1,20 @@
 /*CMD
-  command: askTakeTitle
+  command: askTakeCaption
   help:
   need_reply: true
   auto_retry_time:
   folder: Auction
-  answer: 7. Введите заголовок "Беру" лота
-  keyboard: Главное меню, Время
-  aliases: Заголовок Беру
+  answer:
+  keyboard:
+  aliases: 🥡Заголовок беру
 CMD*/
 
+auction.setCreatingAucProp('takeCaption', message);
+askAuctionTakePicture();
 
-auction.lot.setCurLot('take_title', message);
 
-Bot.run({
-   command: 'askTakePicture',
-});
+function askAuctionTakePicture(){
+   Bot.run({
+      command: 'askTakePicture',
+   });
+}
