@@ -9,16 +9,22 @@
   aliases:
 CMD*/
 
+let command;
 const chosenAction = message;
 const { actions } = lang['auction'];
-
+const callbacks = {
+    addLots: askLotID,
+    startAuction: startAuction,
+    stopAuction: stopAuction,
+    removeAuction: removeAuction,
+    changeAuction: changeAuction,
+};
 // addLots: "➕Добавить лот",
 // startAuction: "🏁Начать аукцион",
 // stopAuction: "⛔️Остановить аукцион",
 // removeAuction: "🗑Удалить аукцион",
 // changeAuction: "🔧Изменить аукцион",
 
-let command;
 
 for(let action in actions){
     if (actions[action] === chosenAction){
@@ -27,7 +33,32 @@ for(let action in actions){
     }
 }
 
+callbacks[command]();
+
 Bot.run({
-   command: command,
-   options: options,
+    command: command + ' ' + options['auctionID']
 });
+
+function askLotID(){
+    const { auctions } = lang['auction'];
+    const { id } = lang['lot'];
+    const { insert } = lang['phrases'];
+
+    Bot.sendKeyboard(utils.makeKeyboard([auctions], 'm'), `${insert}\n${id}`);
+}
+
+function startAuction() {
+
+}
+
+function stopAuction() {
+
+}
+
+function removeAuction() {
+
+}
+
+function changeAuction() {
+
+}
