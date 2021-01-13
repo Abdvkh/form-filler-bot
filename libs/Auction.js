@@ -65,6 +65,22 @@ function setAuction(data={}, type='current'){
    Bot.setProperty(`${libPrefix}${type}`, data, 'JSON');
 }
 
+// /** Set lots of specified Auction
+//  * @param {array} lots - Lots data
+//  * @param {string} auctionID - Auction ID
+//  * */
+// function setAuctionLots(lots, auctionID){
+//    let auction;
+//    const auctions = getAuctions();
+//
+//    for (let i = 0; i < auctions.length; i++) {
+//       auction = auctions[i]
+//       if (auction['id'] === auctionID){
+//
+//       }
+//    }
+// }
+
 /** Get specified auction data
  * @param {string} type - Auction type
  * @return {object} auction - Auction data
@@ -166,6 +182,8 @@ function setupCurrentAuction(auctionID) {
 }
 
 /** Set given auction lot by IDs
+ * @param {string} name Lot property name
+ * @param {any} value Lot property value
  * @param {string} auctionID Auction ID
  * @param {string} lotID Lot ID
  * */
@@ -184,9 +202,56 @@ function setAuctionLotProperty(name, value, auctionID, lotID){
    setAuctionByID(auction, auctionID);
 }
 
+/** Setup currently running auction's coming lot
+ * @param {string|null} lotID Lot ID
+ * @param {string|null} auctionID Auction ID
+ * */
+function setupAuctionLot(lotID=null, auctionID=null){
+   const properties = [
+      ['betStep', 1],
+      ['isOver', false],
+      ['status', 'started'],
+      ['betUser', {}]
+   ];
+
+   properties.forEach(([name, value]) => {
+      setAuctionLotProperty(name, value, auctionID, lotID);
+   });
+}
+
+/**Launches auction at the specified char
+ * @param {string|number} chatId - Telegram chat id where auctions is runing
+ * */
+function launchAuctionAt(chatId) {
+   const currentAuction = getAuction();
+
+   const { lots: currentLots } = currentAuction;
+   setLot([...currentLots].shift());
+
+   const currentLot = getLot();
+   const { id: currentLotID } = currentLot;
+
+   setupAuctionLot(currentLotID, auctionID);
+
+   const { title, startingPrice, description, picture } = currentLot;
+   const auctionPostText = `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`
+   const betKeyboard = Bot.getProperty('betKeyboard');
+
+   Api.sendPhoto({
+      chat_id: chatId,
+      photo: picture,
+      caption: auctionPostText,
+      parse_mode: 'Markdown',
+      reply_markup: betKeyboard
+   });
+}
+
 /* </AUCTION> */
 
+
+
 /* <LOT> */
+
 
 function removeLotFromLotsById(id) {
    let lots = getLots();
@@ -273,14 +338,6 @@ function setLotPropertyByID(data, id){
    Bot.setProperty(`${libPrefix}${type}Lot`, data, 'JSON');
 }
 
-/** Set lot by type
- * @param {object} data Lot data
- * @param {string} type Lot type name
- * */
-function setLotProperty(data, type='current'){
-   Bot.setProperty(`${libPrefix}${type}Lot`, data, 'JSON');
-}
-
 /** Set lot data
  * @param {object} data - Lot data
  * @param {string} type - Lot type
@@ -305,25 +362,15 @@ function getLot(type='current') {
 /** Set lot property by id or type
  * @param {string} name Lot property name
  * @param {any} value Lot property value
- * @param {string|null} lotID Lot id
  * @param {string} type Lot type name
+ * @param {string|null} lotID Lot id
+ * @param {string|null} auctionID Auction id
  * */
 function setLotProperty(name, value, type='current', lotID=null, auctionID=null){
    const lot = lotID !== null ? getLotByID(lotID, auctionID) : getLot();
    lot[name] = value;
 
    setLot(lot);
-}
-
-/** Setup currently running auction's coming lot
- * @param {string} type Lot type name
- * @param {string|null} auctionID Auction ID
- * @param {string|null} lotID Lot ID
- * */
-function setupLot(type='current', lotID=null, auctionID=null){
-   setLotProperty('betStep', 1, type, auctionID);
-   setLotProperty('isOver', false, type, auctionID);
-   setLotProperty('betUser', {}, type, auctionID);
 }
 
 /* </LOT> */
@@ -337,25 +384,6 @@ function getCurrentAuction() {
    let data = {};
    Bot.setProperty(libPrefix + 'current', data, 'JSON');
    return data;
-}
-
-function launchAuctionAt(chatId) {
-   const currentAuction = getAuction();
-   const currentLot = getCurrentLot();
-   const {title, startingPrice, description} = currentLot;
-
-   setupLot(currentLot, auctionID);
-
-   const auctionPostText = `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`
-   const betKeyboard = Bot.getProperty('betKeyboard');
-
-   Api.sendPhoto({
-      chat_id: chatId,
-      photo: currentAuction['picture'],
-      caption: auctionPostText,
-      parse_mode: 'Markdown',
-      reply_markup: betKeyboard
-   });
 }
 
 function getCurBetPrice() {
