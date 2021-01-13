@@ -1,5 +1,5 @@
 /*CMD
-  command: /template
+  command: addLots
   help:
   need_reply:
   auto_retry_time:
