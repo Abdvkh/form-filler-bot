@@ -9,7 +9,7 @@
   aliases:
 CMD*/
 
-const auctionID = params;
+const auctionID = params || options['auctionID'];
 auction.setupCurAuc(auctionID);
 startAuction();
 
