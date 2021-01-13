@@ -26,8 +26,30 @@ function getAuctions(){
    return auctions['data'];
 }
 
+/** Set auction data of the given ID
+ * @param {object} data - Auctions data
+ * @param {string} auctionID - Auctions id
+ * */
+function setAuctionByID(data, auctionID){
+   let auction;
+   const auctions = getAuctions();
+
+   for (let i = 0; i < auctions.length; i++) {
+      auction = auctions[i];
+      let { id } = auction;
+
+      if (id === auctionID){
+         auctions[i] = data;
+         break;
+      }
+   }
+
+   setAuctions(auctions);
+}
+
 /** Get auction data from all by its ID
- * @param {string} id - Auctions data
+ * @param {string} id - Auctions id
+ * @return {object|undefined}
  * */
 function getAuctionByID(id){
    const auctions = getAuctions();
@@ -35,8 +57,17 @@ function getAuctionByID(id){
    return auctions.filter(auction => auction.id === id)[0];
 }
 
+/** Set specified type of auction data
+ * @param {object} data - Auction data
+ * @param {string} type - Auction type
+ * */
+function setAuction(data={}, type='current'){
+   Bot.setProperty(`${libPrefix}${type}`, data, 'JSON');
+}
+
 /** Get specified auction data
- * @param {string} type - Auctions data
+ * @param {string} type - Auction type
+ * @return {object} auction - Auction data
  * */
 function getAuction(type='current'){
    const auction = Bot.getProperty(`${libPrefix}${type}`);
@@ -85,12 +116,78 @@ function getCreatingAuctionProperty(name){
 /** Add auction to auction list
  * @param {object} auction Auction detail
 * */
-function addAuctionToAuctionsList(auction) {
+function addAuctionToList(auction) {
    const auctions = getAuctions();
    auctions.push(auction);
    setAuctions(auctions);
 }
+
+/** Remove auction from auctions list by given ID
+ * @param {string} auctionID Auction ID
+ * */
+function removeAuction(auctionID) {
+   const auctions = getAuctions();
+   let auction = null;
+
+   if (!auctions) { throw new Exception("No auctions were provided"); }
+
+   for (let i = 0; i < auctions.length; i++) {
+      const { id, status } = auctions[i];
+
+      if (id === auctionID && status !== 'active'){
+         auction = auction[i];
+         auction['status'] = 'started';
+         break;
+      }
+   }
+
+   return auction;
+}
+
+/** Sets current auction
+ * @param {string} auctionID Auction ID
+ * @returns {boolean} false if auction is started or inactive or not exists
+ * */
+function setupCurrentAuction(auctionID) {
+   const auction = getAuctionByID(auctionID);
+
+   if (auction !== undefined) {
+      const { status } = auction;
+
+      if (status === 'active'){
+         auction['status'] = 'started';
+         setAuction(auction);
+         return true;
+      }
+   }
+   Api.sendMessage({text: "There is no such active auction to start"});
+
+   return false;
+}
+
+/** Set given auction lot by IDs
+ * @param {string} auctionID Auction ID
+ * @param {string} lotID Lot ID
+ * */
+function setAuctionLotProperty(name, value, auctionID, lotID){
+   const auction = getAuctionByID(auctionID);
+   const lots = auction['lots'];
+
+   for (let i = 0; i < lots.length; i++) {
+      const lot = lots[i];
+
+      if (lot['id'] === lotID){
+         lot[name] = value;
+         break;
+      }
+   }
+   setAuctionByID(auction, auctionID);
+}
+
+/* </AUCTION> */
+
 /* <LOT> */
+
 function removeLotFromLotsById(id) {
    let lots = getLots();
 
@@ -150,16 +247,6 @@ function getLotsCount(){
    return lots.length;
 }
 
-function getCurrentLot() {
-   let curLot = Bot.getProperty(libPrefix + 'currentLot');
-
-   if (curLot !== undefined) { return curLot; }
-
-   let data = {};
-   Bot.setProperty(libPrefix + 'currentLot', data, 'JSON');
-   return data;
-}
-
 function getCurrentLotProperty(propName) {
    let lot = getCurrentLot();
    return propName === undefined ? lot : lot[propName];
@@ -177,44 +264,95 @@ function setLotID(id) {
    return setCurrentLotProperty('id', id);
 }
 
+/** Set lot by ID
+ * @param {object} data Lot data
+ * @param {string} id Lot type name
+ * */
+function setLotPropertyByID(data, id){
+   const autctions = getAuctions()
+   Bot.setProperty(`${libPrefix}${type}Lot`, data, 'JSON');
+}
+
+/** Set lot by type
+ * @param {object} data Lot data
+ * @param {string} type Lot type name
+ * */
+function setLotProperty(data, type='current'){
+   Bot.setProperty(`${libPrefix}${type}Lot`, data, 'JSON');
+}
+
+/** Set lot data
+ * @param {object} data - Lot data
+ * @param {string} type - Lot type
+ * */
+function setLot(data={}, type='current'){
+   Bot.setProperty(`${libPrefix}${type}Lot`, data, 'JSON');
+}
+
+/** Get lot data
+ * @param {string} type - Lot type name
+ * @return {object} data - Lot data
+ * */
+function getLot(type='current') {
+   const currentLot = Bot.getProperty(`${libPrefix}${type}Lot`);
+   if (currentLot !== undefined) { return currentLot; }
+
+   const data = {};
+   setLot(data, type);
+   return data;
+}
+
+/** Set lot property by id or type
+ * @param {string} name Lot property name
+ * @param {any} value Lot property value
+ * @param {string|null} lotID Lot id
+ * @param {string} type Lot type name
+ * */
+function setLotProperty(name, value, type='current', lotID=null, auctionID=null){
+   const lot = lotID !== null ? getLotByID(lotID, auctionID) : getLot();
+   lot[name] = value;
+
+   setLot(lot);
+}
+
+/** Setup currently running auction's coming lot
+ * @param {string} type Lot type name
+ * @param {string|null} auctionID Auction ID
+ * @param {string|null} lotID Lot ID
+ * */
+function setupLot(type='current', lotID=null, auctionID=null){
+   setLotProperty('betStep', 1, type, auctionID);
+   setLotProperty('isOver', false, type, auctionID);
+   setLotProperty('betUser', {}, type, auctionID);
+}
+
 /* </LOT> */
 
-
-function setAuction(auction) {
-   Bot.setProperty(libPrefix + 'current', auction, 'JSON');
-}
-
-function setCurrentAuction(propName, propValue) {
-   let curAuc = getCurrentAuction();
-   curAuc[propName] = propValue;
-   setAuction(curAuc);
-}
 
 function getCurrentAuction() {
    let curAuc = Bot.getProperty(libPrefix + 'current');
 
-   if (curAuc != undefined) { return curAuc;}
+   if (curAuc !== undefined) { return curAuc;}
 
    let data = {};
    Bot.setProperty(libPrefix + 'current', data, 'JSON');
    return data;
 }
 
-function kickOffTo(chatId) {
-   let curAuc = getCurrentAuction();
-   setCurrentAuction('betStep', 1);
-   setCurrentAuction('isOver', false);
-   setCurrentAuction('betUser', {});
-   let aucPost = '📌' + curAuc['title'] + '\n\n' +
-                 'Начальная цена: ' + curAuc['startingPrice'] + '\n\n' +
-                 'Описание: ' + '\n\n' +
-                 curAuc['description'];
-  let betKeyboard = Bot.getProperty('betKeyboard');
+function launchAuctionAt(chatId) {
+   const currentAuction = getAuction();
+   const currentLot = getCurrentLot();
+   const {title, startingPrice, description} = currentLot;
+
+   setupLot(currentLot, auctionID);
+
+   const auctionPostText = `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`
+   const betKeyboard = Bot.getProperty('betKeyboard');
 
    Api.sendPhoto({
       chat_id: chatId,
-      photo: curAuc['picture'],
-      caption: aucPost,
+      photo: currentAuction['picture'],
+      caption: auctionPostText,
       parse_mode: 'Markdown',
       reply_markup: betKeyboard
    });
@@ -226,13 +364,13 @@ function getCurBetPrice() {
 
    if (curBetPrice !== undefined) { return curBetPrice }
 
-   setCurrentAuction('betPrice', 0);
+   setAuctionProperty('betPrice', 0);
    return 0;
 }
 
 function setCurrentBetDetails(betUser, betPrice) {
-   setCurrentAuction('betUser', betUser);
-   setCurrentAuction('betPrice', betPrice);
+   setAuctionProperty('betUser', betUser);
+   setAuctionProperty('betPrice', betPrice);
 }
 
 function getCurrentBetDetails() {
@@ -246,21 +384,22 @@ function isOver() {
    let betStep = parseInt(getCurrentAuction()['betStep']);
    if (betStep==undefined) {
       betStep = 1;
-      setCurrentAuction('betStep', betStep);
+      setAuctionProperty('betStep', betStep);
    }
    let is_over = betStep > 3;
 
-   setCurrentAuction('isOver', is_over);
+   setAuctionProperty('isOver', is_over);
    return is_over;
 }
 
 publish({
-   kickOffTo: kickOffTo,
-   setCurrentAuction: setCurrentAuction,
+   launchAuctionAt: launchAuctionAt,
+   setCurAucProp: setCurrentAuctionPropertyProperty,
+   setupCurAuc: setupCurrentAuction,
    setAuction: setAuction,
    getAuction: getAuction,
    getAuctions: getAuctions,
-   addAuction: addAuctionToAuctionsList,
+   addAuction: addAuctionToList,
    setCurBet: setCurrentBetDetails,
    getCurAuction: getCurrentAuction,
    getCurBet: getCurrentBetDetails,
