@@ -94,17 +94,29 @@ function getAuction(type='current'){
    return auction;
 }
 
-/** Set auction property
- * @param {string} name Name of property
- * @param {any} value Property value
- * @param {string} type Type of auction(currently going one by default)
+/** Get specified auction's lot
+ * @param {string} lotID - Lot id
+ * @param {string} auctionID - Auction ID
+ *
+ * @return {object|undefined} lot - Lot data
  * */
-function setAuctionProperty(name, value, type='current'){
-   const auction = getAuction(type);
-   auction[name] = value;
+function getAuctionLot(lotID, auctionID){
+   const auction = getAuctionByID(auctionID);
 
-   return Bot.setProperty(`${libPrefix}${type}`, auction, 'JSON');
+   return auction.lots.filter(lot => lot['id'] === lotID)[0];
 }
+
+// /** Set auction property
+//  * @param {string} name Name of property
+//  * @param {any} value Property value
+//  * @param {string} type Type of auction(currently going one by default)
+//  * */
+// function setLotProperty(name, value, type='current'){
+//    const auction = getAuction(type);
+//    auction[name] = value;
+//
+//    return Bot.setProperty(`${libPrefix}${type}`, auction, 'JSON');
+// }
 
 /** Get auction property
  * @param {string} name Name of property
@@ -119,7 +131,7 @@ function getAuctionProperty(name, type='current'){
  * @param {any} value Property value
  * */
 function setCreatingAuctionProperty(name, value){
-   setAuctionProperty(name, value, 'creating');
+   setLotProperty(name, value, 'creating');
 }
 
 /** Get currently creating auction property
@@ -246,6 +258,22 @@ function launchAuctionAt(chatId) {
    });
 }
 
+/** Get whether auction is over or not
+ * @return {boolean}
+ * */
+function isOver() {
+   const is_over = betStep > 3;
+   let betStep = parseInt(getLotProperty('betStep'));
+
+   if (betStep === undefined) {
+      betStep = 1;
+      setLotProperty('betStep', betStep);
+   }
+
+   setLotProperty('isOver', is_over);
+   return is_over;
+}
+
 /* </AUCTION> */
 
 
@@ -367,14 +395,26 @@ function getLot(type='current') {
  * @param {string|null} auctionID Auction id
  * */
 function setLotProperty(name, value, type='current', lotID=null, auctionID=null){
-   const lot = lotID !== null ? getLotByID(lotID, auctionID) : getLot();
+   const lot = lotID !== null ? getAuctionLot(lotID, auctionID) : getLot();
    lot[name] = value;
 
    setLot(lot);
 }
 
-/* </LOT> */
+/** Get lot property by id or type
+ * @param {string} name Lot property name
+ * @param {string} type Lot type name
+ * @param {string|null} lotID Lot id
+ * @param {string|null} auctionID Auction id
+ *
+ * @return {any} Property value by name
+ * */
+function getLotProperty(name, type='current', lotID=null, auctionID=null){
+   const noIDs = lotID !== null && auctionID !== null;
+   const lot = noIDs ? getAuctionLot(lotID, auctionID) : getLot();
 
+   return lot[name];
+}
 
 function getCurrentAuction() {
    let curAuc = Bot.getProperty(libPrefix + 'current');
@@ -386,43 +426,43 @@ function getCurrentAuction() {
    return data;
 }
 
-function getCurBetPrice() {
-   let curAuc = getCurrentAuction();
-   let curBetPrice = curAuc['betPrice'];
+/** Get current lot bet price
+ * @return {string|number}
+ * */
+function getCurrentBetPrice() {
+   const { betPrice: curBetPrice } = getLot();
 
    if (curBetPrice !== undefined) { return curBetPrice }
 
-   setAuctionProperty('betPrice', 0);
+   setLotProperty('betPrice', 0);
    return 0;
 }
 
+/** Set current lot bet details
+ * @param {object} betUser - User details who made bet
+ * @param {string|number} betPrice - Price which offered user
+ * */
 function setCurrentBetDetails(betUser, betPrice) {
-   setAuctionProperty('betUser', betUser);
-   setAuctionProperty('betPrice', betPrice);
+   setLotProperty('betUser', betUser);
+   setLotProperty('betPrice', betPrice);
 }
 
+/** Get currently running auction bet details
+ * @return {object}*/
 function getCurrentBetDetails() {
+   const { betUser, betPrice } = getLot();
    return {
-      user: getCurrentAuction()['betUser'],
-      price: getCurBetPrice()
+      user: betUser,
+      price: betPrice
    };
 }
 
-function isOver() {
-   let betStep = parseInt(getCurrentAuction()['betStep']);
-   if (betStep==undefined) {
-      betStep = 1;
-      setAuctionProperty('betStep', betStep);
-   }
-   let is_over = betStep > 3;
+/* </LOT> */
 
-   setAuctionProperty('isOver', is_over);
-   return is_over;
-}
 
 publish({
    launchAuctionAt: launchAuctionAt,
-   setCurAucProp: setCurrentAuctionPropertyProperty,
+   setCurAucProp: setCurrentAuctionProperty,
    setupCurAuc: setupCurrentAuction,
    setAuction: setAuction,
    getAuction: getAuction,
@@ -431,12 +471,14 @@ publish({
    setCurBet: setCurrentBetDetails,
    getCurAuction: getCurrentAuction,
    getCurBet: getCurrentBetDetails,
-   getCurBetPrice: getCurBetPrice,
+   getCurBetPrice: getCurrentBetPrice,
    isOver: isOver,
    getLots: getLots,
-   setAucProp: setAuctionProperty,
+   setAucProp: setLotProperty,
    setCreatingAucProp: setCreatingAuctionProperty,
    lot: {
+      setLotProp: setLotProperty,
+      getLotProp: getLotProperty,
       setLotID: setLotID,
       getLotsCount: getLotsCount,
       saveCurLot: addCurrentLotToLots,
