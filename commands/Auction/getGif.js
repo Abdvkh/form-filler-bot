@@ -10,12 +10,13 @@
 CMD*/
 
 let gifs = Bot.getProperty('gifs');
-if (gifs==undefined) {
+if (gifs === undefined) {
    gifs = {file_ids: []};
    Bot.setProperty('gifs', gifs, 'JSON');
 }
 
-let file_id = request.document.file_id;
+const file_id = request.document.file_id;
+
 if (file_id) {
    gifs.file_ids.push(file_id);
    Bot.setProperty('gifs', gifs, 'JSON');

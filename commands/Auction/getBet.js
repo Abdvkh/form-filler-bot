@@ -9,24 +9,42 @@
   aliases:
 CMD*/
 
-let curBetPrice = parseInt(auction.getCurBetPrice());
-let group = Bot.getProperty('chat');
+const { wrong, positiveOrAboveCurrent } = lang['bet'];
+
+const currentBetPrice = auction.getCurBetPrice();
+const bet = currentBetPrice + parseInt(message);
+
+const group = Bot.getProperty('chat');
 
 if (message && !isNaN(message)) {
 
-   if (message<0) {
-      Bot.sendMessage('Вы ввели неправильную цену, попробуйте ещё');
+   if (message < 0) {
+      //ask bet again
+      Bot.sendMessage(`${wrong} ${positiveOrAboveCurrent}`);
       return Bot.runCommand('getBet');
    }
-   let bet = curBetPrice + parseInt(message);
-   let gif_id = utils.getRandomInt(5, 6);
-   let gifs = Bot.getProperty('gifs');
-   Api.sendDocument({
-      chat_id: group,
-      document: gifs.file_ids[gif_id]
+
+   sendGIF();
+
+   sendBetMadeMessage();
+
+   auction.setCurBet(user, bet);
+   auction.setLotProp('betStep', 1);
+
+   Bot.clearRunAfter({
+      label: 'bet'
    });
 
-   let betKeyboard = Bot.getProperty('betKeyboard');
+   Bot.run({
+      command: 'betStep',
+      run_after: 60,
+      label: 'bet'
+   });
+}
+
+
+function sendBetMadeMessage(){
+   const betKeyboard = Bot.getProperty('betKeyboard');
 
    Api.sendMessage({
       chat_id: group,
@@ -35,16 +53,15 @@ if (message && !isNaN(message)) {
       reply_markup: betKeyboard
    });
    Bot.sendMessage('Ваша ставка сделана, спасибо!');
-   auction.setCurBet(user, bet);
-   auction.setCurrentAuction('betStep', 1);
+}
 
-   Bot.clearRunAfter({
-      label: 'bet'
-   });
-   
-   Bot.run({
-      command: 'betStep',
-      run_after: 60,
-      label: 'bet'
+function sendGIF() {
+   //send gif
+   const gifID = utils.getRandomInt(5, 6);
+   const gifs = Bot.getProperty('gifs');
+
+   Api.sendDocument({
+      chat_id: group,
+      document: gifs.file_ids[gifID]
    });
 }

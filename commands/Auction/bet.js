@@ -9,33 +9,27 @@
   aliases:
 CMD*/
 
+const { auctionOver } = lang;
+const { user: betUser, betPrice } = auction.getCurBet();
+const group = Bot.getProperty('chat');
+
 if (auction.isOver()) {
-   return Api.answerCallbackQuery({
+   //say that auction is over
+   Api.answerCallbackQuery({
       callback_query_id: request.id,
-      text: lang['aucOver'] + utils.getLinkFor(auction.getCurBet()['user']),
+      text: auctionOver + utils.getLinkFor(betUser),
       show_alert: true
    });
+
+   return;
 }
 
-let group = Bot.getProperty('chat');
-let curAucPrice = parseInt(auction.getCurBetPrice());
 if (params && !isNaN(params)) {
-   // if(request.message.caption==undefined){
-   //    Api.deleteMessage({
-   //       chat_id: request.message.chat.id,
-   //       message_id: request.message.message_id,
-   //    });
-   // }
+   const bet = betPrice + parseInt(params);
+   const betKeyboard = Bot.getProperty('betKeyboard');
+   const gifID = utils.getRandomInt(10, 15);
 
-   let bet = curAucPrice + parseInt(params);
-   let betKeyboard = Bot.getProperty('betKeyboard');
-   let gifs = Bot.getProperty('gifs');
-   let gif_id = utils.getRandomInt(10, 15);
-
-   Api.sendDocument({
-      chat_id: group,
-      document: gifs.file_ids[gif_id]
-   });
+   sendGIF(group, gifID);
 
    Api.sendMessage({
       chat_id: group,
@@ -43,8 +37,9 @@ if (params && !isNaN(params)) {
       parse_mode: 'Markdown',
       reply_markup: betKeyboard
    });
+
    auction.setCurBet(user ? user : request.from, bet);
-   auction.setCurrentAuction('betStep', 1);
+   auction.setLotProp('betStep', 1);
 
    Bot.clearRunAfter({
       label: 'bet'
@@ -56,10 +51,24 @@ if (params && !isNaN(params)) {
       run_after: 60
    });
 } else {
-   let command = {
+   // ask bet
+   utils.runCommandWithKeyboard({
       cmd: 'getBet ' + request.message.message_id,
       txt: lang['enterBetAmount'],
-      keys: wordsLikeButton.mainmenu
-   };
-   utils.runCommandWithKeyboard(command);
+      btns: wordsLikeButton.mainmenu
+   });
+}
+
+
+/** Send GIF from stored GIFs by its index
+ * @param {string|number} chatID - ChatID where GIF is being sent
+ * @param {string} index - Stored GIF ID which is being sent
+ * */
+function sendGIF(chatID, index) {
+   const gifs = Bot.getProperty('gifs');
+
+   Api.sendDocument({
+      chat_id: chatID,
+      document: gifs.file_ids[index]
+   });
 }
