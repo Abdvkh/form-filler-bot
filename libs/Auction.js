@@ -29,7 +29,7 @@ function getAuctions(){
 /** Get auction data from all by its ID
  * @param {string} id - Auctions data
  * */
-function getAuction(id){
+function getAuctionByID(id){
    const auctions = getAuctions();
 
    return auctions.filter(auction => auction.id === id)[0];
@@ -82,6 +82,14 @@ function getCreatingAuctionProperty(name){
    getAuctionProperty(name, 'creating');
 }
 
+/** Add auction to auction list
+ * @param {object} auction Auction detail
+* */
+function addAuctionToAuctionsList(auction) {
+   const auctions = getAuctions();
+   auctions.push(auction);
+   setAuctions(auctions);
+}
 /* <LOT> */
 function removeLotFromLotsById(id) {
    let lots = getLots();
@@ -128,7 +136,7 @@ function addCurrentLotToLots() {
 function getLots() {
    let lots = Bot.getProperty(libPrefix + 'lots');
 
-   if (lots != undefined) { return lots['data']; }
+   if (lots !== undefined) { return lots['data']; }
 
    lots = {
       data:[]
@@ -145,7 +153,7 @@ function getLotsCount(){
 function getCurrentLot() {
    let curLot = Bot.getProperty(libPrefix + 'currentLot');
 
-   if (curLot != undefined) { return curLot; }
+   if (curLot !== undefined) { return curLot; }
 
    let data = {};
    Bot.setProperty(libPrefix + 'currentLot', data, 'JSON');
@@ -154,7 +162,7 @@ function getCurrentLot() {
 
 function getCurrentLotProperty(propName) {
    let lot = getCurrentLot();
-   return propName == undefined ? lot : lot[propName];
+   return propName === undefined ? lot : lot[propName];
 }
 
 function setCurrentLotProperty(propName, propValue) {
@@ -250,16 +258,17 @@ publish({
    kickOffTo: kickOffTo,
    setCurrentAuction: setCurrentAuction,
    setAuction: setAuction,
+   getAuction: getAuction,
+   getAuctions: getAuctions,
+   addAuction: addAuctionToAuctionsList,
    setCurBet: setCurrentBetDetails,
    getCurAuction: getCurrentAuction,
    getCurBet: getCurrentBetDetails,
    getCurBetPrice: getCurBetPrice,
    isOver: isOver,
    getLots: getLots,
-   auction: {
-      setCurAucProp: setCurrentAuctionProperty,
-      setCreatingAucProp: setCreatingAuctionProperty,
-   },
+   setAucProp: setAuctionProperty,
+   setCreatingAucProp: setCreatingAuctionProperty,
    lot: {
       setLotID: setLotID,
       getLotsCount: getLotsCount,
