@@ -68,6 +68,10 @@ function sendGIFOnBetStep(betStep){
    }
 }
 
+/** Send GIF from stored GIFs by its index
+ * @param {string|number} chatID - ChatID where GIF is being sent
+ * @param {string} index - Stored GIF ID which is being sent
+ * */
 function sendGIF(chatID, index) {
    const gifs = Bot.getProperty('gifs');
 
