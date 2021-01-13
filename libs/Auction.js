@@ -274,6 +274,17 @@ function isOver() {
    return is_over;
 }
 
+/** Add given lot to given auction
+ * @param {string} auctionID - Auction ID
+ * @param {object} lot - Lot data
+ * */
+function addAuctionLot(auctionID, lot) {
+   const auction = getAuctionByID(auctionID);
+
+   auction.push(lot);
+
+   setAuctionByID(auction, auctionID);
+}
 /* </AUCTION> */
 
 
@@ -457,15 +468,22 @@ function getCurrentBetDetails() {
    };
 }
 
+/** Save created lot */
+function saveCreatedLot() {
+   const { auctionID, ...lot } = getLot('creating');
+
+   addAuctionLot(auctionID, lot);
+}
 /* </LOT> */
 
 
 publish({
    launchAuctionAt: launchAuctionAt,
-   setCurAucProp: setCurrentAuctionProperty,
+   setCurAucProp: setAuctionProperty,
    setupCurAuc: setupCurrentAuction,
    setAuction: setAuction,
    getAuction: getAuction,
+   getAucByID: getAuctionByID,
    getAuctions: getAuctions,
    addAuction: addAuctionToList,
    setCurBet: setCurrentBetDetails,
@@ -477,6 +495,7 @@ publish({
    setAucProp: setLotProperty,
    setCreatingAucProp: setCreatingAuctionProperty,
    lot: {
+      saveCreatedLot: saveCreatedLot,
       setLotProp: setLotProperty,
       getLotProp: getLotProperty,
       setLotID: setLotID,
