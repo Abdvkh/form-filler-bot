@@ -432,7 +432,7 @@ function getCurrentAuction() {
 function getCurrentBetPrice() {
    const { betPrice: curBetPrice } = getLot();
 
-   if (curBetPrice !== undefined) { return curBetPrice }
+   if (curBetPrice !== undefined) { return parseInt(curBetPrice) }
 
    setLotProperty('betPrice', 0);
    return 0;
