@@ -12,6 +12,6 @@ CMD*/
 const { save: saveBtn } = lang['keywords'];
 
 if (message === saveBtn) {
-   auction.saveCreatedLot();
+   auction.lot.saveCreatedLot();
    Bot.run({command: '/showAuctions'});
 }

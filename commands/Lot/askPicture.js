@@ -4,13 +4,25 @@
   need_reply: true
   auto_retry_time:
   folder: Lot
-  answer: 5. Отправьте картинку лота
-  keyboard: Главное меню, Начальная цена
-  aliases: Картинка
+  answer:
+  keyboard:
+  aliases: 🖼Картинка
 CMD*/
 
-auction.lot.setCurLot('picture', request.photo[1]['file_id']);
+if (request.photo.length > 0) {
+   const { picture,  } = lang['lot'];
+   const { save, confirm } = lang['keywords'];
 
-Bot.run({
-   command: 'askTime',
-});
+   auction.lot.setLotProp('picture', request.photo[1]['file_id'], type='creating');
+
+   utils.runCommandWithKeyboard({
+      cmd: 'askLotConfirmation',
+      btns: [save, picture],
+      txt: confirm + ' лот'
+   });
+
+} else {
+   Api.sendMessage({text: send + '\n' + picture});
+   Bot.run({command: 'askPicture'});
+}
+

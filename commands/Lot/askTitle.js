@@ -4,14 +4,17 @@
   need_reply: true
   auto_retry_time:
   folder: Lot
-  answer: 2. Введите заголовок лота
-  keyboard: Главное меню, Идентификатор
-  aliases: Заголовок
+  answer:
+  keyboard:
+  aliases: 📌Заголовок
 CMD*/
 
+const { title, description } = lang['lot'];
+const { insert } = lang['phrases'];
 
-auction.lot.setCurLot('title', message);
-
-Bot.run({
-   command: 'askDescription',
+auction.lot.setLotProp('title', message, type='creating');
+utils.runCommandWithKeyboard({
+   cmd: 'askDescription',
+   btns: [title],
+   txt: insert + '\n' + description
 });

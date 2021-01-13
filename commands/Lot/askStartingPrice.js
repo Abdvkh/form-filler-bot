@@ -4,15 +4,21 @@
   need_reply: true
   auto_retry_time:
   folder: Lot
-  answer: 4. Введите начальную цену аукциона
-  keyboard: Главное меню, Описание
-  aliases: Начальная цена
+  answer:
+  keyboard:
+  aliases: 🏷Начальная цена
 CMD*/
 
-let price = parseInt(message);
-auction.lot.setCurLot('startingPrice', price);
-auction.lot.setCurLot('betPrice', price);
+const price = parseInt(message);
 
-Bot.run({
-   command: 'askPicture',
+const { startingPrice, picture } = lang['lot'];
+const { send } = lang['phrases'];
+
+auction.lot.setLotProp('startingPrice', price, type='creating');
+auction.lot.setLotProp('betPrice', price, type='creating');
+
+utils.runCommandWithKeyboard({
+   cmd: 'askPicture',
+   btns: [startingPrice],
+   txt: send + '\n' + picture
 });

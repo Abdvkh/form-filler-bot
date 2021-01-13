@@ -4,13 +4,18 @@
   need_reply: true
   auto_retry_time:
   folder: Lot
-  answer: 3. Введите описание лота
-  keyboard: Главное меню, Заголовок
-  aliases: Описание
+  answer:
+  keyboard:
+  aliases: ℹ️Описание
 CMD*/
 
-auction.lot.setCurLot('description', message);
+const { startingPrice, description } = lang['lot'];
+const { insert } = lang['phrases'];
 
-Bot.run({
-   command: 'askStartingPrice',
+auction.lot.setLotProp('description', message, type='creating');
+
+utils.runCommandWithKeyboard({
+   cmd: 'askStartingPrice',
+   btns: [description],
+   txt: insert + '\n' + startingPrice
 });
