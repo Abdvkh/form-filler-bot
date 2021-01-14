@@ -52,7 +52,7 @@ function get_trans_item(item, lang){
 
 function t(item, lang){
   // for lang
-  var result = get_trans_item(item, lang);
+  let result = get_trans_item(item, lang);
   if(result){ return result }
 
   // for default language
@@ -70,7 +70,7 @@ function getCommandByAlias(alias, lang){
     // aliases separated with ",". Can have spaces - so remove spaces:
     aliases = key.split(" ,").join(",").split(", ").join(",");
     aliases = aliases.split(",");
-    for(var ind in aliases){
+    for(let ind in aliases){
       if(aliases[ind].toLowerCase()===alias.toLowerCase()){
         return json.aliases[key];
       }

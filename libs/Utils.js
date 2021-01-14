@@ -33,7 +33,7 @@ function makeKeyboard(buttonsArray, code){
    const menu = code.indexOf('m') > -1;
    let keyboard = '';
 
-   for(const i = 1; i <= buttonsArray.length; i++){
+   for(let i = 1; i <= buttonsArray.length; i++){
       keyboard += buttonsArray[i-1] + ',' ;
 
       if(i % 2 === 0){
