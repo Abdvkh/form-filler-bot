@@ -1,4 +1,4 @@
-let LIB_PREFIX = 'utils_';
+const LIB_PREFIX = 'utils_';
 
 //returns previously saved command details
 function getPreviousCommand() {
@@ -7,7 +7,7 @@ function getPreviousCommand() {
 
 //on wrong input sends a message and runs given command
 function onWrongInputRun(command) {
-   let lang = Libs.Lang.get('ru');
+   const lang = Libs.Lang.get();
    Bot.sendMessage(lang.wrongInput);
    Bot.runCommand(command);
 }
@@ -28,15 +28,15 @@ function saveAsPreviousCommandDetails(command){
 //makes keyboard from an array
 //adds 'back' and 'main menu' button regarding to code
 function makeKeyboard(buttonsArray, code){
-   let lang = Libs.Lang.get('ru');
+   const lang = Libs.Lang.get();
+   const back = code.indexOf('b') > -1;
+   const menu = code.indexOf('m') > -1;
    let keyboard = '';
-   let back = code.indexOf('b') > -1;
-   let menu = code.indexOf('m') > -1;
 
-   for(let i = 1; i <= buttonsArray.length; i++){
+   for(const i = 1; i <= buttonsArray.length; i++){
       keyboard += buttonsArray[i-1] + ',' ;
 
-      if(i % 2 == 0){
+      if(i % 2 === 0){
          keyboard += '\n,';
       }
    }
@@ -50,13 +50,13 @@ function makeKeyboard(buttonsArray, code){
 
 //checks whether given password is valid or not
 function passwordIsValid(password){
-   let pass = Bot.getProperty('password');
-   if(password==pass){return true;}
+   const pass = Bot.getProperty('password');
+   if(password === pass){return true;}
    return false;
 }
 
 function getNameFor(member){
-  let haveAnyNames = member.username||member.first_name||member.last_name;
+  const haveAnyNames = member.username||member.first_name||member.last_name;
   if(!haveAnyNames){ return ""}
 
   if(member.username){
@@ -78,14 +78,14 @@ function getRandomIntFromRange(min, max) {
 function checkDate(input) {
    //Checks date format of string in form of dd/mm/yy
    let matches, day, month, year;
-   let allowBlank = false;
-   let minYear = 0;
-   let maxYear = (new Date()).getYear() - 100;
+   const allowBlank = false;
+   const minYear = 0;
+   const maxYear = (new Date()).getYear() - 100;
 
    let errorMsg = "";
 
    // regular expression to match required date format
-   let re = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](\d{2})$/;
+   const re = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-](\d{2})$/;
 
    if (input !== '') {
       if (matches = input.match(re)) {
@@ -107,7 +107,7 @@ function checkDate(input) {
       errorMsg = "Пустая дата не принимается!";
    }
 
-   if (errorMsg != "") {
+   if (errorMsg !== "") {
       Bot.sendMessage(errorMsg);
       return {
          isValid: false,
@@ -130,7 +130,7 @@ function checkTime(input, gmt_hours=5) {
    let errorMsg = "";
 
    // regular expression to match required time format
-   let date_format = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/;
+   const date_format = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])$/;
 
    if (input !== "") {
       if (matches = input.match(date_format)) {

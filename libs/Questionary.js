@@ -1,15 +1,15 @@
 function setup() {
-   currentQuestionary = getCurrentQuestionary();
+   let currentQuestionary = getCurrentQuestionary();
 
    if (currentQuestionary) { return }
 
-   currentQuestionary = new Object();
+   currentQuestionary = {};
    User.setProperty('currentQuestionary', currentQuestionary, 'JSON');
 }
 
 function getLocations() {
-   let locations = Libs.Lang.get('ru')['locations'];
-   return locations['cities'];
+   const locations = Libs.Lang.get()['locations'];
+   return locations['cities'] || [];
 }
 
 function getCurrentQuestionary() {
@@ -32,7 +32,7 @@ function addAnswer(propertyName, value) {
 }
 
 function getQuestions() {
-   return Libs.Lang.get('ru')['questions'];
+   return Libs.Lang.get()['questions'] || [];
 }
 
 function clearAnswers() {
@@ -40,8 +40,8 @@ function clearAnswers() {
 }
 
 function getRequestsRecievedCount() {
-   let requestsRecievedCount = Bot.getProperty('requestsRecievedCount');
-   if (requestsRecievedCount == undefined) {
+   const requestsRecievedCount = Bot.getProperty('requestsRecievedCount');
+   if (requestsRecievedCount === undefined) {
       Bot.setProperty('requestsRecievedCount', 0, 'Number');
       return 0;
    }
@@ -50,7 +50,7 @@ function getRequestsRecievedCount() {
 
 function sendForm() {
    const utils = Libs.Utils;
-   const lang = Libs.Lang.get('ru');
+   const lang = Libs.Lang.get();
    const sheet = Libs.GoogleSpreadSheet;
 
    const admin = Bot.getProperty('admin');
@@ -124,13 +124,10 @@ function addRequest(query) {
 }
 
 function getRequest(userId) {
-   let requests = getRequests();
+   const requests = getRequests();
    return requests[userId];
 }
 
-function setCurrentLot(propertyName, propertyValue) {
-   return 'succeed'
-}
 
 publish({
    user: {
@@ -141,5 +138,4 @@ publish({
    addAnswer: addAnswer,
    sendForm: sendForm,
    getQuestions: getQuestions,
-   setCurrentLot: setCurrentLot
 })

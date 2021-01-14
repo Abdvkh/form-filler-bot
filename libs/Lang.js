@@ -42,8 +42,8 @@ function get(lang){
 }
 
 function get_trans_item(item, lang){
-  var result;
-  var json = get(lang);
+  let result;
+  const json = get(lang);
   try{ result = eval("json." + item) }
   catch(err){}
 
@@ -61,18 +61,18 @@ function t(item, lang){
 
 function getCommandByAlias(alias, lang){
   if(!alias){ return }
-  var json = get(lang)
+  const json = get(lang)
   if(!json){ return }
   if(!json.aliases){ return }
 
-  var aliases;
-  for(var key in json.aliases){
+  let aliases;
+  for(let key in json.aliases){
     // aliases separated with ",". Can have spaces - so remove spaces:
     aliases = key.split(" ,").join(",").split(", ").join(",");
     aliases = aliases.split(",");
     for(var ind in aliases){
-      if(aliases[ind].toLowerCase()==alias.toLowerCase()){
-        return json.aliases[key]
+      if(aliases[ind].toLowerCase()===alias.toLowerCase()){
+        return json.aliases[key];
       }
     }
   }
