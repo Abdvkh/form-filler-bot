@@ -72,7 +72,7 @@ function setAuction(data={}, type='current'){
  * */
 function getAuction(type='current'){
    const auction = Bot.getProperty(`${LIB_PREFIX}${type}`);
-   if (auction !== undefined){
+   if (auction){
       setAuction(type);
       return {};
    }
@@ -172,7 +172,7 @@ function removeAuction(auctionID) {
 function setupCurrentAuction(auctionID) {
    const auction = getAuctionByID(auctionID);
 
-   if (auction !== undefined) {
+   if (auction) {
       const { status } = auction;
 
       if (status === 'active'){
@@ -289,12 +289,9 @@ function addAuctionLot(auctionID, lot) {
 
 
 /** Set lot by ID
- * @param {object} data Lot data
- * @param {string} id Lot type name
  * */
-function setLotPropertyByID(data, id){
-   const autctions = getAuctions()
-   Bot.setProperty(`${LIB_PREFIX}${type}Lot`, data, 'JSON');
+function setLotPropertyByID(){
+   //TODO: implement
 }
 
 /** End lot
@@ -319,7 +316,7 @@ function setLot(data={}, type='current'){
  * */
 function getLot(type='current') {
    const currentLot = Bot.getProperty(`${LIB_PREFIX}${type}Lot`);
-   if (currentLot !== undefined) { return currentLot; }
+   if (currentLot) { return currentLot; }
 
    const data = {};
    setLot(data, type);
@@ -362,7 +359,7 @@ function getLotProperty(name, type='current', lotID=null, auctionID=null){
 function getCurrentBetPrice() {
    const { betPrice: curBetPrice } = getLot();
 
-   if (curBetPrice !== undefined) { return parseInt(curBetPrice) }
+   if (curBetPrice) { return parseInt(curBetPrice) }
 
    setLotProperty('betPrice', 0);
    return 0;
