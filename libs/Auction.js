@@ -19,7 +19,7 @@ function setAuctions(auctions=[]){
  * */
 function getAuctions(){
    const auctions = Bot.getProperty(`${libPrefix}all`);
-   const { data } = auctions;
+   const data = auctions['data']
 
    if (auctions === undefined || data === undefined){
       setAuctions();
