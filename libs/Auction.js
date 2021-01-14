@@ -73,7 +73,7 @@ function setAuction(data={}, type='current'){
 function getAuction(type='current'){
    const auction = Bot.getProperty(`${LIB_PREFIX}${type}`);
    if (auction !== undefined){
-      setAuction();
+      setAuction(type);
       return {};
    }
    return auction;
