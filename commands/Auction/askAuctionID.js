@@ -20,7 +20,7 @@ askAuctionDatetime();
 function askAuctionDatetime(){
     const details = {
         txt: `${auctionQuestionsTranslations['datetime']['phrase']} Формат: ${auctionQuestionsTranslations['datetime']['format']}`,
-        cmd: 'askDatetime',
+        cmd: 'askAuctionDatetime',
         btns: [auctionTranslations['id']]
     };
 

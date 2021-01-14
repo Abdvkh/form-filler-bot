@@ -13,7 +13,7 @@ function onWrongInputRun(command) {
 }
 
 //runs the given command
-function runCommandWithKeyboard(command, extraBtnsCode='m'){
+function runCommandWithKeyboard(command, extraBtnsCode=''){
    const commandKeyboard = Array.isArray(command['btns']) ? makeKeyboard(command['btns'], extraBtnsCode) : command['btns'];
 
    Bot.sendKeyboard(commandKeyboard, command['txt']);
