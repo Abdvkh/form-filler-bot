@@ -374,7 +374,6 @@ publish({
    getAuctions: getAuctions,
    addAuction: addAuctionToList,
    setCurBet: setCurrentBetDetails,
-   getCurAuction: getCurrentAuction,
    getCurBet: getCurrentBetDetails,
    getCurBetPrice: getCurrentBetPrice,
    isOver: isOver,
@@ -384,12 +383,5 @@ publish({
       saveCreatedLot: saveCreatedLot,
       setLotProp: setLotProperty,
       getLotProp: getLotProperty,
-      setLotID: setLotID,
-      getLotsCount: getLotsCount,
-      saveCurLot: addCurrentLotToLots,
-      removeLot: removeLotFromLotsById,
-      setCurLot: setCurrentLotProperty,
-      getCurLot: getCurrentLotProperty,
-      getIDs: getIDs,
    }
 })
