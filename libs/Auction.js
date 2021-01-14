@@ -19,12 +19,13 @@ function setAuctions(auctions=[]){
  * */
 function getAuctions(){
    const auctions = Bot.getProperty(`${libPrefix}all`);
+   const { data } = auctions;
 
-   if (auctions !== undefined){
+   if (auctions === undefined || data === undefined){
       setAuctions();
       return [];
    }
-   return auctions['data'];
+   return data;
 }
 
 /** Set auction data of the given ID
