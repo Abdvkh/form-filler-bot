@@ -11,8 +11,6 @@ CMD*/
 
 const auctionQuestionsTranslations = lang['auction']['questions'];
 
-Api.sendMessage({
-   text: `${auctionQuestionsTranslations['id']['phrase']}`
-});
+Bot.sendKeyboard('Главное меню', `${auctionQuestionsTranslations['id']['phrase']}`);
 
 Bot.run({command: 'askAuctionID'});

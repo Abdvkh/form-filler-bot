@@ -5,7 +5,7 @@
   auto_retry_time:
   folder: Auction
   answer:
-  keyboard: Главное меню
+  keyboard:
   aliases: Аукцоны
 CMD*/
 
@@ -32,6 +32,4 @@ if (auctions.length > 0) {
     });
 }
 
-Api.sendMessage({
-    text: noAuctions
-});
+Bot.sendKeyboard('Главное меню', noAuctions);
