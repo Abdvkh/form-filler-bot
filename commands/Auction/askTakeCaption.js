@@ -14,7 +14,14 @@ askAuctionTakePicture();
 
 
 function askAuctionTakePicture(){
-   Bot.run({
-      command: 'askTakePicture',
-   });
+   const { takePicture, takeCaption } = lang['auction'];
+   const { send } = lang['keywords'];
+
+   const details = {
+      txt: `${send}\n${takePicture}`,
+      cmd: 'askTakePicture',
+      btns: [takeCaption]
+   };
+
+   utils.runCommandWithKeyboard(details, 'm');
 }
