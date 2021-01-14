@@ -305,10 +305,11 @@ function getLot(type='current') {
  * @param {string|null} auctionID Auction id
  * */
 function setLotProperty(name, value, type='current', lotID=null, auctionID=null){
-   const lot = lotID !== null ? getAuctionLot(lotID, auctionID) : getLot();
+   const noIDs = (lotID !== null) && (auctionID !== null);
+   const lot = noIDs ? getAuctionLot(lotID, auctionID) : getLot(type);
    lot[name] = value;
 
-   setLot(lot);
+   setLot(lot, type);
 }
 
 /** Get lot property by id or type
@@ -320,7 +321,7 @@ function setLotProperty(name, value, type='current', lotID=null, auctionID=null)
  * @return {any} Property value by name
  * */
 function getLotProperty(name, type='current', lotID=null, auctionID=null){
-   const noIDs = lotID !== null && auctionID !== null;
+   const noIDs = (lotID !== null) && (auctionID !== null);
    const lot = noIDs ? getAuctionLot(lotID, auctionID) : getLot();
 
    return lot[name];

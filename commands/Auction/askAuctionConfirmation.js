@@ -6,10 +6,10 @@
   folder: Auction
   answer:
   keyboard:
-  aliases:
+  aliases: ✅Сохранить аукцион
 CMD*/
 
-const {save} = lang['auction'];
+const { save } = lang['auction'];
 
 if (message === save) {
     const creatingAuction = auction.getAuction('creating');

@@ -9,19 +9,20 @@
   aliases: 🆔Идентификатор аукциона
 CMD*/
 
-const auctionTranslations = lang['auction']
-const auctionQuestionsTranslations = auctionTranslations['questions'];
+const { id, questions: auctionQuestions } = lang['auction']
+const { datetime } = auctionQuestions;
 
 auction.setCreatingAucProp('id', message);
 auction.setCreatingAucProp('status', 'active');
 auction.setCreatingAucProp('lots', []);
+
 askAuctionDatetime();
 
 function askAuctionDatetime(){
     const details = {
-        txt: `${auctionQuestionsTranslations['datetime']['phrase']} Формат: ${auctionQuestionsTranslations['datetime']['format']}`,
+        txt: `${datetime['phrase']} Формат: ${datetime['format']}`,
         cmd: 'askAuctionDatetime',
-        btns: [auctionTranslations['id']]
+        btns: [id]
     };
 
     utils.runCommandWithKeyboard(details, 'm');
