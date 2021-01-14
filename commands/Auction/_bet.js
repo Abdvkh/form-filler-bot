@@ -9,18 +9,21 @@
   aliases:
 CMD*/
 
-let bet = parseInt(params.split(' ')[2]);
-let curAucPrice = parseInt(auction.getCurBetPrice());
-if (!isNaN(bet) && bet > 0){
-   if (bet % 5 != 0) {
-      return Bot.sendMessage(lang['bet']['multiple']);
+const { multiple, already_made, wrong } = lang['bet'];
+const bet = parseInt(params.split(' ')[2]);
+const curAucPrice = parseInt(auction.getCurBetPrice());
+
+if (!isNaN(bet) && (bet > 0)){
+   if (bet % 5 !== 0) {
+      return Bot.sendMessage(['multiple']);
    }
    if(bet > curAucPrice) {
-      let difference = bet - curAucPrice;
+      const difference = bet - curAucPrice;
+
       Bot.runCommand('bet '+difference);
    } else if (bet < curAucPrice){
-      Bot.sendMessage(lang['bet']['already_made']);
+      Bot.sendMessage(already_made);
    }
 } else {
-   Bot.sendMessage(lang['bet']['wrong']);
+   Bot.sendMessage(wrong);
 }

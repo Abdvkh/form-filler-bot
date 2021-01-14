@@ -1,19 +1,21 @@
-let curAuc = auction.getCurAuction();
-if (params && params == 'bet') {
+const { auctionOver, enterBetAmount, notUser } = lang;
+const currentAuction = auction.getAuction();
+
+if (params && (params === 'bet')) {
    if (auction.isOver()) {
-      return Bot.sendMessage(lang['aucOver'] + utils.getLinkFor(curAuc['betUser']))
+      return Bot.sendMessage(auctionOver + utils.getLinkFor(currentAuction['betUser']))
    }
    let command = {
       cmd: 'getBet',
-      txt: lang['enterBetAmount'],
+      txt: enterBetAmount,
       keys: wordsLikeButton.mainmenu
    };
    return utils.runCommandWithKeyboard(command);
-} else if (params == 'form') {
-   if (curAuc['betUser']['telegramid']==user.telegramid) {
-      return Bot.runCommand('getBox');
+} else if (params === 'form') {
+   if (currentAuction['betUser']['telegramid'] === user.telegramid) {
+      return Bot.run({command: 'getBox'});
    }
-   return Bot.sendMessage('Извините, но вы не победитель аукциона!')
+   return Bot.sendMessage(notUser);
 }
 
 questionary.user.setup();

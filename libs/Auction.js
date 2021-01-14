@@ -297,6 +297,14 @@ function setLotPropertyByID(data, id){
    Bot.setProperty(`${LIB_PREFIX}${type}Lot`, data, 'JSON');
 }
 
+/** End lot
+ * @param {string} type - Lot type
+ * @param {string|null} lotID - Lot ID
+ * */
+function endLot(type='current', lotID=null){
+//TODO: implement ending lot
+}
+
 /** Set lot data
  * @param {object} data - Lot data
  * @param {string} type - Lot type
@@ -402,6 +410,7 @@ publish({
    setAucProp: setAuctionProperty,
    setCreatingAucProp: setCreatingAuctionProperty,
    lot: {
+      endLot: endLot,
       saveCreatedLot: saveCreatedLot,
       setLotProp: setLotProperty,
       getLotProp: getLotProperty,

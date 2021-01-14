@@ -11,25 +11,25 @@ CMD*/
 
 if(!request.query){ return }
 
-let results = [];
-let totalResult = 0;
-
+let title, msg;
 let pic_url = 'https://img.pngio.com/cross-png-transparent-84-images-in-collection-page-2-cross-pngs-260_280.jpg';
 
-let curAucPrice = auction.getCurBetPrice();
+const results = [];
+const totalResult = 0;
 
-let bet = parseInt(request.query.split(' ')[2]);
-let title = '';
-let msg = '';
-let bet_is_approp = bet > 0 && bet > curAucPrice;
+const { positive_above_cur, multiple } = lang['bet'];
+const curAucPrice = auction.getCurBetPrice();
 
-if(!bet_is_approp){
-   title = msg = lang['bet']['positive_above_cur'];
-} else if(!bet_is_approp && (bet % 5 != 0)) {
-   title = msg = lang['bet']['multiple'];
+const bet = parseInt(request.query.split(' ')[2]);
+const betIsAppropriate = bet > 0 && bet > curAucPrice;
+
+if(!betIsAppropriate){
+   title = msg = positive_above_cur;
+} else if(!betIsAppropriate && (bet % 5 !== 0)) {
+   title = msg = multiple;
 } else {
    pic_url = 'https://static.appvn.com/a/uploads/thumbnails/032015/do-button-by-ifttt_icon.png';
-   title = "Нажмите чтобы сделать ставку в " + bet;
+   title = 'Нажмите чтобы сделать ставку в ' + bet;
    msg = '/bet ' + request.query;
 }
 

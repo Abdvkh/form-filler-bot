@@ -14,16 +14,16 @@ if (message.length >= questions['address']['min_length']) {
    setAsPreviousCommand();
    return askPhone();
 }
+
 utils.onWrongInputRun('getAddress');
 
 
 function askPhone(){
-   let command = {
+   utils.runCommandWithKeyboard({
       btns: utils.makeKeyboard([], 'bm'),
       txt: questions['phone']['text'],
       cmd:'getPhone'
-   }
-   utils.runCommandWithKeyboard(command);
+   });
 }
 
 function setAsPreviousCommand() {

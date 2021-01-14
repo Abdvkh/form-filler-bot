@@ -9,17 +9,19 @@
   aliases:
 CMD*/
 
-const removeLotTranslations = lang['lot']['remove'];
+let msg;
+const { success, noSuchLot, wentWrong, noParams } = lang['lot']['remove'];
 
 if (!params) {
-    return Bot.sendMessage(removeLotTranslations['noParams']);
+    return Bot.sendMessage(noParams);
 }
-const lotRemovingStatus = parseInt(auction.lot.removeLot(params));
+const lotRemovingStatus = parseInt(auction.lot.endLot(params));
 
 if (lotRemovingStatus === 400) {
-    Bot.sendMessage(removeLotTranslations['noSuchLot']);
+    msg = noSuchLot;
 } else if (lotRemovingStatus === 200) {
-    Bot.sendMessage(removeLotTranslations['success']);
+    msg = success;
 }  else {
-    Bot.sendMessage(removeLotTranslations['wentWrong']);
+    msg = wentWrong;
 }
+Bot.sendMessage(msg);
