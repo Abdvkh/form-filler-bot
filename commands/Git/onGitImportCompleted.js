@@ -9,5 +9,5 @@
   aliases:
 CMD*/
 
-Bot.runCommand('setLang');
-Bot.runCommand('setup');
+Bot.run({ command: 'setLang' });
+Bot.run({ command: 'setup' });
