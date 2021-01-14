@@ -55,7 +55,7 @@ function setAuctionByID(data, auctionID){
 function getAuctionByID(id){
    const auctions = getAuctions();
 
-   return auctions.filter(auction => auction.id === id)[0];
+   return auctions.filter(auction => auction['id'] === id)[0];
 }
 
 /** Set specified type of auction data
@@ -108,7 +108,7 @@ function getAuctionProperty(name, type='current'){
 function setAuctionProperty(name, value, type='current', auctionID=null){
    let auction;
 
-   if (auctionID){
+   if (auctionID !== null){
       auction = getAuctionByID(auctionID);
       auction[name] = value;
       setAuctionByID(auction, auctionID);

@@ -9,7 +9,7 @@
   aliases: 🆔Идентификатор аукциона
 CMD*/
 
-const { id, questions: auctionQuestions } = lang['auction']
+const { id, questions: auctionQuestions } = lang['auction'];
 const { datetime } = auctionQuestions;
 
 auction.setCreatingAucProp('id', message);
