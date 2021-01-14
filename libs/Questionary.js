@@ -61,7 +61,7 @@ function sendForm() {
    let req = 'Запрос от ' + utils.getLinkFor(user) + ':\n\n';
 
    clearAnswers();
-//goes through the answers and creates request
+   //goes through the answers and creates request
    Object.entries(answers).forEach(([key, value]) => {
       if (key === 'confirmation' && value.length > 10) {
          Api.sendPhoto({
