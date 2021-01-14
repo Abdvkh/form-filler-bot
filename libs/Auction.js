@@ -1,4 +1,4 @@
-let libPrefix = 'auction_';
+let LIB_PREFIX = 'auction_';
 
 /* <AUCTION> */
 
@@ -11,14 +11,14 @@ function setAuctions(auctions=[]){
       data: auctions
    };
 
-   Bot.setProperty(`${libPrefix}all`, structure, 'JSON');
+   Bot.setProperty(`${LIB_PREFIX}all`, structure, 'JSON');
 }
 
 /** Get all auctions data
  * @return {Array} Auctions data
  * */
 function getAuctions(){
-   const auctions = Bot.getProperty(`${libPrefix}all`);
+   const auctions = Bot.getProperty(`${LIB_PREFIX}all`);
 
    if (auctions === undefined){
       setAuctions();
@@ -63,7 +63,7 @@ function getAuctionByID(id){
  * @param {string} type - Auction type
  * */
 function setAuction(data={}, type='current'){
-   Bot.setProperty(`${libPrefix}${type}`, data, 'JSON');
+   Bot.setProperty(`${LIB_PREFIX}${type}`, data, 'JSON');
 }
 
 /** Get specified auction data
@@ -71,7 +71,7 @@ function setAuction(data={}, type='current'){
  * @return {object} auction - Auction data
  * */
 function getAuction(type='current'){
-   const auction = Bot.getProperty(`${libPrefix}${type}`);
+   const auction = Bot.getProperty(`${LIB_PREFIX}${type}`);
    if (auction !== undefined){
       setAuction();
       return {};
@@ -99,12 +99,32 @@ function getAuctionProperty(name, type='current'){
    return getAuction(type)[name];
 }
 
+/** Get auction property
+ * @param {string} name - Property name of auction
+ * @param {any} value - Property value of auction
+ * @param {string} type - Type of auction
+ * @param {string|null} auctionID - Type of auction
+ * */
+function setAuctionProperty(name, value, type='current', auctionID=null){
+   let auction;
+
+   if (auctionID){
+      auction = getAuctionByID(auctionID);
+      auction[name] = value;
+      setAuctionByID(auction, auctionID);
+   } else {
+       auction = getAuction(type);
+       auction[name] = value;
+       setAuction(auction, type);
+   }
+}
+
 /** Set currently creating auction property
  * @param {string} name Name of property
  * @param {any} value Property value
  * */
 function setCreatingAuctionProperty(name, value){
-   setLotProperty(name, value, 'creating');
+   setAuctionProperty(name, value, 'creating');
 }
 
 /** Get currently creating auction property
@@ -244,6 +264,7 @@ function isOver() {
    }
 
    setLotProperty('isOver', is_over);
+   setLotProperty('status', is_over ? 'ended' : 'started');
    return is_over;
 }
 
@@ -273,7 +294,7 @@ function addAuctionLot(auctionID, lot) {
  * */
 function setLotPropertyByID(data, id){
    const autctions = getAuctions()
-   Bot.setProperty(`${libPrefix}${type}Lot`, data, 'JSON');
+   Bot.setProperty(`${LIB_PREFIX}${type}Lot`, data, 'JSON');
 }
 
 /** Set lot data
@@ -281,7 +302,7 @@ function setLotPropertyByID(data, id){
  * @param {string} type - Lot type
  * */
 function setLot(data={}, type='current'){
-   Bot.setProperty(`${libPrefix}${type}Lot`, data, 'JSON');
+   Bot.setProperty(`${LIB_PREFIX}${type}Lot`, data, 'JSON');
 }
 
 /** Get lot data
@@ -289,7 +310,7 @@ function setLot(data={}, type='current'){
  * @return {object} data - Lot data
  * */
 function getLot(type='current') {
-   const currentLot = Bot.getProperty(`${libPrefix}${type}Lot`);
+   const currentLot = Bot.getProperty(`${LIB_PREFIX}${type}Lot`);
    if (currentLot !== undefined) { return currentLot; }
 
    const data = {};
@@ -378,7 +399,7 @@ publish({
    getCurBet: getCurrentBetDetails,
    getCurBetPrice: getCurrentBetPrice,
    isOver: isOver,
-   setAucProp: setLotProperty,
+   setAucProp: setAuctionProperty,
    setCreatingAucProp: setCreatingAuctionProperty,
    lot: {
       saveCreatedLot: saveCreatedLot,
