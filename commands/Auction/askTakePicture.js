@@ -10,10 +10,10 @@
 CMD*/
 
 let commandDetails;
-const { takeCaption, takePicture, save, wrongPicture } = lang['auction'];
+const { takeCaption, takePicture, save, wrongPicture, questions } = lang['auction'];
 
 if (request.photo.length > 0) {
-   const { phrase: confirmationPhrase } = lang['confirmation'];
+   const { phrase: confirmationPhrase } = questions['confirmation'];
 
    auction.setCreatingAucProp('takePicture', request.photo[1]['file_id']);
 
