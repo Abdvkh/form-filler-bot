@@ -13,9 +13,10 @@ function getLocations() {
 }
 
 function getCurrentQuestionary() {
-   let curQuiz = User.getProperty('currentQuestionary');
+   const newCurQuiz = {};
+   const curQuiz = User.getProperty('currentQuestionary');
+
    if (curQuiz) { return curQuiz; }
-   newCurQuiz = new Object();
    setCurrentQuestionary(newCurQuiz);
    return newCurQuiz;
 }
@@ -48,14 +49,14 @@ function getRequestsRecievedCount() {
 }
 
 function sendForm() {
-   let utils = Libs.Utils;
-   let lang = Libs.Lang.get('ru');
-   let sheet = Libs.GoogleSpreadSheet;
+   const utils = Libs.Utils;
+   const lang = Libs.Lang.get('ru');
+   const sheet = Libs.GoogleSpreadSheet;
 
-   let admin = Bot.getProperty('admin');
+   const admin = Bot.getProperty('admin');
 
-   let requestsRecievedCount = getRequestsRecievedCount();
-   let answers = getCurrentQuestionary();
+   const requestsRecievedCount = getRequestsRecievedCount();
+   const answers = getCurrentQuestionary();
 
    let req = 'Запрос от ' + utils.getLinkFor(user) + ':\n\n';
 
@@ -73,7 +74,8 @@ function sendForm() {
       }
       req += lang['template'][key] + '`' + value + '`\n';
    });
-//counts requests
+
+   //counts requests
    if (Object.keys(answers).length > 2) {
       Bot.sendMessage(lang['completed']);
       Bot.setProperty(
@@ -99,19 +101,21 @@ function sendForm() {
 }
 
 function getRequests() {
-   let requests = Bot.getProperty('requests');
+   const queries = {};
+   const requests = Bot.getProperty('requests');
+
    if (requests !== undefined) {
       return requests;
    }
-   let queries = {};
+
    Bot.setProperty('requests', queries, 'JSON');
    return queries;
 }
 
 function addRequest(query) {
-   let req = query['req'];
-   let userId = query['filled_by'];
-   let requests = getRequests();
+   const req = query['req'];
+   const userId = query['filled_by'];
+   const requests = getRequests();
    let userRequests = requests[userId];
    userRequests = [];
    userRequests.push(req);

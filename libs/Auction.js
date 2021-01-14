@@ -2,6 +2,7 @@ let libPrefix = 'auction_';
 
 /* <AUCTION> */
 
+
 /** Set all auctions structure
  * @param {Array} auctions Auctions data
  * */
@@ -65,22 +66,6 @@ function setAuction(data={}, type='current'){
    Bot.setProperty(`${libPrefix}${type}`, data, 'JSON');
 }
 
-// /** Set lots of specified Auction
-//  * @param {array} lots - Lots data
-//  * @param {string} auctionID - Auction ID
-//  * */
-// function setAuctionLots(lots, auctionID){
-//    let auction;
-//    const auctions = getAuctions();
-//
-//    for (let i = 0; i < auctions.length; i++) {
-//       auction = auctions[i]
-//       if (auction['id'] === auctionID){
-//
-//       }
-//    }
-// }
-
 /** Get specified auction data
  * @param {string} type - Auction type
  * @return {object} auction - Auction data
@@ -105,18 +90,6 @@ function getAuctionLot(lotID, auctionID){
 
    return auction.lots.filter(lot => lot['id'] === lotID)[0];
 }
-
-// /** Set auction property
-//  * @param {string} name Name of property
-//  * @param {any} value Property value
-//  * @param {string} type Type of auction(currently going one by default)
-//  * */
-// function setLotProperty(name, value, type='current'){
-//    const auction = getAuction(type);
-//    auction[name] = value;
-//
-//    return Bot.setProperty(`${libPrefix}${type}`, auction, 'JSON');
-// }
 
 /** Get auction property
  * @param {string} name Name of property
@@ -285,88 +258,14 @@ function addAuctionLot(auctionID, lot) {
 
    setAuctionByID(auction, auctionID);
 }
+
+
 /* </AUCTION> */
 
-
+/** **************************************************** */
 
 /* <LOT> */
 
-
-function removeLotFromLotsById(id) {
-   let lots = getLots();
-
-   if (!lots) { throw new Exception("No lots were provided"); }
-
-   for (let i = 0; i < lots.length; i++) {
-      let lot = lots[i];
-
-      if (lot['id'] === id) {
-         let newAuc = lots.pop(i);
-         setAuction(newAuc);
-         setLots(lots);
-         return '200';
-      }
-   }
-   return '400';
-}
-
-function getIDs() {
-   let lots = getLots();
-   let ids = [];
-   lots.forEach((lot, i) => {
-      ids.push(lot['id']);
-   });
-   return ids;
-
-}
-
-function setLots(lots) {
-   Bot.setProperty(libPrefix + 'lots', {data: lots}, 'JSON');
-   return '200';
-}
-
-function addCurrentLotToLots() {
-   let curLot = getCurrentLot();
-   let lots = getLots();
-   if (!curLot) { return '400'; }
-   lots.push(curLot);
-   setLots(lots);
-   return '200';
-}
-
-function getLots() {
-   let lots = Bot.getProperty(libPrefix + 'lots');
-
-   if (lots !== undefined) { return lots['data']; }
-
-   lots = {
-      data:[]
-   };
-   Bot.setProperty(libPrefix + 'lots', lots, 'JSON');
-   return lots['data'];
-}
-
-function getLotsCount(){
-   let lots = getLots();
-   return lots.length;
-}
-
-function getCurrentLotProperty(propName) {
-   let lot = getCurrentLot();
-   return propName === undefined ? lot : lot[propName];
-}
-
-function setCurrentLotProperty(propName, propValue) {
-   let curLot = getCurrentLot();
-   if (!curLot) { return '404'; }
-   curLot[propName] = propValue;
-   Bot.setProperty(libPrefix + 'currentLot', curLot, "JSON");
-   return '200'
-}
-
-function setLotID(id) {
-   return setCurrentLotProperty('id', id);
-}
 
 /** Set lot by ID
  * @param {object} data Lot data
@@ -427,16 +326,6 @@ function getLotProperty(name, type='current', lotID=null, auctionID=null){
    return lot[name];
 }
 
-function getCurrentAuction() {
-   let curAuc = Bot.getProperty(libPrefix + 'current');
-
-   if (curAuc !== undefined) { return curAuc;}
-
-   let data = {};
-   Bot.setProperty(libPrefix + 'current', data, 'JSON');
-   return data;
-}
-
 /** Get current lot bet price
  * @return {string|number}
  * */
@@ -479,9 +368,7 @@ function saveCreatedLot() {
 
 publish({
    launchAuctionAt: launchAuctionAt,
-   setCurAucProp: setAuctionProperty,
    setupCurAuc: setupCurrentAuction,
-   setAuction: setAuction,
    getAuction: getAuction,
    getAucByID: getAuctionByID,
    getAuctions: getAuctions,
@@ -491,7 +378,6 @@ publish({
    getCurBet: getCurrentBetDetails,
    getCurBetPrice: getCurrentBetPrice,
    isOver: isOver,
-   getLots: getLots,
    setAucProp: setLotProperty,
    setCreatingAucProp: setCreatingAuctionProperty,
    lot: {
