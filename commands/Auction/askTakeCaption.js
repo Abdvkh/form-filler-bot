@@ -15,7 +15,7 @@ askAuctionTakePicture();
 
 function askAuctionTakePicture(){
    const { takePicture, takeCaption } = lang['auction'];
-   const { send } = lang['keywords'];
+   const { send } = lang['phrases'];
 
    const details = {
       txt: `${send}\n${takePicture}`,

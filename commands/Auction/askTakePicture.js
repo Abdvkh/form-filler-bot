@@ -13,11 +13,13 @@ let commandDetails;
 const { takeCaption, takePicture, save, wrongPicture } = lang['auction'];
 
 if (request.photo.length > 0) {
+   const { phrase: confirmationPhrase } = lang['confirmation'];
+
    auction.setCreatingAucProp('takePicture', request.photo[1]['file_id']);
 
    commandDetails = {
       btns: [takePicture, save],
-      txt: auctionTranslations['questions']['confirmation']['phrase'],
+      txt: confirmationPhrase,
       cmd: 'askAuctionConfirmation'
    };
 } else {
@@ -29,4 +31,4 @@ if (request.photo.length > 0) {
    };
 }
 
-utils.runCommandWithKeyboard(commandDetails);
+utils.runCommandWithKeyboard(commandDetails, 'm');
