@@ -16,8 +16,7 @@ const { removed: removedMsg, notRemoved: notRemovedMsg } = lang['auction'];
 
 if (removed){
     msg = removedMsg;
-} else {
-    msg = notRemovedMsg;
 }
+msg = notRemovedMsg;
 
 Api.sendMessage({text: msg});
