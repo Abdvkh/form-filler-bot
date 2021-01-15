@@ -1,10 +1,23 @@
 /*CMD
   command: /removeAuction
   help:
-  need_reply:
+  need_reply: true
   auto_retry_time:
   folder: Auction
-  answer:
+  answer: 🆔Введите идентификатор аукциона
   keyboard: Главное меню
   aliases:
 CMD*/
+
+let msg;
+const auctionID = message;
+const removed = auction.removeAuction(auctionID);
+const { removed: removedMsg, notRemoved: notRemovedMsg } = lang['auction'];
+
+if (removed){
+    msg = removedMsg;
+} else {
+    msg = notRemovedMsg;
+}
+
+Api.sendMessage({text: msg});

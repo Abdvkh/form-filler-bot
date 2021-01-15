@@ -146,23 +146,22 @@ function addAuctionToList(auction) {
 /** Remove auction from auctions list by given ID
  * @param {string} auctionID Auction ID
  * */
-function removeAuction(auctionID) {
+function removeAuctionByID(auctionID) {
    const auctions = getAuctions();
-   let auction = null;
 
-   if (!auctions) { throw new Exception("No auctions were provided"); }
+   if (!auctions) { return false; }
 
    for (let i = 0; i < auctions.length; i++) {
-      const { id, status } = auctions[i];
+      const { id } = auctions[i];
 
-      if (id === auctionID && status !== 'active'){
-         auction = auction[i];
-         auction['status'] = 'started';
-         break;
+      if (id === auctionID){
+         delete auctions[i];
+         setAuctions(auctions);
+         return true;
       }
    }
 
-   return auction;
+   return false;
 }
 
 /** Sets current auction
@@ -396,6 +395,7 @@ function saveCreatedLot() {
 publish({
    launchAuctionAt: launchAuctionAt,
    setupCurAuc: setupCurrentAuction,
+   removeAuctionByID: removeAuctionByID,
    getAuction: getAuction,
    getAucByID: getAuctionByID,
    getAuctions: getAuctions,

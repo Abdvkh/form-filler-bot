@@ -25,7 +25,7 @@ if (auctions.length > 0) {
                 + `\n${takeCaption}: ${auction.takeCaption}\n\n`;
         });
 
-    utils.runCommandWithKeyboard({
+    return utils.runCommandWithKeyboard({
         btns: buttons,
         cmd: 'auctionActions',
         txt: msg
