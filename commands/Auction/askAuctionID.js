@@ -9,8 +9,6 @@
   aliases: 🆔Идентификатор аукциона
 CMD*/
 
-const { id, questions: auctionQuestions } = lang['auction'];
-const { datetime } = auctionQuestions;
 
 auction.setCreatingAucProp('id', message);
 auction.setCreatingAucProp('status', 'active');
@@ -19,6 +17,9 @@ auction.setCreatingAucProp('lots', []);
 askAuctionDatetime();
 
 function askAuctionDatetime(){
+    const { id, questions: auctionQuestions } = lang['auction'];
+    const { datetime } = auctionQuestions;
+
     const details = {
         txt: `${datetime['phrase']} Формат: ${datetime['format']}`,
         cmd: 'askAuctionDatetime',

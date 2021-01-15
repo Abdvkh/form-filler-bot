@@ -11,7 +11,7 @@ function setAuctions(auctions=[]){
       data: auctions
    };
 
-   Bot.setProperty(`${LIB_PREFIX}all`, structure, 'JSON');
+   Bot.setProperty(`${LIB_PREFIX}all`, structure, 'Object');
 }
 
 /** Get all auctions data
@@ -63,7 +63,7 @@ function getAuctionByID(id){
  * @param {string} type - Auction type
  * */
 function setAuction(data={}, type='current'){
-   Bot.setProperty(`${LIB_PREFIX}${type}`, data, 'JSON');
+   Bot.setProperty(`${LIB_PREFIX}${type}`, data, 'Object');
 }
 
 /** Get specified auction data
@@ -108,7 +108,7 @@ function getAuctionProperty(name, type='current'){
 function setAuctionProperty(name, value, type='current', auctionID=null){
    let auction;
 
-   if (auctionID !== null){
+   if (auctionID){
       auction = getAuctionByID(auctionID);
       auction[name] = value;
       setAuctionByID(auction, auctionID);
@@ -307,7 +307,7 @@ function endLot(type='current', lotID=null){
  * @param {string} type - Lot type
  * */
 function setLot(data={}, type='current'){
-   Bot.setProperty(`${LIB_PREFIX}${type}Lot`, data, 'JSON');
+   Bot.setProperty(`${LIB_PREFIX}${type}Lot`, data, 'Object');
 }
 
 /** Get lot data

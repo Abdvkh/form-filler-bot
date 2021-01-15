@@ -9,8 +9,8 @@
   aliases: Создать аукцион
 CMD*/
 
-const auctionQuestionsTranslations = lang['auction']['questions'];
+const { id } = lang['auction']['questions'];
 
-Bot.sendKeyboard('Главное меню', `${auctionQuestionsTranslations['id']['phrase']}`);
+Bot.sendKeyboard('Главное меню', `${id['phrase']}`);
 
 Bot.run({command: 'askAuctionID'});
