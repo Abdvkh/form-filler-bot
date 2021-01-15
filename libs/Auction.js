@@ -20,7 +20,7 @@ function setAuctions(auctions=[]){
 function getAuctions(){
    const auctions = Bot.getProperty(`${LIB_PREFIX}all`);
 
-   if (auctions === undefined){
+   if (!auctions){
       setAuctions();
       return [];
    }
@@ -72,7 +72,7 @@ function setAuction(data={}, type='current'){
  * */
 function getAuction(type='current'){
    const auction = Bot.getProperty(`${LIB_PREFIX}${type}`);
-   if (auction){
+   if (!auction){
       setAuction(type);
       return {};
    }
