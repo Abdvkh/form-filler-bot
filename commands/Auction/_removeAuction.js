@@ -11,7 +11,7 @@ CMD*/
 
 let msg;
 const auctionID = message;
-const removed = auction.removeAuction(auctionID);
+const removed = auction.removeAuctionByID(auctionID);
 const { removed: removedMsg, notRemoved: notRemovedMsg } = lang['auction'];
 
 if (removed){
