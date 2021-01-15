@@ -17,7 +17,8 @@ if (auctions.length > 0) {
 
     msg = count.replace('{auctions_length}', auctions.length);
 
-    auctions.sort((a, b) => new Date(a.datetime) - new Date(a.datetime))
+    auctions.filter(auction => auction)
+        .sort((a, b) => new Date(a.datetime) - new Date(b.datetime))
         .forEach(auction => {
             buttons.push(auction.id);
             msg += `\n${id}: ${auction.id}`
@@ -26,7 +27,7 @@ if (auctions.length > 0) {
         });
 
     return utils.runCommandWithKeyboard({
-        btns: buttons,
+        btns: buttons + ', Главное меню',
         cmd: 'auctionActions',
         txt: msg
     });
