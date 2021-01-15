@@ -12,8 +12,16 @@ CMD*/
 let command;
 const chosenAction = message;
 const { actions } = lang['auction'];
+
 const callbacks = {
-    addLots: askLotID,
+    addLots: () => {
+        const { auctions } = lang['auction'];
+        const { id } = lang['lot'];
+        const { insert } = lang['phrases'];
+        const keyboard = utils.makeKeyboard([auctions], 'm');
+
+        Bot.sendKeyboard(keyboard, `${insert}\n${id}`);
+    },
     startAuction: startAuction,
     stopAuction: stopAuction,
     removeAuction: removeAuction,
@@ -38,27 +46,3 @@ callbacks[command]();
 Bot.run({
     command: command + ' ' + options['auctionID']
 });
-
-function askLotID(){
-    const { auctions } = lang['auction'];
-    const { id } = lang['lot'];
-    const { insert } = lang['phrases'];
-
-    Bot.sendKeyboard(utils.makeKeyboard([auctions], 'm'), `${insert}\n${id}`);
-}
-
-function startAuction() {
-
-}
-
-function stopAuction() {
-
-}
-
-function removeAuction() {
-
-}
-
-function changeAuction() {
-
-}

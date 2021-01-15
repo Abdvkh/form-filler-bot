@@ -49,13 +49,13 @@ function setAuctionByID(data, auctionID){
 }
 
 /** Get auction data from all by its ID
- * @param {string} id - Auctions id
+ * @param {string} auctionID - Auctions id
  * @return {object|undefined}
  * */
-function getAuctionByID(id){
+function getAuctionByID(auctionID){
    const auctions = getAuctions();
 
-   return auctions.filter(auction => auction['id'] === id)[0];
+   return auctions.filter(({ id }) => id === auctionID)[0];
 }
 
 /** Set specified type of auction data
