@@ -1,5 +1,5 @@
 /*CMD
-  command: auctionsActions
+  command: auctionActions
   help:
   need_reply: true
   auto_retry_time:
