@@ -155,7 +155,7 @@ function removeAuctionByID(auctionID) {
       const { id } = auctions[i];
 
       if (id === auctionID){
-         delete auctions[i];
+         auctions.pop(i);
          setAuctions(auctions);
          return true;
       }
