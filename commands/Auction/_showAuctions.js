@@ -15,7 +15,7 @@ const auctions = auction.getAuctions();
 
 if (auctions.length > 0) {
 
-    msg = count.replace('{auction_length}', auctions.length);
+    msg = count.replace('{auctions_length}', auctions.length);
 
     auctions.sort((a, b) => new Date(a.datetime) - new Date(a.datetime))
         .forEach(auction => {
