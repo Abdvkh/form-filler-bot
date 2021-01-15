@@ -6,7 +6,7 @@
   folder: Auction
   answer:
   keyboard:
-  aliases: ✅Сохранить аукцион
+  aliases:
 CMD*/
 
 const { save } = lang['auction'];
