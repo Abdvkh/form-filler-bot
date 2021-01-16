@@ -1,12 +1,7 @@
-let details = params.split("|");
-let acception = details[0];
-let userId = details[1];
+const [acception, userId] = params.split("|");
 
-if (acception == '0') {
-   let requestsDeniedCount = Bot.getProperty('requestsDeniedCount');
-   if (requestsDeniedCount == undefined) {
-      requestsDeniedCount = 0;
-   }
+if (acception === '0') {
+   const requestsDeniedCount = Bot.getProperty('requestsDeniedCount') || 0;
    Bot.setProperty(
       'requestsDeniedCount',
       requestsDeniedCount+1,
@@ -19,11 +14,9 @@ if (acception == '0') {
    });
 }
 
-if (acception == '1') {
-   let requestsAcceptedCount = Bot.getProperty('requestsAcceptedCount');
-   if (requestsAcceptedCount  == undefined) {
-      requestsAcceptedCount = 0;
-   }
+if (acception === '1') {
+   const requestsAcceptedCount = Bot.getProperty('requestsAcceptedCount') || 0;
+
    Api.sendMessage({
       chat_id: userId,
       text: lang['req_confirmed'],
@@ -31,7 +24,7 @@ if (acception == '1') {
    });
    Bot.setProperty(
       'requestsAcceptedCount',
-      requestsAcceptedCount+1,
+      requestsAcceptedCount + 1,
       'Number'
    );
 }

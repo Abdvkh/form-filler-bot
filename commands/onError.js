@@ -8,7 +8,7 @@
   aliases:
 CMD*/
 
-let admin = Bot.getProperty('admin');
+const admin = Bot.getProperty('admin');
 
 Api.sendMessage({
    chat_id: admin,

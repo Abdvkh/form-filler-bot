@@ -9,9 +9,9 @@
   aliases: Админка, Админ
 CMD*/
 
-let password = Bot.getProperty('password');
+const password = Bot.getProperty('password');
 
-if (message == password) {
+if (message === password) {
    Bot.setProperty('admin', user.telegramid, 'Number');
    let keyboard = utils.makeKeyboard([wordsLikeButton.stat],'m');
    Bot.sendKeyboard(keyboard, lang['new_admin']);

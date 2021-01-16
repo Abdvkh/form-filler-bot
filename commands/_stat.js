@@ -9,23 +9,30 @@
   aliases: 📊Статистика
 CMD*/
 
-let admin = Bot.getProperty('admin');
+const admin = Bot.getProperty('admin');
 
-if (user.telegramid == admin) {
-   let st = statistics;
-   let st_tr = lang['stats'];
-   let recieved = Bot.getProperty('requestsRecievedCount');
-   let accepted = Bot.getProperty('requestsAcceptedCount');
-   let refused = Bot.getProperty('requestsDeniedCount');
-   let msg = wordsLikeButton.stat + "\n\n\n📑*Запросы*\n\n" +
-             st_tr['recieved'] + recieved + '\n\n' +
-             st_tr['accepted'] + accepted + '\n\n' +
-             st_tr['refused'] + refused + '\n\n\n🐾*Пользователи*\n\n' +
-             st_tr['total'] + st['total'] + '\n\n' +
-             st_tr['users'] + st['user_chats_count'] + '\n\n' +
-             st_tr['groups'] + st['group_chats_count'] + '\n\n' +
-             st_tr['super_groups'] + st['super_group_chats_count'] + '\n\n' +
-             st_tr['active_day'] + st['active_during_last_day'] + '\n\n' +
-             st_tr['active_week'] + st['active_during_last_week'];
+if (user.telegramid === admin) {
+   const {
+      total,
+      user_chats_count,
+      group_chats_count,
+      super_group_chats_count,
+      active_during_last_day,
+      active_during_last_week
+   } = statistics;
+   const statistics = lang['stats'];
+   const recieved = Bot.getProperty('requestsRecievedCount');
+   const accepted = Bot.getProperty('requestsAcceptedCount');
+   const refused = Bot.getProperty('requestsDeniedCount');
+   const msg = wordsLikeButton.stat + "\n\n\n📑*Запросы*\n\n" +
+             statistics['recieved'] + recieved + '\n\n' +
+             statistics['accepted'] + accepted + '\n\n' +
+             statistics['refused'] + refused + '\n\n\n🐾*Пользователи*\n\n' +
+             statistics['total'] + total + '\n\n' +
+             statistics['users'] + user_chats_count + '\n\n' +
+             statistics['groups'] + group_chats_count + '\n\n' +
+             statistics['super_groups'] + super_group_chats_count + '\n\n' +
+             statistics['active_day'] + active_during_last_day + '\n\n' +
+             statistics['active_week'] + active_during_last_week;
    Bot.sendMessage(msg);
 }

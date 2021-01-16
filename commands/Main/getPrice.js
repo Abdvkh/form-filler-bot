@@ -14,7 +14,7 @@ acceptPriceAndAskLocation();
 
 
 function acceptPriceAndAskLocation() {
-   let price = parseInt(message);
+   const price = parseInt(message);
    if (!isNaN(price)) {
       questionary.addAnswer('price', message);
       return askLocation();
