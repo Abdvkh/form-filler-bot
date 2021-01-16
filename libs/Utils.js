@@ -14,10 +14,12 @@ function onWrongInputRun(command) {
 
 //runs the given command
 function runCommandWithKeyboard(command, extraBtnsCode=''){
-   const commandKeyboard = Array.isArray(command['btns']) ? makeKeyboard(command['btns'], extraBtnsCode) : command['btns'];
+   const { cmd, btns, txt } = command;
+   const commandKeyboard = Array.isArray(btns) ? makeKeyboard(btns, extraBtnsCode) : btns;
+   const commandToRun = typeof cmd === 'string' ? {command: cmd} : cmd;
 
-   Bot.sendKeyboard(commandKeyboard, command['txt']);
-   Bot.runCommand(command['cmd']);
+   Bot.sendKeyboard(commandKeyboard, txt);
+   Bot.run(commandToRun);
 }
 
 //saves command details to run in go back function
