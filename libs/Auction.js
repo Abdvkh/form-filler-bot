@@ -274,7 +274,7 @@ function isOver() {
 function addAuctionLot(auctionID, lot) {
    const auction = getAuctionByID(auctionID);
 
-   auction.push(lot);
+   auction['lots'].push(lot);
 
    setAuctionByID(auction, auctionID);
 }
