@@ -46,4 +46,4 @@ utils.runCommandWithKeyboard({
     },
     btns: actionsButtons,
     txt: lotsDetails
-});
+}, 'm');
