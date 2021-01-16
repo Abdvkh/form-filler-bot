@@ -39,7 +39,7 @@ function handleDatetimeInput(input){
     }
 
     if (date['isValid'] && time['isValid']) {
-        auction.setCreatingAucProp('datetime', `${inputDate} ${time['standardTime']}`);
+        auction.setCreatingAucProp('datetime', input);
         askAuctionTakeCaption();
     } else {
         Bot.sendMessage(date_info + " и " + time_info);
