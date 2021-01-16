@@ -15,13 +15,11 @@ const group = Bot.getProperty('chat');
 
 if (auction.isOver()) {
    //say that auction is over
-   Api.answerCallbackQuery({
+   return Api.answerCallbackQuery({
       callback_query_id: request.id,
       text: auctionOver + utils.getLinkFor(betUser),
       show_alert: true
    });
-
-   return;
 }
 
 if (params && !isNaN(params)) {

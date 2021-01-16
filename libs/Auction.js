@@ -211,13 +211,12 @@ function setAuctionLotProperty(name, value, auctionID, lotID){
  * */
 function setupAuctionLot(lotID=null, auctionID=null){
    const properties = [
-      ['betStep', 1],
       ['isOver', false],
       ['status', 'started'],
-      ['betUser', {}]
    ];
 
    properties.forEach(([name, value]) => {
+      setAuctionProperty(name, value, auctionID);
       setAuctionLotProperty(name, value, auctionID, lotID);
    });
 }
@@ -241,22 +240,21 @@ function setupLot(){
  * @param {string|number} chatId - Telegram chat id where auctions is runing
  * */
 function launchAuctionAt(chatId) {
-   const currentAuction = getAuction();
+   const betKeyboard = Bot.getProperty('betKeyboard');
 
+   const currentAuction = getAuction();
    const { lots: currentLots } = currentAuction;
    const firstLot = [...currentLots].shift();// takes 1st lot(from list of lots sorted by datetime)
-   firstLot['status'] = 'started';
+   const { id, auctionID, title, startingPrice, description, picture } = firstLot;
+
    setLot(firstLot); // sets as current lot
    setupLot();// setup given lot(with necessary variables)
-
-   const { title, startingPrice, description, picture } = getLot();
-   const auctionPostText = `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`
-   const betKeyboard = Bot.getProperty('betKeyboard');
+   setupAuctionLot(id, auctionID); // setup current auction's state
 
    Api.sendPhoto({
       chat_id: chatId,
       photo: picture,
-      caption: auctionPostText,
+      caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
       parse_mode: 'Markdown',
       reply_markup: betKeyboard
    });
@@ -266,17 +264,17 @@ function launchAuctionAt(chatId) {
  * @return {boolean}
  * */
 function isOver() {
-   const is_over = betStep > 3;
    let betStep = parseInt(getLotProperty('betStep'));
+   const isOver = betStep > 3;
 
-   if (betStep === undefined) {
+   if (!betStep) {
       betStep = 1;
       setLotProperty('betStep', betStep);
    }
 
-   setLotProperty('isOver', is_over);
-   setLotProperty('status', is_over ? 'ended' : 'started');
-   return is_over;
+   setLotProperty('isOver', isOver);
+   setLotProperty('status', isOver ? 'ended' : 'started');
+   return isOver;
 }
 
 /** Add given lot to given auction
