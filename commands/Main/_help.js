@@ -9,5 +9,6 @@
   aliases: 🔖Помощь
 CMD*/
 
-let options = { disable_web_page_preview: true};
-Bot.sendMessage(lang['help'], options);
+const { help } = lang;
+const options = { disable_web_page_preview: true};
+Bot.sendMessage(help, options);

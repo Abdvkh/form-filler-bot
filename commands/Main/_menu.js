@@ -1,6 +1,6 @@
 /*CMD
   command: /menu
-  help: 
+  help:
   need_reply:
   auto_retry_time:
   folder:
@@ -9,10 +9,12 @@
   aliases: asosiy menyu, 🔝Главное меню, main menu,  главное меню, меню, /start
 CMD*/
 
+const { mainmenu, fillForm, help } = lang['buttons'];
+
 Bot.sendInlineKeyboard(
    [
-      {title: '📝Заполнить форму', command: 'getBox'},
-      {title: '🔖Помощь', command: '/help'},
+      {title: fillForm, command: 'getBox'},
+      {title: help, command: '/help'},
    ],
-   '🔝Главное меню'
+   mainmenu
 );
