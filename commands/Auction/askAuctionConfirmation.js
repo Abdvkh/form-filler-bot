@@ -13,13 +13,14 @@ const { save } = lang['auction'];
 
 if (message === save) {
     const creatingAuction = auction.getAuction('creating');
+    const { auctionID } = creatingAuction;
     const seconds = getAuctionStartingTimeSeconds(creatingAuction);
 
     auction.addAuction(creatingAuction);
 
     Bot.run({
-        command: 'startAuction ' + creatingAuction['id'],
-        label: 'startAuction',
+        command: 'startAuction ' + auctionID,
+        label: 'startAuction' + auctionID,
         run_after: seconds
     });
     Bot.run({command: '/showAuctions'});
