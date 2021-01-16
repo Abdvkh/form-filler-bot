@@ -38,7 +38,12 @@ const { actions } = lang['auction'];
 const actionsButtons = Object.values(actions);
 
 utils.runCommandWithKeyboard({
-    cmd: 'handleAction',
+    cmd: {
+        command: 'handleAction',
+        options: {
+            auctionID: auctionID
+        }
+    },
     btns: actionsButtons,
     txt: lotsDetails
 });
