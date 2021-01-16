@@ -19,7 +19,7 @@ if (request.photo.length > 0) {
       cmd: 'askLotConfirmation',
       btns: [save, picture],
       txt: confirm + ' лот'
-   });
+   }, 'm');
 
 } else {
    Api.sendMessage({text: send + '\n' + picture});

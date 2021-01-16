@@ -18,4 +18,4 @@ utils.runCommandWithKeyboard({
    cmd: 'askDescription',
    btns: [title],
    txt: insert + '\n' + description
-});
+}, 'm');

@@ -21,4 +21,4 @@ utils.runCommandWithKeyboard({
    cmd: 'askPicture',
    btns: [startingPrice],
    txt: send + '\n' + picture
-});
+}, 'm');

@@ -18,4 +18,4 @@ utils.runCommandWithKeyboard({
    cmd: 'askStartingPrice',
    btns: [description],
    txt: insert + '\n' + startingPrice
-});
+}, 'm');
