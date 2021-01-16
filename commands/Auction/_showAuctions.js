@@ -11,6 +11,7 @@ CMD*/
 
 let msg, buttons = [];
 const { count, id, date, time, takeCaption, noAuctions } = lang['auction'];
+const keywords = lang['keywords'];
 const auctions = auction.getAuctions();
 
 if (auctions.length > 0) {
@@ -23,11 +24,12 @@ if (auctions.length > 0) {
             buttons.push(auction.id);
             msg += `\n${id}: ${auction.id}`
                 + `\n${date} ${time}: ${auction.datetime}`
+                + `\n${keywords.status}: ${keywords[auction.status]}`
                 + `\n${takeCaption}: ${auction.takeCaption}\n\n`;
         });
 
     return utils.runCommandWithKeyboard({
-        btns: buttons + ', Главное меню',
+        btns: buttons + wordsLikeButton.mainmenu,
         cmd: 'auctionActions',
         txt: msg
     });

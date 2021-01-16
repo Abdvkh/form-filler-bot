@@ -22,10 +22,10 @@ const callbacks = {
 
         Bot.sendKeyboard(keyboard, `${insert}\n${id}`);
     },
-    startAuction: () => {},
-    stopAuction: () => {},
-    removeAuction: () => {},
-    changeAuction: () => {},
+    startAuction: null,
+    stopAuction: null,
+    removeAuction: null,
+    changeAuction: null,
 };
 // addLot: "➕Добавить лот",
 // startAuction: "🏁Начать аукцион",
@@ -41,7 +41,9 @@ for(let action in actions){
     }
 }
 
-callbacks[command]();
+const fn = callbacks[command];
+if (typeof fn === 'function')
+    fn();
 
 Bot.run({
     command: command,

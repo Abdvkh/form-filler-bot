@@ -120,7 +120,11 @@ let ruLang = {
       sent: "отправлено📤",
       valid: "валидно✅",
       invalid: "не валидно❌",
-      confirm: "✅Подтвердите"
+      confirm: "✅Подтвердите",
+      status: "🔹Статус",
+      started: "🏁Начато",
+      ended: "🔴Закончено",
+      active: "🟢Активно",
    },
    help: '✔️ *Доступные команды*: \n\n🔹 /menu - главное меню\n\n🏷 Бот [разработан](t.me/Abduvakhidov) для https://t.me/ytkaauction',
    greet: "Добро пожаловать %s!",

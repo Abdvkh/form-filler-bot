@@ -9,16 +9,9 @@
   aliases:
 CMD*/
 
-let msg;
-const auctionID = message;
-const removed = auction.removeAuctionByID(auctionID); //removes auction from stored auctions list
-const { removed: removedMsg, notRemoved: notRemovedMsg } = lang['auction'];
-
-msg = notRemovedMsg;
-
-if (removed){
-    msg = removedMsg;
-    Bot.clearRunAfter({label: 'startAuction' + auctionID}); //removes auction from "to be executed" list
-}
-
-Api.sendMessage({text: msg});
+Bot.run({
+    command: 'removeAuction',
+    options: {
+        auctionID: message
+    }
+});

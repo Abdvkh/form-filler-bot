@@ -18,16 +18,18 @@ const {
     description: descriptionText,
     startingPrice: startingPriceText
 } = lang['lot'];
+const keywords = lang['keywords'];
 const auctionID = message;
 const { lots } = auction.getAucByID(auctionID);
 
 if (lots.length > 0) {
     lotsDetails = count.replace('{lots_length}', lots.length);
 
-    lots.forEach(({id, title, description, startingPrice}) => {
+    lots.forEach(({id, title, status, description, startingPrice}) => {
         lotsDetails += `\n${idText}: ${id}`
             + `\n${titleText}: ${title}`
             + `\n${descriptionText}: ${description}`
+            + `\n${keywords.status}: ${keywords[status]}`
             + `\n${startingPriceText}: ${startingPrice}\n\n`;
     });
 } else {
