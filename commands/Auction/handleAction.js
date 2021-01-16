@@ -22,10 +22,10 @@ const callbacks = {
 
         Bot.sendKeyboard(keyboard, `${insert}\n${id}`);
     },
-    startAuction: startAuction,
-    stopAuction: stopAuction,
-    removeAuction: removeAuction,
-    changeAuction: changeAuction,
+    startAuction: () => {},
+    stopAuction: () => {},
+    removeAuction: () => {},
+    changeAuction: () => {},
 };
 // addLots: "➕Добавить лот",
 // startAuction: "🏁Начать аукцион",
