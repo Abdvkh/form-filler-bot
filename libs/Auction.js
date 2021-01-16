@@ -230,12 +230,14 @@ function launchAuctionAt(chatId) {
    const currentAuction = getAuction();
 
    const { lots: currentLots } = currentAuction;
-   setLot([...currentLots].shift());
+   const firstLot = [...currentLots].shift();// takes 1st lot(from list of lots sorted by datetime)
+   firstLot['status'] = 'started';
+   setLot(firstLot); // sets as current lot
 
    const currentLot = getLot();
    const { id: currentLotID } = currentLot;
 
-   setupAuctionLot(currentLotID, auctionID);
+   setupAuctionLot(currentLotID, auctionID);// setup given lot as currently running auction
 
    const { title, startingPrice, description, picture } = currentLot;
    const auctionPostText = `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`
