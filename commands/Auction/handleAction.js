@@ -44,5 +44,6 @@ for(let action in actions){
 callbacks[command]();
 
 Bot.run({
-    command: command + ' ' + options['auctionID']
+    command: command,
+    options: options
 });

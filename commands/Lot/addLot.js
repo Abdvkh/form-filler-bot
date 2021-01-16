@@ -6,7 +6,7 @@
   folder: Lot
   answer:
   keyboard:
-  aliases: ➕Добавить лот
+  aliases:
 CMD*/
 
 const auctionID = params || options['auctionID'];
