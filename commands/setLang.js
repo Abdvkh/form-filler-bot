@@ -24,7 +24,9 @@ let ruLang = {
    buttons: {
       back: "🔙Назад",
       mainmenu: "🔝Главное меню",
-      stat: "📊Статистика"
+      stat: "📊Статистика",
+      help: "🔖Помощь",
+      fillForm: "📝Заполнить форму",
    },
    template: {
       box: "📦 *Бокс*:   ",
@@ -117,6 +119,7 @@ let ruLang = {
       sent: "отправлено📤",
       valid: "валидно✅",
       invalid: "не валидно❌"
+      confirm: "✅Подтвердите"
    },
    help: '✔️ *Доступные команды*: \n\n🔹 /menu - главное меню\n\n🏷 Бот [разработан](t.me/Abduvakhidov) для https://t.me/ytkaauction',
    greet: "Добро пожаловать %s!",
