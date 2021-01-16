@@ -14,7 +14,7 @@ const chosenAction = message;
 const { actions } = lang['auction'];
 
 const callbacks = {
-    addLots: () => {
+    addLot: () => {
         const { auctions } = lang['auction'];
         const { id } = lang['lot'];
         const { insert } = lang['phrases'];
@@ -27,7 +27,7 @@ const callbacks = {
     removeAuction: () => {},
     changeAuction: () => {},
 };
-// addLots: "➕Добавить лот",
+// addLot: "➕Добавить лот",
 // startAuction: "🏁Начать аукцион",
 // stopAuction: "⛔️Остановить аукцион",
 // removeAuction: "🗑Удалить аукцион",
