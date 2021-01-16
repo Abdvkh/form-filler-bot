@@ -36,7 +36,7 @@ if (lots.length > 0) {
     lotsDetails = noLots;
 }
 
-const { actions } = lang['auction'];
+const { actions, auctions } = lang['auction'];
 const actionsButtons = Object.values(actions);
 
 utils.runCommandWithKeyboard({
@@ -46,6 +46,6 @@ utils.runCommandWithKeyboard({
             auctionID: auctionID
         }
     },
-    btns: actionsButtons,
+    btns: actionsButtons.push(auctions),
     txt: lotsDetails
 }, 'm');

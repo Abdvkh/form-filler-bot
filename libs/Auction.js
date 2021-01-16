@@ -206,15 +206,14 @@ function setAuctionLotProperty(name, value, auctionID, lotID){
 }
 
 /** Setup currently running auction's coming lot
- * @param {string|null} lotID Lot ID
- * @param {string|null} auctionID Auction ID
+ * @param {string} lotID Lot ID
+ * @param {string} auctionID Auction ID
  * */
-function setupAuctionLot(lotID=null, auctionID=null){
+function setupAuctionLot(lotID, auctionID){
    const properties = [
       ['isOver', false],
       ['status', 'started'],
    ];
-
    properties.forEach(([name, value]) => {
       setAuctionLotProperty(name, value, auctionID, lotID);
    });
@@ -242,9 +241,9 @@ function launchAuctionAt(chatId) {
    const betKeyboard = Bot.getProperty('betKeyboard');
 
    const currentAuction = getAuction();
-   const { lots: currentLots } = currentAuction;
+   const { auctionID, lots: currentLots } = currentAuction;
    const firstLot = [...currentLots].shift();// takes 1st lot(from list of lots sorted by datetime)
-   const { id, auctionID, title, startingPrice, description, picture } = firstLot;
+   const { id, title, startingPrice, description, picture } = firstLot;
 
    setLot(firstLot); // sets as current lot
    setupLot();// setup given lot(with necessary variables)

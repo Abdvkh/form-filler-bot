@@ -19,6 +19,8 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
       text: noSuchAuction.replace('{auctionID}', auctionID)
    });
 }
+Bot.run({command: '/showAuctions'});
+
 
 function startAuction() {
    Bot.setProperty('sentGifIndex', '0', 'String');
