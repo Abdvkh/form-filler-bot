@@ -11,12 +11,14 @@ CMD*/
 
 let msg;
 const auctionID = message;
-const removed = auction.removeAuctionByID(auctionID);
+const removed = auction.removeAuctionByID(auctionID); //removes auction from stored auctions list
 const { removed: removedMsg, notRemoved: notRemovedMsg } = lang['auction'];
+
+msg = notRemovedMsg;
 
 if (removed){
     msg = removedMsg;
+    Bot.clearRunAfter({label: 'startAuction' + auctionID}); //removes auction from "to be executed" list
 }
-msg = notRemovedMsg;
 
 Api.sendMessage({text: msg});
