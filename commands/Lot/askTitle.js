@@ -6,7 +6,7 @@
   folder: Lot
   answer:
   keyboard:
-  aliases: 📌Заголовок
+  aliases:
 CMD*/
 
 const { title, description } = lang['lot'];
@@ -16,6 +16,6 @@ auction.lot.setLotProp('title', message, 'creating');
 
 utils.runCommandWithKeyboard({
    cmd: 'askDescription',
-   btns: [title],
+   btns: [],
    txt: insert + '\n' + description
 }, 'm');

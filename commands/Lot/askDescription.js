@@ -6,7 +6,7 @@
   folder: Lot
   answer:
   keyboard:
-  aliases: ℹ️Описание
+  aliases:
 CMD*/
 
 const { startingPrice, description } = lang['lot'];

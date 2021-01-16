@@ -6,7 +6,7 @@
   folder: Lot
   answer:
   keyboard:
-  aliases: 🏷Начальная цена
+  aliases:
 CMD*/
 
 const price = parseInt(message);
@@ -19,6 +19,6 @@ auction.lot.setLotProp('betPrice', price, 'creating');
 
 utils.runCommandWithKeyboard({
    cmd: 'askPicture',
-   btns: [startingPrice],
+   btns: [],
    txt: send + '\n' + picture
 }, 'm');

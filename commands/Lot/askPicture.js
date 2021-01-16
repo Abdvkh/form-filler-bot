@@ -6,7 +6,7 @@
   folder: Lot
   answer:
   keyboard:
-  aliases: 🖼Картинка
+  aliases:
 CMD*/
 
 if (request.photo.length > 0) {
@@ -17,7 +17,7 @@ if (request.photo.length > 0) {
 
    utils.runCommandWithKeyboard({
       cmd: 'askLotConfirmation',
-      btns: [save, picture],
+      btns: [save],
       txt: confirm + ' лот'
    }, 'm');
 

@@ -20,6 +20,6 @@ auction.lot.setLotProp('auctionID', auctionID, 'creating');
 
 utils.runCommandWithKeyboard({
     cmd: 'askTitle',
-    btns: [auctions],
+    btns: [],
     txt: insert + '\n' + title
 }, 'm')
