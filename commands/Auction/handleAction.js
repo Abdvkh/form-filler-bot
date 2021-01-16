@@ -14,14 +14,7 @@ const chosenAction = message;
 const { actions } = lang['auction'];
 
 const callbacks = {
-    addLot: () => {
-        const { auctions } = lang['auction'];
-        const { id } = lang['lot'];
-        const { insert } = lang['phrases'];
-        const keyboard = utils.makeKeyboard([auctions], 'm');
-
-        Bot.sendKeyboard(keyboard, `${insert}\n${id}`);
-    },
+    addLot: null,
     startAuction: null,
     stopAuction: null,
     removeAuction: null,
