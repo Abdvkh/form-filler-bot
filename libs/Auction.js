@@ -216,7 +216,6 @@ function setupAuctionLot(lotID=null, auctionID=null){
    ];
 
    properties.forEach(([name, value]) => {
-      setAuctionProperty(name, value, auctionID);
       setAuctionLotProperty(name, value, auctionID, lotID);
    });
 }
