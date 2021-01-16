@@ -23,7 +23,7 @@ const auctionID = message;
 const { lots } = auction.getAucByID(auctionID);
 
 if (lots.length > 0) {
-    lotsDetails = count.replace('{lots_length}', lots.length);
+    lotsDetails = count.replace('{lots_length}', lots.length) + '\n';
 
     lots.forEach(({id, title, status, description, startingPrice}) => {
         lotsDetails += `\n${idText}: ${id}`
