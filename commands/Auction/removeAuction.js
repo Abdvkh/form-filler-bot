@@ -22,3 +22,4 @@ if (removed){
 }
 
 Api.sendMessage({text: msg});
+Bot.run({command: '/showAuctions'});

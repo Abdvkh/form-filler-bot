@@ -11,6 +11,6 @@ CMD*/
 
 const { id } = lang['auction']['questions'];
 
-Bot.sendKeyboard('Главное меню', `${id['phrase']}`);
+Bot.sendKeyboard(wordsLikeButton.mainmenu, `${id['phrase']}`);
 
 Bot.run({command: 'askAuctionID'});

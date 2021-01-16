@@ -1,7 +1,7 @@
 /*CMD
   command: addLot
   help:
-  need_reply: true
+  need_reply:
   auto_retry_time:
   folder: Lot
   answer:
@@ -11,16 +11,13 @@ CMD*/
 
 const auctionID = params || options['auctionID'];
 
-const { auctions } = lang['auction'];
-const { title } = lang['lot'];
+const { id } = lang['lot'];
 const { insert } = lang['phrases'];
 
-auction.lot.setLotProp('id', message, 'creating');
-auction.lot.setLotProp('status', 'active', 'creating');
 auction.lot.setLotProp('auctionID', auctionID, 'creating');
 
 utils.runCommandWithKeyboard({
-    cmd: 'askTitle',
+    cmd: 'askLotID',
     btns: [],
-    txt: insert + '\n' + title
+    txt: insert + '\n' + id
 }, 'm')
