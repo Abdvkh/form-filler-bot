@@ -1,5 +1,5 @@
 /*CMD
-  command: removeAuctions
+  command: removeAuction
   help:
   need_reply:
   auto_retry_time:
