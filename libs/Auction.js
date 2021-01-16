@@ -180,7 +180,6 @@ function setupCurrentAuction(auctionID) {
          return true;
       }
    }
-   Api.sendMessage({text: "There is no such active auction to start"});
 
    return false;
 }
