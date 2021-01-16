@@ -125,8 +125,13 @@ function checkDate(input) {
    };
 }
 
+/** Validates input time and returns information back. GMT by default +05 hours
+ * @param {string} input - Time input
+ * @param {number|string} gmt_hours - GMT standard
+ *
+ * @return {object} isValid, data, standardTime
+ * */
 function checkTime(input, gmt_hours=5) {
-   /*GMT by default +05 hours*/
    let matches, hours, minutes;
    //Checks time format of string in form of HH/MM
    let errorMsg = "";
