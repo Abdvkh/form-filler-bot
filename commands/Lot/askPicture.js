@@ -13,7 +13,7 @@ if (request.photo.length > 0) {
    const { picture,  } = lang['lot'];
    const { save, confirm } = lang['keywords'];
 
-   auction.lot.setLotProp('picture', request.photo[1]['file_id'], type='creating');
+   auction.lot.setLotProp('picture', request.photo[1]['file_id'], 'creating');
 
    utils.runCommandWithKeyboard({
       cmd: 'askLotConfirmation',

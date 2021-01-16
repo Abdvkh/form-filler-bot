@@ -11,7 +11,7 @@ CMD*/
 
 const auctionID = params || options['auctionID'];
 
-const { addLot } = lang['auction']['actions'];
+const { auctions } = lang['auction'];
 const { title } = lang['lot'];
 const { insert } = lang['phrases'];
 
@@ -20,6 +20,6 @@ auction.lot.setLotProp('auctionID', auctionID, 'creating');
 
 utils.runCommandWithKeyboard({
     cmd: 'askTitle',
-    btns: [addLot],
+    btns: [auctions],
     txt: insert + ' ' + title
 })

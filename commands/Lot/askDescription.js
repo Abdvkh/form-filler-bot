@@ -12,7 +12,7 @@ CMD*/
 const { startingPrice, description } = lang['lot'];
 const { insert } = lang['phrases'];
 
-auction.lot.setLotProp('description', message, type='creating');
+auction.lot.setLotProp('description', message, 'creating');
 
 utils.runCommandWithKeyboard({
    cmd: 'askStartingPrice',

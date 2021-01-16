@@ -6,7 +6,7 @@
   folder: Lot
   answer:
   keyboard:
-  aliases: 📥Сохранить
+  aliases: 📥Сохранить лот
 CMD*/
 
 const { save: saveBtn } = lang['keywords'];

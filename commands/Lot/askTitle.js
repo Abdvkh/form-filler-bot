@@ -12,7 +12,8 @@ CMD*/
 const { title, description } = lang['lot'];
 const { insert } = lang['phrases'];
 
-auction.lot.setLotProp('title', message, type='creating');
+auction.lot.setLotProp('title', message, 'creating');
+
 utils.runCommandWithKeyboard({
    cmd: 'askDescription',
    btns: [title],

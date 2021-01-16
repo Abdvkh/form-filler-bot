@@ -14,8 +14,8 @@ const price = parseInt(message);
 const { startingPrice, picture } = lang['lot'];
 const { send } = lang['phrases'];
 
-auction.lot.setLotProp('startingPrice', price, type='creating');
-auction.lot.setLotProp('betPrice', price, type='creating');
+auction.lot.setLotProp('startingPrice', price, 'creating');
+auction.lot.setLotProp('betPrice', price, 'creating');
 
 utils.runCommandWithKeyboard({
    cmd: 'askPicture',
