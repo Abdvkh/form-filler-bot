@@ -6,7 +6,7 @@
   folder: Auction
   answer:
   keyboard:
-  aliases: Аукцоны
+  aliases: 🗂Аукционы
 CMD*/
 
 let msg, buttons = [];
