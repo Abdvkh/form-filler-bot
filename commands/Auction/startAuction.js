@@ -10,13 +10,17 @@
 CMD*/
 
 const auctionID = params || options['auctionID'];
-auction.setupCurAuc(auctionID);
-startAuction();
+const { noSuchAuction, startingAuction } = lang['auction'];
 
+if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status is active)
+   startAuction();
+} else {
+   Api.sendMessage({
+      text: noSuchAuction.replace('{auctionID}', auctionID)
+   });
+}
 
 function startAuction() {
-   const { startingAuction } = lang['auction'];
-
    Bot.setProperty('sentGifIndex', '0', 'String');
 
    Bot.sendMessage(startingAuction);
