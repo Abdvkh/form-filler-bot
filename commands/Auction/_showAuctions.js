@@ -29,10 +29,10 @@ if (auctions.length > 0) {
         });
 
     return utils.runCommandWithKeyboard({
-        btns: buttons + wordsLikeButton.mainmenu,
+        btns: buttons,
         cmd: 'auctionActions',
         txt: msg
-    });
+    }, 'm');
 }
 
 Bot.sendKeyboard('Главное меню', noAuctions);
