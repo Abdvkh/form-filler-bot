@@ -15,7 +15,7 @@ const { addLot } = lang['auction']['actions'];
 const { title } = lang['lot'];
 const { insert } = lang['phrases'];
 
-auction.lot.setLotProp('id', messagge, type='creating');
+auction.lot.setLotProp('id', message, type='creating');
 auction.lot.setLotProp('auctionID', auctionID, type='creating');
 
 utils.runCommandWithKeyboard({
