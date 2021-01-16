@@ -222,6 +222,21 @@ function setupAuctionLot(lotID=null, auctionID=null){
    });
 }
 
+/** Setup currently running auction's lot
+ * */
+function setupLot(){
+   const properties = [
+      ['betStep', 1],
+      ['isOver', false],
+      ['status', 'started'],
+      ['betUser', {}]
+   ];
+
+   properties.forEach(([name, value]) => {
+      setLotProperty(name, value);
+   });
+}
+
 /**Launches auction at the specified char
  * @param {string|number} chatId - Telegram chat id where auctions is runing
  * */
@@ -232,13 +247,9 @@ function launchAuctionAt(chatId) {
    const firstLot = [...currentLots].shift();// takes 1st lot(from list of lots sorted by datetime)
    firstLot['status'] = 'started';
    setLot(firstLot); // sets as current lot
+   setupLot();// setup given lot(with necessary variables)
 
-   const currentLot = getLot();
-   const { id: currentLotID } = currentLot;
-
-   setupAuctionLot(currentLotID, auctionID);// setup given lot as currently running auction
-
-   const { title, startingPrice, description, picture } = currentLot;
+   const { title, startingPrice, description, picture } = getLot();
    const auctionPostText = `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`
    const betKeyboard = Bot.getProperty('betKeyboard');
 
