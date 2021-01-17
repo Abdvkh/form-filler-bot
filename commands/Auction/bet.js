@@ -10,7 +10,7 @@
 CMD*/
 
 const { auctionOver } = lang;
-const { user: betUser, betPrice } = auction.getCurBet();
+const { user: betUser, price: betPrice } = auction.getCurBet();
 const group = Bot.getProperty('chat');
 
 if (auction.isOver()) {
