@@ -251,7 +251,7 @@ function launchAuctionAt(chatsID) {
    setupLot();// setup given lot(with necessary variables)
    setupAuctionLot(id, auctionID); // setup current auction's state
 
-   chats.forEach((chatId) => {
+   chatsID.forEach((chatId) => {
       Api.sendPhoto({
          chat_id: chatId,
          photo: picture,
