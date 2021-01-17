@@ -10,7 +10,7 @@
 CMD*/
 
 const { user, price } = auction.getCurBet();
-const betStep = parseInt(auction.getLotProp('betStep'));
+const betStep = parseInt(auction.lot.getLotProp('betStep'));
 
 const group = Bot.getProperty('chat');
 
