@@ -19,10 +19,10 @@ if (auction.isOver()) {
 
    sendGIF(group, 0);
 
-   if (auction.getAucLotsCount('active') === 0){
-      sendTakeSection(group);
-   } else {
+   if (auction.getAucLotsCount() > 0){
       startNexLot();
+   } else {
+      sendTakeSection(group);
    }
 
    return Bot.clearRunAfter({label: 'bet'});

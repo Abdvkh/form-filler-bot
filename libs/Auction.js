@@ -286,10 +286,11 @@ function isOver() {
  * @param {string} lotStatus - Lot's status to be filtered
  * @param {string} auctionType - Auction type
  * @param {string|null} auctionID - Auction ID
+ * @return {number} length
  * */
 function getAuctionLotsCount(lotStatus='active', auctionType='current', auctionID=null) {
    const auction = auctionID ? getAuctionByID(auctionID) : getAuction(auctionType);
-   return auction['lots'].filter(({ status }) => status === lotStatus).length;
+   return (auction['lots'].filter(({ status }) => status === lotStatus)).length;
 }
 
 /** Add given lot to given auction
