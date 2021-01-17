@@ -243,7 +243,8 @@ function launchAuctionAt(chatId) {
 
    const currentAuction = getAuction();
    Api.sendMessage({chat_id: chatId,text: JSON.stringify(currentAuction)});//check current auction
-   // let { id: auctionID, lots: currentLots } = currentAuction;
+   const auctionID = currentAuction['id'];
+   let currentLots = currentAuction['lots'];
 
    currentLots = currentLots.filter(({ status }) => status === 'active'); // get only  active auctions
 
