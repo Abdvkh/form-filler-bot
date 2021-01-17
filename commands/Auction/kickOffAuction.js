@@ -16,8 +16,7 @@ const admin = Bot.getProperty('admin');
 
 Bot.clearRunAfter({label: 'start_gif'});
 
-auction.launchAuctionAt(group);
-auction.launchAuctionAt(admin);
+auction.launchAuctionAt([admin, group]);
 
 Api.sendMessage({
     text: sent

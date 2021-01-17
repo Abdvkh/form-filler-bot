@@ -32,12 +32,10 @@ function getAuctions(){
  * @param {string} auctionID - Auctions id
  * */
 function setAuctionByID(data, auctionID){
-   let auction;
    const auctions = getAuctions();
 
    for (let i = 0; i < auctions.length; i++) {
-      auction = auctions[i];
-      let { id } = auction;
+      const { id } = auctions[i];
 
       if (id === auctionID){
          auctions[i] = data;
@@ -236,15 +234,13 @@ function setupLot(){
 }
 
 /**Launches auction at the specified char
- * @param {string|number} chatId - Telegram chat id where auctions is runing
+ * @param {array} chatsID - Telegram chats id where auctions is shown
  * */
-function launchAuctionAt(chatId) {
+function launchAuctionAt(chatsID) {
    const betKeyboard = Bot.getProperty('betKeyboard');
 
-   const currentAuction = getAuction();
+   let { id: auctionID, lots: currentLots } = getAuction();
    Api.sendMessage({chat_id: chatId,text: JSON.stringify(currentAuction)});//check current auction
-   const auctionID = currentAuction['id'];
-   let currentLots = currentAuction['lots'];
 
    currentLots = currentLots.filter(({ status }) => status === 'active'); // get only  active auctions
 
@@ -255,12 +251,14 @@ function launchAuctionAt(chatId) {
    setupLot();// setup given lot(with necessary variables)
    setupAuctionLot(id, auctionID); // setup current auction's state
 
-   Api.sendPhoto({
-      chat_id: chatId,
-      photo: picture,
-      caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
-      parse_mode: 'Markdown',
-      reply_markup: betKeyboard
+   chats.forEach((chatId) => {
+      Api.sendPhoto({
+         chat_id: chatId,
+         photo: picture,
+         caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
+         parse_mode: 'Markdown',
+         reply_markup: betKeyboard
+      });
    });
 }
 
