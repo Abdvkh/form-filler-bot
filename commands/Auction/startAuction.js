@@ -12,7 +12,7 @@ CMD*/
 const auctionID = params || options['auctionID'];
 const { noSuchAuction, startingAuction } = lang['auction'];
 
-if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status is active)
+if (auction.setupCurAuc(auctionID) && auction.getAucLotsCount() > 0){// if auction successfully setup(if status is active) and there are active lots(not started)
    startAuction();
 } else {
    Api.sendMessage({

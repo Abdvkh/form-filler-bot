@@ -243,6 +243,10 @@ function launchAuctionAt(chatsID) {
 
    currentLots = currentLots.filter(({ status }) => status === 'active'); // get only  active auctions
 
+   if (currentLots){
+
+   }
+
    const firstLot = [...currentLots].shift();// takes 1st lot(from list of lots sorted by datetime)
    const { id, title, startingPrice, description, picture } = firstLot;
 
@@ -285,7 +289,7 @@ function isOver() {
  * */
 function getAuctionLotsCount(lotStatus='active', auctionType='current', auctionID=null) {
    const auction = auctionID ? getAuctionByID(auctionID) : getAuction(auctionType);
-   auction['lots'].filter(({ status }) => status === lotStatus).length;
+   return auction['lots'].filter(({ status }) => status === lotStatus).length;
 }
 
 /** Add given lot to given auction

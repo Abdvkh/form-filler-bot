@@ -9,13 +9,10 @@
   aliases:
 CMD*/
 
-const { user, price } = auction.getCurBet();
-const betStep = parseInt(auction.lot.getLotProp('betStep'));
-
 const group = Bot.getProperty('chat');
 
-const betKeyboard = Bot.getProperty('betKeyboard');
-const reply_keyboard = Bot.getProperty('fillFormInlineKeyboard');
+const { user, price } = auction.getCurBet();
+const betStep = parseInt(auction.lot.getLotProp('betStep'));
 
 if (auction.isOver()) {
    sendWinnerMessages();
@@ -23,7 +20,7 @@ if (auction.isOver()) {
    sendGIF(group, 0);
 
    if (auction.getAucLotsCount('active') === 0){
-      sendTakeSection(group, reply_keyboard);
+      sendTakeSection(group);
    } else {
       startNexLot();
    }
@@ -46,11 +43,14 @@ Bot.run({
 
 /** Sends take section of auction to the given chat with inline reply keyboard
  * @param {string|number} chatID - Chat ID where it's being sent
- * @param {object} replyKeyboard - Keyboard attached to message
  * */
-function sendTakeSection(chatID, replyKeyboard){
+function sendTakeSection(chatID){
+   const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
+   const { id, takeCaption, takePicture } = auction.getAuction();
+   auction.setAucProp('status', 'ended', null, id);
+
+
    // sending "Беру"
-   const { takeCaption, takePicture } = auction.getAuction();
 
    Api.sendPhoto({
       chat_id: chatID,
@@ -86,6 +86,7 @@ function sendGIF(chatID, index) {
 }
 
 function sendCurrentBetStepMessage() {
+   const betKeyboard = Bot.getProperty('betKeyboard');
    const betStepText = betStep === 1 ? "Раз" : betStep === 2 ? "Два" : "Три";
    const betMsg = betStepText + ' cтавка от ' + utils.getLinkFor(user) + ' ' + price;
 
@@ -98,6 +99,7 @@ function sendCurrentBetStepMessage() {
 }
 
 function sendWinnerMessages() {
+   const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
    const { msgToWinner, auctionOver } = lang;
    const { telegramid } = user;
    const messages = [
@@ -109,7 +111,7 @@ function sendWinnerMessages() {
       Api.sendMessage({
          chat_id: chatID,
          text: message,
-         reply_markup: reply_keyboard,
+         reply_markup: replyKeyboard,
          parse_mode: 'Markdown',
       });
    });
