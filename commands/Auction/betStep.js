@@ -15,6 +15,11 @@ const { user, price } = auction.getCurBet();
 const betStep = parseInt(auction.lot.getLotProp('betStep'));
 
 if (auction.isOver()) {
+   const auctionID = auction.getAucProp('id');
+   const lotID = auction.lot.getLotProp('id');
+
+   auction.setAucLotProp('status', 'ended', auctionID, lotID);
+
    sendWinnerMessages();
 
    sendGIF(group, 0);
@@ -22,6 +27,7 @@ if (auction.isOver()) {
    if (auction.getAucLotsCount() > 0){
       startNexLot();
    } else {
+      auction.setAucProp('status', 'ended', null, auctionID);
       sendTakeSection(group);
    }
 
@@ -46,14 +52,9 @@ Bot.run({
  * */
 function sendTakeSection(chatID){
    const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
-   const { id, takeCaption, takePicture } = auction.getAuction();
-   const lotID = auction.lot.getLotProp('id')
-   auction.setAucProp('status', 'ended', null, id);
-   auction.setAucLotProp('status', 'ended', id, lotID);
-
+   const { takeCaption, takePicture } = auction.getAuction();
 
    // sending "Беру"
-
    Api.sendPhoto({
       chat_id: chatID,
       photo: takePicture,

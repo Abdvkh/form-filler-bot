@@ -92,9 +92,19 @@ function getAuctionLot(lotID, auctionID){
 /** Get auction property
  * @param {string} name Name of property
  * @param {string} type Type of auction(currently going one by default)
+ * @param {string|null} auctionID - Type of auction
+ *
+ * @return {any} Auction property
  * */
-function getAuctionProperty(name, type='current'){
-   return getAuction(type)[name];
+function getAuctionProperty(name, type='current', auctionID=null){
+   let auction;
+
+   if (auctionID){
+      auction = getAuctionByID(auctionID);
+      return auction[name];
+   }
+   auction = getAuction(type);
+   return auction[name];
 }
 
 /** Get auction property
@@ -431,6 +441,7 @@ publish({
    getCurBetPrice: getCurrentBetPrice,
    isOver: isOver,
    setAucProp: setAuctionProperty,
+   getAucProp: getAuctionProperty,
    setAucLotProp: setAuctionLotProperty,
    setCreatingAucProp: setCreatingAuctionProperty,
    lot: {
