@@ -18,6 +18,7 @@ if (message === save) {
 
     auction.addAuction(creatingAuction);
 
+    Bot.clearRunAfter({label: 'startAuction' + auctionID});// clear previous schedule of auction
     Bot.run({
         command: 'startAuction ' + auctionID,
         label: 'startAuction' + auctionID,
