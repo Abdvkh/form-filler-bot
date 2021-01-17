@@ -37,7 +37,7 @@ if (params && !isNaN(params)) {
    });
 
    auction.setCurBet(user ? user : request.from, bet);
-   auction.setLotProp('betStep', 1);
+   auction.lot.setLotProp('betStep', 1);
 
    Bot.clearRunAfter({
       label: 'bet'

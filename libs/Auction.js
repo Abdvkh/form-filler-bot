@@ -258,7 +258,6 @@ function launchAuctionAt(chatsID) {
          parse_mode: 'Markdown',
          reply_markup: betKeyboard
       });
-      Api.sendMessage({chat_id: chatId,text: JSON.stringify(id, auctionID)});//check current auction
    });
 }
 
