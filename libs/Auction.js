@@ -240,7 +240,6 @@ function launchAuctionAt(chatsID) {
    const betKeyboard = Bot.getProperty('betKeyboard');
 
    let { id: auctionID, lots: currentLots } = getAuction();
-   Api.sendMessage({chat_id: chatId,text: JSON.stringify(currentAuction)});//check current auction
 
    currentLots = currentLots.filter(({ status }) => status === 'active'); // get only  active auctions
 
@@ -259,6 +258,7 @@ function launchAuctionAt(chatsID) {
          parse_mode: 'Markdown',
          reply_markup: betKeyboard
       });
+      Api.sendMessage({chat_id: chatId,text: JSON.stringify(currentAuction)});//check current auction
    });
 }
 
