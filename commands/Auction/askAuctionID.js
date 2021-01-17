@@ -9,6 +9,15 @@
   aliases: 🆔Идентификатор аукциона
 CMD*/
 
+const { id, questions: auctionQuestions, alreadyExists } = lang['auction'];
+
+if(auction.getAucByID(message)){
+    utils.runCommandWithKeyboard({
+        txt: auctionQuestions['id']['phrase'] + '\n\n' + alreadyExists.replace('{auctionID}', message),
+        btns: [],
+        cmd: askAuctionID
+    }, 'm');
+}
 
 auction.setCreatingAucProp('id', message);
 auction.setCreatingAucProp('status', 'active');
@@ -17,7 +26,6 @@ auction.setCreatingAucProp('lots', []);
 askAuctionDatetime();
 
 function askAuctionDatetime(){
-    const { id, questions: auctionQuestions } = lang['auction'];
     const { datetime } = auctionQuestions;
 
     const details = {

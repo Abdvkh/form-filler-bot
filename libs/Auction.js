@@ -102,7 +102,7 @@ function getAuctionProperty(name, type='current'){
 /** Get auction property
  * @param {string} name - Property name of auction
  * @param {any} value - Property value of auction
- * @param {string} type - Type of auction
+ * @param {string|null} type - Type of auction
  * @param {string|null} auctionID - Type of auction
  * */
 function setAuctionProperty(name, value, type='current', auctionID=null){
