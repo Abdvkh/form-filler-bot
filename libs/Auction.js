@@ -242,7 +242,7 @@ function launchAuctionAt(chatId) {
    const betKeyboard = Bot.getProperty('betKeyboard');
 
    const currentAuction = getAuction();
-   let { auctionID, lots: currentLots } = currentAuction;
+   let { id: auctionID, lots: currentLots } = currentAuction;
 
    currentLots = currentLots.filter(({ status }) => status === 'active'); // get only  active auctions
 
