@@ -32,11 +32,11 @@ function getAuctionStartingTimeSeconds(creatingAuction) {
 
     const [inputDate, inputTime] = inputParts;
 
-    const date = utils.time.checkDate(inputDate);
-    const time = utils.time.checkTime(inputTime);
+    const { standardDate } = utils.time.checkDate(inputDate);
+    const { standardTime } = utils.time.checkTime(inputTime,2);
 
-    const scheduledTime = (new Date(date['standardDate'] + " " + time['standardTime'])).getTime();
+    const scheduledTime = (new Date(standardDate + " " + standardTime)).getTime();
     const currentTime = Date.now();
 
-    return +scheduledTime - (+currentTime) / 1000;
+    return (scheduledTime - currentTime) / 1000;
 }
