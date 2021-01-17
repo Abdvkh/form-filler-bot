@@ -22,7 +22,11 @@ if (auction.isOver()) {
 
    sendGIF(group, 0);
 
-   sendTakeSection(group, reply_keyboard);
+   if (auction.getAucLotsCount('active') === 0){
+      sendTakeSection(group, reply_keyboard);
+   } else {
+      startNexLot();
+   }
 
    return Bot.clearRunAfter({label: 'bet'});
 }
@@ -70,7 +74,7 @@ function sendGIFOnBetStep(betStep){
 
 /** Send GIF from stored GIFs by its index
  * @param {string|number} chatID - ChatID where GIF is being sent
- * @param {string} index - Stored GIF ID which is being sent
+ * @param {string|number} index - Stored GIF ID which is being sent
  * */
 function sendGIF(chatID, index) {
    const gifs = Bot.getProperty('gifs');
@@ -108,5 +112,19 @@ function sendWinnerMessages() {
          reply_markup: reply_keyboard,
          parse_mode: 'Markdown',
       });
+   });
+}
+
+/** Starts next lot of current auction
+ * */
+function startNexLot() {
+   const { id: auctionID } = auction.getAuction();
+
+   Bot.run({
+      command: 'startAuction',
+      label: 'startAuction' + auctionID,
+      options: {
+         auctionID: auctionID
+      }
    });
 }

@@ -140,6 +140,7 @@ function getCreatingAuctionProperty(name){
 function addAuctionToList(auction) {
    const auctions = getAuctions();
    auctions.push(auction);
+   auctions.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
    setAuctions(auctions);
 }
 
@@ -241,7 +242,10 @@ function launchAuctionAt(chatId) {
    const betKeyboard = Bot.getProperty('betKeyboard');
 
    const currentAuction = getAuction();
-   const { auctionID, lots: currentLots } = currentAuction;
+   let { auctionID, lots: currentLots } = currentAuction;
+
+   currentLots = currentLots.filter(({ status }) => status === 'active'); // get only  active auctions
+
    const firstLot = [...currentLots].shift();// takes 1st lot(from list of lots sorted by datetime)
    const { id, title, startingPrice, description, picture } = firstLot;
 
@@ -275,6 +279,16 @@ function isOver() {
    return isOver;
 }
 
+/** Get auction related lots count
+ * @param {string} lotStatus - Lot's status to be filtered
+ * @param {string} auctionType - Auction type
+ * @param {string} auctionID - Auction ID
+ * */
+function getAuctionLotsCount(lotStatus='active', auctionType='current', auctionID=null) {
+   const auction = auctionID ? getAuctionByID(auctionID) : getAuction(auctionType);
+   auction['lots'].filter(({ status }) => status === lotStatus).length;
+}
+
 /** Add given lot to given auction
  * @param {string} auctionID - Auction ID
  * @param {object} lot - Lot data
@@ -286,7 +300,6 @@ function addAuctionLot(auctionID, lot) {
 
    setAuctionByID(auction, auctionID);
 }
-
 
 /* </AUCTION> */
 
@@ -404,6 +417,7 @@ publish({
    launchAuctionAt: launchAuctionAt,
    setupCurAuc: setupCurrentAuction,
    removeAuctionByID: removeAuctionByID,
+   getAucLotsCount: getAuctionLotsCount,
    getAuction: getAuction,
    getAucByID: getAuctionByID,
    getAuctions: getAuctions,
