@@ -10,6 +10,9 @@
 CMD*/
 
 let lotsDetails;
+const auctionID = message;
+const keywords = lang['keywords'];
+const { lots } = auction.getAucByID(auctionID);
 const {
     count,
     noLots,
@@ -18,9 +21,6 @@ const {
     description: descriptionText,
     startingPrice: startingPriceText
 } = lang['lot'];
-const keywords = lang['keywords'];
-const auctionID = message;
-const { lots } = auction.getAucByID(auctionID);
 
 if (lots.length > 0) {
     lotsDetails = count.replace('{lots_length}', lots.length) + '\n';
