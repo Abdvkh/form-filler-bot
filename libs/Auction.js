@@ -430,6 +430,7 @@ publish({
    getCurBetPrice: getCurrentBetPrice,
    isOver: isOver,
    setAucProp: setAuctionProperty,
+   setAucLotProp: setAuctionLotProperty,
    setCreatingAucProp: setCreatingAuctionProperty,
    lot: {
       endLot: endLot,

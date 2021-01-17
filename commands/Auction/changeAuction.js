@@ -12,6 +12,7 @@ CMD*/
 const auctionID = params || options['auctionID'];
 const { id, questions: auctionQuestions } = lang['auction'];
 
+Bot.clearRunAfter({label: 'startAuction' + auctionID});// clear previous schedule of auction
 auction.setCreatingAucProp('id', auctionID);
 
 Bot.run({command: 'askAuctionDatetime'});

@@ -47,7 +47,9 @@ Bot.run({
 function sendTakeSection(chatID){
    const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
    const { id, takeCaption, takePicture } = auction.getAuction();
+   const lotID = auction.lot.getLotProp('id')
    auction.setAucProp('status', 'ended', null, id);
+   auction.setAucLotProp('status', 'ended', id, lotID);
 
 
    // sending "Беру"
