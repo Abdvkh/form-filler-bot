@@ -19,7 +19,7 @@ if (auction.setupCurAuc(auctionID) && auction.getAucLotsCount() > 0){// if aucti
       text: noSuchAuction.replace('{auctionID}', auctionID)
    });
 }
-options && Bot.run({command: '/showAuctions'});// if has options run command
+auctionID && Bot.run({command: '/showAuctions'});// if has options run command
 
 
 function startAuction() {
