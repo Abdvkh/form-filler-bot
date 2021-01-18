@@ -13,8 +13,8 @@ const auctionID = params || options['auctionID'];
 const { noSuchAuction, startingAuction } = lang['auction'];
 const admin = Bot.getProperty('admin');
 
-if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status is active) and there are active lots(not started)
-   if (auction.getAucLotsCount() > 0){
+if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status is active)
+   if (auction.getAucLotsCount() > 0){// if there are active lots(not started ones)
       startAuction();
    } else {
       auction.setAucProp('status', 'ended', null, auctionID);
@@ -26,7 +26,7 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
       text: noSuchAuction.replace('{auctionID}', auctionID)
    });
 }
-auctionID && Bot.run({command: '/showAuctions'});// if has options run command
+(auctionID && user.telegramid === admin) && Bot.run({command: '/showAuctions'});// if has options run command
 
 
 function startAuction() {
