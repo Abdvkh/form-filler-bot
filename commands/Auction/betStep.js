@@ -26,9 +26,6 @@ if (auction.isOver()) {
 
    if (auction.getAucLotsCount() > 0){
       startNexLot();
-   } else {
-      auction.setAucProp('status', 'ended', null, auctionID);
-      sendTakeSection(group);
    }
 
    return Bot.clearRunAfter({label: 'bet'});
@@ -46,23 +43,6 @@ Bot.run({
    label: 'bet'
 });
 
-
-/** Sends take section of auction to the given chat with inline reply keyboard
- * @param {string|number} chatID - Chat ID where it's being sent
- * */
-function sendTakeSection(chatID){
-   const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
-   const { takeCaption, takePicture } = auction.getAuction();
-
-   // sending "Беру"
-   Api.sendPhoto({
-      chat_id: chatID,
-      photo: takePicture,
-      caption: takeCaption || "Секция Беру",
-      parse_mode: 'Markdown',
-      reply_markup: replyKeyboard,
-   });
-}
 
 /** Send GIF regarding current bet step
  * @param {string|number} betStep - Current bet step

@@ -19,5 +19,6 @@ Bot.clearRunAfter({label: 'start_gif'});
 auction.launchAuctionAt([admin, group]);
 
 Api.sendMessage({
+    chat_id: admin,
     text: sent
 });
