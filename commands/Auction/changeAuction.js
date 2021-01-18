@@ -25,7 +25,7 @@ function askAuctionDatetime(){
     const details = {
         txt: `${datetime['phrase']} Формат: ${datetime['format']}`,
         cmd: 'askAuctionDatetime',
-        btns: [id]
+        btns: []
     };
 
     utils.runCommandWithKeyboard(details, 'm');
