@@ -33,5 +33,5 @@ utils.runCommandWithKeyboard({
  * */
 function stopAuction(auctionID) {
     auction.setAucProp('status', 'stopped', null, auctionID);
-    Bot.crearRunAfter({label: 'startAcution' + auctionID});
+    Bot.clearRunAfter({label: 'startAuction' + auctionID});
 }
