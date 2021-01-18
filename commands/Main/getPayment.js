@@ -15,29 +15,35 @@ acceptTypeAndComplete();
 
 function acceptTypeAndComplete() {
    if (questions['payment']['keyboard'].includes(message)) {
+
       questionary.addAnswer('payment', message);
       questionary.sendForm();
+
       return askConfirmation();
+
    }
+
    utils.onWrongInputRun('getPayment');
 }
 
 function askConfirmation() {
-   let command = {
-      cmd: 'getConfirmation',
-      txt: questions['confirmation']['text'],
-      btns: utils.makeKeyboard(questions['confirmation']['keyboard'],'bm')
-   };
-   utils.runCommandWithKeyboard(command);
+   const { text, keyboard } = questions['confirmation'];
+
+   utils.runCommandWithKeyboard({
+      btns: utils.makeKeyboard(keyboard, 'bm'),
+      txt: text,
+      cmd: 'getConfirmation'
+   });
 }
 
 function setAsPreviousCommand(){
-   let previousCommand = {
-      btns: utils.makeKeyboard(questions['payment']['keyboard'], 'bm'),
-      txt: questions['payment']['text'],
-      cmd:'getPayment'
-   };
-   utils.savePreviousCommand(previousCommand);
+   const { text, keyboard } = questions['payment'];
+
+   utils.savePreviousCommand({
+      btns: utils.makeKeyboard(keyboard, 'bm'),
+      txt: text
+      cmd: 'getPayment'
+   });
 }
 
 function askDetails() {//when asking card details required can be used

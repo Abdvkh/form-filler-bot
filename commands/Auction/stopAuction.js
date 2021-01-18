@@ -9,7 +9,6 @@
   aliases:
 CMD*/
 
-
 const auctionID = params || options['auctionID'];
 const { id } = auction.getAuction();
 const { noSuchAuction, stopped } = lang['auction'];

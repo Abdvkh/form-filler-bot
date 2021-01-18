@@ -9,15 +9,21 @@
   aliases:
 CMD*/
 
-if (message == '+') {
+let data;
+
+if (message === '+') {
    data = '+';
    return getConfirmationAndComplete(data);
-} else if (request.photo.length != 0) {
-   file_id_count = request.photo.length;
+} else if (request.photo.length !== 0) {
+   const file_id_count = request.photo.length;
+
    data = request.photo[file_id_count-1]['file_id'];
+
    return getConfirmationAndComplete(data);
 }
+
 utils.onWrongInputRun('getConfirmation');
+
 
 function getConfirmationAndComplete(data) {
    questionary.addAnswer('confirmation', data);
@@ -26,15 +32,15 @@ function getConfirmationAndComplete(data) {
 }
 
 function setAsPreviousCommand(){
-   let previousCommand = {
-      btns: utils.makeKeyboard(questions['confirmation']['keyboard'], 'bm'),
-      txt: questions['confirmation']['text'],
-      cmd:'getConfirmation'
-   }
-   utils.savePreviousCommand(previousCommand);
+   const { text, keyboard } = questions['confirmation'];
+   utils.savePreviousCommand({
+      btns: utils.makeKeyboard(keyboard, 'bm'),
+      txt: text,
+      cmd: 'getConfirmation'
+   });
 }
 
 function complete() {
    questionary.sendForm();
-   Bot.runCommand('/menu')
+   Bot.runCommand('/menu');
 }
