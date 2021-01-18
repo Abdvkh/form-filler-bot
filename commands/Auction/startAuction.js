@@ -26,7 +26,7 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
       text: noSuchAuction.replace('{auctionID}', auctionID)
    });
 }
-('manual' in options) && Bot.run({command: '/showAuctions'});// if has options run command
+(options && options.hasOwnProperty('manual')) && Bot.run({command: '/showAuctions'});// if has options run command
 
 
 function startAuction() {
@@ -36,7 +36,7 @@ function startAuction() {
       chat_id: admin,
       text: startingAuction
    });
-   
+
    Bot.run({
       command: 'sendBeforeStartGif',
       run_after: 10,
