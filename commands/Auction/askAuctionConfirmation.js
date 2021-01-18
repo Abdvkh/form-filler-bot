@@ -10,14 +10,13 @@
 CMD*/
 
 const { save } = lang['auction'];
+const creatingAuction = auction.getAuction('creating');
 
 if (message === save) {
-    const creatingAuction = auction.getAuction('creating');
-    const { id: auctionID } = creatingAuction;
-    const seconds = getAuctionStartingTimeSeconds(creatingAuction);
-
     auction.addAuction(creatingAuction);
 
+    const { id: auctionID } = creatingAuction;
+    const seconds = getAuctionStartingTimeSeconds(creatingAuction);
     Bot.run({
         command: 'startAuction ' + auctionID,
         label: 'startAuction' + auctionID,

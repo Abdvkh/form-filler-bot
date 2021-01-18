@@ -154,7 +154,9 @@ function addAuctionToList(auction) {
    if (existingAuction) {
       const existingAucKeys = Object.keys(existingAuction);
 
-      if (existingAucKeys > 0) {
+      if (existingAucKeys.length > 0) {
+         auction['lots'] = existingAuction['lots'];
+
          setAuctionByID(auction, id);
          auctions = getAuctions();
       }
