@@ -146,8 +146,19 @@ function getCreatingAuctionProperty(name){
  * @param {object} auction Auction detail
 * */
 function addAuctionToList(auction) {
-   const auctions = getAuctions();
-   auctions.push(auction);
+   let auctions = getAuctions();
+
+   const { id } = auction;
+   const existingAuction = getAuctionByID(id);
+   const existingAucKeys = Object.keys(existingAuction);
+
+   if (existingAucKeys > 0){
+      setAuctionByID(auction, id);
+      auctions = getAuctions();
+   } else {
+      auctions.push(auction);
+   }
+
    auctions.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
    setAuctions(auctions);
 }
