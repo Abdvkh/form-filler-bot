@@ -20,7 +20,7 @@ function askAuctionTakePicture(){
    const details = {
       txt: `${send}\n${takePicture}`,
       cmd: 'askTakePicture',
-      btns: [takeCaption]
+      btns: []
    };
 
    utils.runCommandWithKeyboard(details, 'm');

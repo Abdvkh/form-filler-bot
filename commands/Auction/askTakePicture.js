@@ -18,14 +18,14 @@ if (request.photo.length > 0) {
    auction.setCreatingAucProp('takePicture', request.photo[1]['file_id']);
 
    commandDetails = {
-      btns: [takePicture, save],
+      btns: [save],
       txt: confirmationPhrase,
       cmd: 'askAuctionConfirmation'
    };
 } else {
 
    commandDetails = {
-      btns: [takeCaption],
+      btns: [],
       txt: wrongPicture,
       cmd: 'askTakePicture'
    };

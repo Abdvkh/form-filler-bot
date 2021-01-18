@@ -50,7 +50,7 @@ function askAuctionTakeCaption(){
     const details = {
         txt: `${auctionQuestionsTranslations['take']['caption']['phrase']}`,
         cmd: 'askTakeCaption',
-        btns: [auctionTranslations['time']]
+        btns: []
     };
 
     utils.runCommandWithKeyboard(details, 'm');
