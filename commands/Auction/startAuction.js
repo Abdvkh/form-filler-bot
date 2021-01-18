@@ -26,13 +26,17 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
       text: noSuchAuction.replace('{auctionID}', auctionID)
    });
 }
-(auctionID && user.telegramid === admin) && Bot.run({command: '/showAuctions'});// if has options run command
+('manual' in options) && Bot.run({command: '/showAuctions'});// if has options run command
 
 
 function startAuction() {
    Bot.setProperty('sentGifIndex', '0', 'String');
 
-   Bot.sendMessage(startingAuction);
+   Api.sendMessage({
+      chat_id: admin,
+      text: startingAuction
+   });
+   
    Bot.run({
       command: 'sendBeforeStartGif',
       run_after: 10,

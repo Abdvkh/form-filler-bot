@@ -38,6 +38,8 @@ const fn = callbacks[command];
 if (typeof fn === 'function')
     fn();
 
+options['manual'] = true;
+
 Bot.run({
     command: command,
     options: options
