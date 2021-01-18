@@ -25,7 +25,7 @@ if (auction.isOver()) {
 if (params && !isNaN(params)) {
    const bet = parseInt(betPrice) + parseInt(params);
    const betKeyboard = Bot.getProperty('betKeyboard');
-   const gifID = utils.getRandomInt(5, 7);
+   const gifID = utils.getRandomInt(5, 6);
 
    sendGIF(group, gifID);
 
