@@ -157,9 +157,9 @@ function addAuctionToList(auction) {
       if (existingAucKeys > 0) {
          setAuctionByID(auction, id);
          auctions = getAuctions();
-      } else {
-         auctions.push(auction);
       }
+   } else {
+      auctions.push(auction);
    }
 
    auctions.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
