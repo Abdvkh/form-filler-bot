@@ -1,18 +1,21 @@
 const { auctionOver, enterBetAmount, notUser } = lang;
-const currentAuction = auction.getAuction();
 
 if (params && (params === 'bet')) {
+   const currentBet = auction.getCurBet();
+
    if (auction.isOver()) {
-      return Bot.sendMessage(auctionOver + utils.getLinkFor(currentAuction['betUser']))
+      return Bot.sendMessage(auctionOver + utils.getLinkFor(currentBet['betUser']))
    }
-   let command = {
+
+   return utils.runCommandWithKeyboard({
       cmd: 'getBet',
       txt: enterBetAmount,
       keys: wordsLikeButton.mainmenu
-   };
-   return utils.runCommandWithKeyboard(command);
+   });
 } else if (params === 'form') {
-   if (currentAuction['betUser']['telegramid'] === user.telegramid) {
+   const currentBet = auction.getCurBet();
+
+   if (currentBet['betUser']['telegramid'] === user['telegramid']) {
       return Bot.run({command: 'getBox'});
    }
    return Bot.sendMessage(notUser);
