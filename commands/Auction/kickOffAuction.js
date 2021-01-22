@@ -18,7 +18,16 @@ Bot.clearRunAfter({label: 'start_gif'});
 
 auction.launchAuctionAt([admin, group]);
 
+startNexLotAfter5MinutesOfIdle();
+
 Api.sendMessage({
     chat_id: admin,
     text: sent
 });
+
+/** After 5 minutes of idle starts next lot*/
+function startNexLotAfter5MinutesOfIdle() {
+    const seconds = 60 * 5;
+    Bot.setProperty('currentAuctionIsIdle', true, 'Boolean');
+    auction.startNexLot(seconds);
+}

@@ -331,6 +331,21 @@ function addAuctionLot(auctionID, lot) {
    setAuctionByID(auction, auctionID);
 }
 
+/** Starts next lot of current auction
+ * @param {number} after - Amount of seconds after which command next lot is started
+ * */
+function startNexLot(after=0) {
+   const { id } = getAuction();
+
+   Bot.run({
+      command: 'startAuction',
+      label: 'startAuction' + id,
+      after: 0,
+      options: {
+         auctionID: id
+      }
+   });
+}
 /* </AUCTION> */
 
 /** **************************************************** */
@@ -460,6 +475,7 @@ publish({
    getAucProp: getAuctionProperty,
    setAucLotProp: setAuctionLotProperty,
    setCreatingAucProp: setCreatingAuctionProperty,
+   startNexLot: startNexLot,
    lot: {
       endLot: endLot,
       saveCreatedLot: saveCreatedLot,

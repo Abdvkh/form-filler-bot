@@ -25,7 +25,7 @@ if (auction.isOver()) {
    sendGIF(group, 0);
 
    if (auction.getAucLotsCount() > 0){
-      startNexLot();
+      auction.startNexLot();
    }
 
    return Bot.clearRunAfter({label: 'bet'});
@@ -100,16 +100,3 @@ function sendWinnerMessages() {
    });
 }
 
-/** Starts next lot of current auction
- * */
-function startNexLot() {
-   const { id: auctionID } = auction.getAuction();
-
-   Bot.run({
-      command: 'startAuction',
-      label: 'startAuction' + auctionID,
-      options: {
-         auctionID: auctionID
-      }
-   });
-}
