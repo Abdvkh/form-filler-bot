@@ -9,20 +9,27 @@
   aliases:
 CMD*/
 
-const { save } = lang['auction'];
+const { save, not } = lang['auction'];
 const creatingAuction = auction.getAuction('creating');
+
 
 if (message === save) {
     auction.addAuction(creatingAuction);
 
     const { id: auctionID } = creatingAuction;
     const seconds = getAuctionStartingTimeSeconds(creatingAuction);
+
+    //when someone will be creating auction in the same time as auction is being run, then idle logic will be broken
+    Bot.setProperty('currentAuctionIsIdle', true, 'Boolean');
+
     Bot.run({
         command: 'startAuction ' + auctionID,
         label: 'startAuction' + auctionID,
         run_after: seconds
     });
     Bot.run({command: '/showAuctions'});
+} else {
+    Bot.sendMessage(not.saved);
 }
 
 
