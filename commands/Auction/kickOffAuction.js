@@ -13,21 +13,12 @@ const group = Bot.getProperty('chat');
 const admin = Bot.getProperty('admin');
 
 const { sent } = lang['keywords'];
-const { id: currentID } = auction.getAuction();
 
 Bot.clearRunAfter({label: 'start_gif'});
 
 auction.launchAuctionAt([admin, group]);
 
-Bot.clearRunAfter({label: 'startAuction' + currentID});
-Bot.run({
-    command: 'startAuction',
-    label: 'startAuction' + currentID,
-    run_after: 300,
-    options: {
-        auctionID: currentID
-    }
-});
+startNexLotAfter5MinutesOfIdle();
 
 Api.sendMessage({
     chat_id: admin,

@@ -296,7 +296,7 @@ function launchAuctionAt(chatsID) {
  * */
 function isOver() {
    let betStep = parseInt(getLotProperty('betStep'));
-   const isOver = betStep >= 3;
+   const isOver = betStep > 3;
 
    if (!betStep) {
       betStep = 1;
