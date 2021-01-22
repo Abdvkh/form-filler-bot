@@ -18,13 +18,13 @@ if (!auctionIsIdle){ return null; }
 
 if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status is active)
    if (auction.getAucLotsCount() > 0){// if there are active lots(not started ones)
-      startAuction();
-   } else {
       const lotIndex = auction.lot.getIndex(auctionID);
       const gifIndex = lotIndex > 0 ? '3' : '0';
 
+      startAuction(gifIndex);
+   } else {
       auction.setAucProp('status', 'ended', null, auctionID);
-      sendTakeSection(gifIndex);
+      sendTakeSection();
    }
 } else {
    Api.sendMessage({
