@@ -17,8 +17,11 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
    if (auction.getAucLotsCount() > 0){// if there are active lots(not started ones)
       startAuction();
    } else {
+      const aucIndex = auction.getAucIndex(auctionID);
+      const gifIndex = aucIndex > 0 ? '4' : '0';
+
       auction.setAucProp('status', 'ended', null, auctionID);
-      sendTakeSection();
+      sendTakeSection(gifIndex);
    }
 } else {
    Api.sendMessage({
@@ -28,9 +31,8 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
 }
 (options && options.hasOwnProperty('manual')) && Bot.run({command: '/showAuctions'});// if has options run command
 
-
-function startAuction() {
-   Bot.setProperty('sentGifIndex', '0', 'String');
+function startAuction(gifIndex='0') {
+   Bot.setProperty('sentGifIndex', gifIndex, 'String');
 
    Api.sendMessage({
       chat_id: admin,
