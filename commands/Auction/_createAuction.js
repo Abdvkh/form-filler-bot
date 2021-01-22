@@ -6,7 +6,7 @@
   folder: Auction
   answer:
   keyboard: Главное меню
-  aliases: Создать аукцион
+  aliases: ➕Создать аукцион
 CMD*/
 
 const { id } = lang['auction']['questions'];

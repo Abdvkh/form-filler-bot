@@ -10,7 +10,7 @@
 CMD*/
 
 let msg, buttons = [];
-const { count, id, takeCaption, noAuctions, questions: questionsTranslations } = lang['auction'];
+const { count, id, takeCaption, noAuctions, questions: questionsTranslations, createAuction } = lang['auction'];
 const { datetime } = questionsTranslations;
 const keywords = lang['keywords'];
 const auctions = auction.getAuctions();
@@ -28,6 +28,8 @@ if (auctions.length > 0) {
                 + `\n${takeCaption}: ${auction.takeCaption}\n\n`;
         });
 
+    buttons.push(createAuction);
+
     return utils.runCommandWithKeyboard({
         btns: buttons,
         cmd: 'auctionActions',
@@ -35,4 +37,4 @@ if (auctions.length > 0) {
     }, 'm');
 }
 
-Bot.sendKeyboard('Главное меню', noAuctions);
+Bot.sendKeyboard(wordsLikeButton.mainmenu, noAuctions);
