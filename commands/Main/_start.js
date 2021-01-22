@@ -4,7 +4,7 @@ if (params && (params === 'bet')) {
    const currentBet = auction.getCurBet();
 
    if (auction.isOver()) {
-      return Bot.sendMessage(auctionOver + utils.getLinkFor(currentBet['betUser']))
+      return Bot.sendMessage(auctionOver + utils.getLinkFor(currentBet['user']))
    }
 
    return utils.runCommandWithKeyboard({
@@ -15,7 +15,7 @@ if (params && (params === 'bet')) {
 } else if (params === 'form') {
    const currentBet = auction.getCurBet();
 
-   if (currentBet['betUser']['telegramid'] === user['telegramid']) {
+   if (currentBet['user']['telegramid'] === user['telegramid']) {
       return Bot.run({command: 'getBox'});
    }
    return Bot.sendMessage(notUser);
