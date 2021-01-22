@@ -285,7 +285,7 @@ function launchAuctionAt(chatsID) {
          chat_id: chatId,
          photo: picture,
          caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
-         parse_mode: 'Markdown',
+         parse_mode: 'HTML',
          reply_markup: betKeyboard
       });
    });
@@ -296,7 +296,7 @@ function launchAuctionAt(chatsID) {
  * */
 function isOver() {
    let betStep = parseInt(getLotProperty('betStep'));
-   const isOver = betStep > 3;
+   const isOver = betStep >= 3;
 
    if (!betStep) {
       betStep = 1;
@@ -345,6 +345,15 @@ function startNexLot(after=0) {
          auctionID: id
       }
    });
+}
+
+/** Get auction index by its ID
+ * @param {string} auctionID - Auction ID
+ * @return {number} Auction index
+ * */
+function getAuctionIndex(auctionID){
+   const auctions = getAuctions();
+   return auctions.findIndex(({ id }) => id === auctionID );
 }
 /* </AUCTION> */
 
@@ -476,6 +485,7 @@ publish({
    setAucLotProp: setAuctionLotProperty,
    setCreatingAucProp: setCreatingAuctionProperty,
    startNexLot: startNexLot,
+   getAucIndex: getAuctionIndex,
    lot: {
       endLot: endLot,
       saveCreatedLot: saveCreatedLot,
