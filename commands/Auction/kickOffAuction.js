@@ -13,7 +13,7 @@ const group = Bot.getProperty('chat');
 const admin = Bot.getProperty('admin');
 
 const { sent } = lang['keywords'];
-const { id: currentID } = getAuction();
+const { id: currentID } = auction.getAuction();
 
 Bot.clearRunAfter({label: 'start_gif'});
 
@@ -23,7 +23,7 @@ Bot.clearRunAfter({label: 'startAuction' + currentID});
 Bot.run({
     command: 'startAuction',
     label: 'startAuction' + currentID,
-    after: 300,
+    run_after: 300,
     options: {
         auctionID: currentID
     }
