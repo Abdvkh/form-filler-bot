@@ -332,11 +332,12 @@ function addAuctionLot(auctionID, lot) {
 }
 
 /** Starts next lot of current auction
- * @param {number} after - Amount of seconds after which command next lot is started
+ * @param {number} after - Amount of seconds after which start command of next lot is fired
  * */
-function startNexLot(after=0) {
+function startNexLot(after) {
    const { id: currentID } = getAuction();
 
+   Bot.clearRunAfter({label: 'startAuction' + currentID});
    Bot.run({
       command: 'startAuction',
       label: 'startAuction' + currentID,

@@ -12,8 +12,6 @@ CMD*/
 const gifs = Bot.getProperty('gifs');
 const sentGifIndex = parseInt(Bot.getProperty('sentGifIndex')) + 1;
 
-
-
 if (sentGifIndex >= 5) {
    Bot.clearRunAfter({
       label: 'start_gif',

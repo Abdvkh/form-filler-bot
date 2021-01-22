@@ -21,7 +21,7 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
       startAuction();
    } else {
       const lotIndex = auction.lot.getIndex(auctionID);
-      const gifIndex = lotIndex > 0 ? '4' : '0';
+      const gifIndex = lotIndex > 0 ? '3' : '0';
 
       auction.setAucProp('status', 'ended', null, auctionID);
       sendTakeSection(gifIndex);
