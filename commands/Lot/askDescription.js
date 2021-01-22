@@ -16,6 +16,6 @@ auction.lot.setLotProp('description', message, 'creating');
 
 utils.runCommandWithKeyboard({
    cmd: 'askStartingPrice',
-   btns: [description],
+   btns: [],
    txt: insert + '\n' + startingPrice
 }, 'm');
