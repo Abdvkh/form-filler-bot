@@ -13,12 +13,15 @@ const auctionID = params || options['auctionID'];
 const { noSuchAuction, startingAuction } = lang['auction'];
 const admin = Bot.getProperty('admin');
 
+const auctionIsIdle = Bot.getProperty('currentAuctionIsIdle');
+if (!auctionIsIdle){ return null;}
+
 if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status is active)
    if (auction.getAucLotsCount() > 0){// if there are active lots(not started ones)
       startAuction();
    } else {
-      const aucIndex = auction.getAucIndex(auctionID);
-      const gifIndex = aucIndex > 0 ? '4' : '0';
+      const lotIndex = auction.lot.getIndex(auctionID);
+      const gifIndex = lotIndex > 0 ? '4' : '0';
 
       auction.setAucProp('status', 'ended', null, auctionID);
       sendTakeSection(gifIndex);
