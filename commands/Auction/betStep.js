@@ -14,6 +14,13 @@ const group = Bot.getProperty('chat');
 const { user, price } = auction.getCurBet();
 const betStep = parseInt(auction.lot.getLotProp('betStep'));
 
+
+auction.lot.setLotProp('betStep', betStep + 1);
+
+sendCurrentBetStepMessage();
+
+sendGIFOnBetStep(betStep)
+
 if (auction.isOver()) {
    const auctionID = auction.getAucProp('id');
    const lotID = auction.lot.getLotProp('id');
@@ -30,12 +37,6 @@ if (auction.isOver()) {
 
    return Bot.clearRunAfter({label: 'bet'});
 }
-
-auction.lot.setLotProp('betStep', betStep + 1);
-
-sendCurrentBetStepMessage();
-
-sendGIFOnBetStep(betStep)
 
 Bot.run({
    command: 'betStep',
