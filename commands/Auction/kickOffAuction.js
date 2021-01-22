@@ -9,16 +9,25 @@
   aliases:
 CMD*/
 
-const { sent } = lang['keywords'];
-
 const group = Bot.getProperty('chat');
 const admin = Bot.getProperty('admin');
+
+const { sent } = lang['keywords'];
+const { id: currentID } = getAuction();
 
 Bot.clearRunAfter({label: 'start_gif'});
 
 auction.launchAuctionAt([admin, group]);
 
-startNexLotAfter5MinutesOfIdle();
+Bot.clearRunAfter({label: 'startAuction' + currentID});
+Bot.run({
+    command: 'startAuction',
+    label: 'startAuction' + currentID,
+    after: 300,
+    options: {
+        auctionID: currentID
+    }
+});
 
 Api.sendMessage({
     chat_id: admin,
