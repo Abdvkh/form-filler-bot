@@ -28,6 +28,5 @@ Api.sendMessage({
 /** After 5 minutes of idle starts next lot*/
 function startNexLotAfter5MinutesOfIdle() {
     const seconds = 60 * 5;
-    Bot.setProperty('currentAuctionIsIdle', true, 'Boolean');
     auction.startNexLot(seconds);
 }

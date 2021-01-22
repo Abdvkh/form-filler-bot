@@ -25,7 +25,7 @@ if (auction.isOver()) {
    sendGIF(group, 0);
 
    if (auction.getAucLotsCount() > 0){
-      auction.startNexLot();
+      auction.startNexLot(0);
    }
 
    return Bot.clearRunAfter({label: 'bet'});

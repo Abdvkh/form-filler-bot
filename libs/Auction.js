@@ -474,7 +474,7 @@ function saveCreatedLot() {
  * */
 function getLotIndex(auctionID){
    const { lots } = getAuctionByID(auctionID);
-   return lots.findIndex(({ status }) => status === 'active' );
+   return lots.findIndex(({ status }) => status === 'active');
 }
 
 

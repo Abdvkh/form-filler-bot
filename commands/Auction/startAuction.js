@@ -13,9 +13,6 @@ const auctionID = params || options['auctionID'];
 const { noSuchAuction, startingAuction } = lang['auction'];
 const admin = Bot.getProperty('admin');
 
-const auctionIsIdle = Bot.getProperty('currentAuctionIsIdle');
-if (!auctionIsIdle){ return null; }
-
 if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status is active)
    if (auction.getAucLotsCount() > 0){// if there are active lots(not started ones)
       const lotIndex = auction.lot.getIndex(auctionID);
