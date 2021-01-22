@@ -31,6 +31,7 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
 }
 (options && options.hasOwnProperty('manual')) && Bot.run({command: '/showAuctions'});// if has options run command
 
+
 function startAuction(gifIndex='0') {
    Bot.setProperty('sentGifIndex', gifIndex, 'String');
 
