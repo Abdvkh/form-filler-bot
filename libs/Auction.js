@@ -341,7 +341,7 @@ function startNexLot(after) {
    Bot.run({
       command: 'startAuction',
       label: 'startAuction' + currentID,
-      after: after,
+      run_after: after,
       options: {
          auctionID: currentID
       }
