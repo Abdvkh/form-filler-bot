@@ -12,10 +12,11 @@ CMD*/
 const { auctionOver } = lang;
 const { user: betUser, price: betPrice } = auction.getCurBet();
 const group = Bot.getProperty('chat');
-const auctionIsIdle = Bot.getProperty('currentAuctionIsIdle');
 
+const auctionIsIdle = Bot.getProperty('currentAuctionIsIdle');
 if (auctionIsIdle){
    Bot.clearRunAfter({label: 'startAuction' + auction.getAucProp('id')});
+   Bot.setProperty('currentAuctionIsIdle', false, 'Boolean');
 }
 
 if (auction.isOver()) {
