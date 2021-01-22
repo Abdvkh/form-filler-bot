@@ -1,4 +1,4 @@
-const auctions = [{
+const aucs = [{
     "id": "auction1",
     "status": "active",
     "lots": [{
@@ -83,4 +83,4 @@ const auctions = [{
     "takePicture": "AgACAgIAAxkBAAIMNWAFwe90QpJzowGNg80jOURG13X0AAJTsTEbN_UpSM0iWZ7fn0gJ8dVWmS4AAwEAAwIAA3gAA1GSAwABHgQ"
 }];
 
-Bot.setProperty('auction_all', auctions, 'Object');
+Bot.setProperty('auction_all', {data: aucs}, 'Object');
