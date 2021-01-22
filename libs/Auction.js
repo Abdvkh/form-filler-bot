@@ -355,6 +355,8 @@ function getAuctionIndex(auctionID){
    const auctions = getAuctions();
    return auctions.findIndex(({ id }) => id === auctionID );
 }
+
+
 /* </AUCTION> */
 
 /** **************************************************** */
@@ -464,6 +466,17 @@ function saveCreatedLot() {
 
    addAuctionLot(auctionID, lot);
 }
+
+/** Get lot index by given auction ID
+ * @param {string} auctionID - Auction ID
+ * @return {number} Auction index
+ * */
+function getLotIndex(auctionID){
+   const { lots } = getAuctionByID(auctionID);
+   return lots.findIndex(({ status }) => status === 'active' );
+}
+
+
 /* </LOT> */
 
 
@@ -491,5 +504,6 @@ publish({
       saveCreatedLot: saveCreatedLot,
       setLotProp: setLotProperty,
       getLotProp: getLotProperty,
+      getIndex: getLotIndex,
    }
 })
