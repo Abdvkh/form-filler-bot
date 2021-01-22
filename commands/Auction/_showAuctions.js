@@ -37,4 +37,4 @@ if (auctions.length > 0) {
     }, 'm');
 }
 
-Bot.sendKeyboard(wordsLikeButton.mainmenu, noAuctions);
+Bot.sendKeyboard(wordsLikeButton.mainmenu + ', ' + createAuction, noAuctions);
