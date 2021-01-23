@@ -26,7 +26,7 @@ function setCurrentQuestionary(data) {
 }
 
 function addAnswer(propertyName, value) {
-   let curQuiz = User.getProperty('currentQuestionary');
+   const curQuiz = getCurrentQuestionary();
    curQuiz[propertyName] = value;
    setCurrentQuestionary(curQuiz);
 }
