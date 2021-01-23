@@ -12,20 +12,20 @@ CMD*/
 if(!request.query){ return }
 
 let title, msg;
-let pic_url = 'https://img.pngio.com/cross-png-transparent-84-images-in-collection-page-2-cross-pngs-260_280.jpg';
+let pic_url = 'https://hosty.xxx/i/60972ebb79a267b92dba88087fee44cf07196ab3.jpg';
 
 const results = [];
 const totalResult = 0;
 
-const { positive_above_cur, multiple } = lang['bet'];
+const { positiveOrAboveCurrent, multiple } = lang['bet'];
 const curAucPrice = auction.getCurBetPrice();
 
 const bet = parseInt(request.query.split(' ')[2]);
 const betIsAppropriate = bet > 0 && bet > curAucPrice;
 
 if(!betIsAppropriate){
-   title = msg = positive_above_cur;
-} else if(!betIsAppropriate && (bet % 5 !== 0)) {
+   title = msg = positiveOrAboveCurrent;
+} else if(betIsAppropriate && (bet % 5 !== 0)) {
    title = msg = multiple;
 } else {
    pic_url = 'https://static.appvn.com/a/uploads/thumbnails/032015/do-button-by-ifttt_icon.png';

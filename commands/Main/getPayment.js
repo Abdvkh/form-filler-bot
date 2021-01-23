@@ -41,7 +41,7 @@ function setAsPreviousCommand(){
 
    utils.savePreviousCommand({
       btns: utils.makeKeyboard(keyboard, 'bm'),
-      txt: text
+      txt: text,
       cmd: 'getPayment'
    });
 }
