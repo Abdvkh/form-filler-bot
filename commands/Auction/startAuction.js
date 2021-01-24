@@ -10,13 +10,19 @@
 CMD*/
 
 const auctionID = params || options['auctionID'];
-const { noSuchAuction, startingAuction } = lang['auction'];
+const { noSuchAuction, startingAuction, lotEnded } = lang['auction'];
 const admin = Bot.getProperty('admin');
 
 if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status is active)
    if (auction.getAucLotsCount() > 0){// if there are active lots(not started ones)
       const lotIndex = auction.lot.getIndex(auctionID);
-      const gifIndex = lotIndex > 0 ? '3' : '0';
+      let gifIndex;
+      if (lotIndex > 0){
+         gifIndex =  '3';
+         Api.sendMessage({text: lotEnded});
+      } else {
+         gifIndex = '0';
+      }
 
       startAuction(gifIndex);
    } else {

@@ -24,6 +24,7 @@ function askConfirmation() {
       txt: questions['confirmation']['text'],
       btns: utils.makeKeyboard(questions['confirmation']['keyboard'],'bm')
    };
+   Api.sendMessage({text: lang['requisite']});
    utils.runCommandWithKeyboard(command);
 }
 
