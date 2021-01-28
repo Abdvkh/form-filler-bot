@@ -65,7 +65,7 @@ function sendTakeSection(){
       chat_id: group,
       photo: takePicture,
       caption: takeCaption || "Секция Беру",
-      parse_mode: 'Markdown',
+      parse_mode: 'HTML',
       reply_markup: replyKeyboard,
    });
 }
