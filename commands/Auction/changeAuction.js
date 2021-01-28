@@ -18,6 +18,7 @@ auction.setCreatingAucProp('id', auctionID);
 Bot.run({command: 'askAuctionDatetime'});
 
 askAuctionDatetime();
+auction.setLotsProp(auctionID, 'status', 'active');
 
 function askAuctionDatetime(){
     const { datetime } = auctionQuestions;

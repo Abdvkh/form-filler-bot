@@ -357,6 +357,20 @@ function getAuctionIndex(auctionID){
    return auctions.findIndex(({ id }) => id === auctionID );
 }
 
+/** Sets given auction's lots status as given
+ * @param {string} auctionID - Auction's ID
+ * @param {string} propertyName - Lots property name
+ * @param {string} propertyValue - Lots property value
+ * */
+function setLotsProperty(auctionID, propertyName, propertyValue){
+   const givenAuction = getAuctionByID(auctionID);
+
+   givenAuction.lots.forEach((lot) => {
+      lot[propertyName] = propertyValue;
+   });
+
+   setAuctionByID(givenAuction, auctionID);
+}
 
 /* </AUCTION> */
 
@@ -494,6 +508,7 @@ publish({
    getCurBet: getCurrentBetDetails,
    getCurBetPrice: getCurrentBetPrice,
    isOver: isOver,
+   setLotsProp: setLotsProperty,
    setAucProp: setAuctionProperty,
    getAucProp: getAuctionProperty,
    setAucLotProp: setAuctionLotProperty,
