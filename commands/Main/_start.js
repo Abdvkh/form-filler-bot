@@ -1,6 +1,6 @@
-const { auctionOver, enterBetAmount, notUser } = lang;
 
 if (params && (params === 'bet')) {
+   const { auctionOver, enterBetAmount } = lang;
    const currentBet = auction.getCurBet();
 
    if (auction.isOver()) {
@@ -12,10 +12,11 @@ if (params && (params === 'bet')) {
       txt: enterBetAmount,
       keys: wordsLikeButton.mainmenu
    });
-} else if (params === 'form') {
-   const currentBet = auction.getCurBet();
+} else if (params.startsWith('form')) {
+   const { notUser } = lang;
+   const winnerUserID = params.split(' ')[1];
 
-   if (currentBet['user']['telegramid'] === user['telegramid']) {
+   if (winnerUserID === user['telegramid']) {
       return Bot.run({command: 'getBox'});
    }
    return Bot.sendMessage(notUser);

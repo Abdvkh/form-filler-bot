@@ -10,13 +10,14 @@
 CMD*/
 
 const auctionID = params || options['auctionID'];
-const { noSuchAuction, startingAuction, lotEnded } = lang['auction'];
+const { noSuchAuction, startingAuction, lotEnded, defaultTakeSectionCaption } = lang['auction'];
 const admin = Bot.getProperty('admin');
 
 if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status is active)
    if (auction.getAucLotsCount() > 0){// if there are active lots(not started ones)
       const lotIndex = auction.lot.getIndex(auctionID);
       let gifIndex;
+
       if (lotIndex > 0){
          gifIndex =  '3';
          Api.sendMessage({text: lotEnded});
@@ -35,7 +36,7 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
       text: noSuchAuction.replace('{auctionID}', auctionID)
    });
 }
-(options && options.hasOwnProperty('manual')) && Bot.run({command: '/showAuctions'});// if has options run command
+(options && options.hasOwnProperty('manual')) && Bot.run({command: '/showAuctions'});// if has manual options run command
 
 
 function startAuction(gifIndex='0') {
@@ -64,7 +65,7 @@ function sendTakeSection(){
    Api.sendPhoto({
       chat_id: group,
       photo: takePicture,
-      caption: takeCaption || "Секция Беру",
+      caption: takeCaption || defaultTakeSectionCaption,
       parse_mode: 'HTML',
       reply_markup: replyKeyboard,
    });

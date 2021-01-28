@@ -47,8 +47,11 @@ function handleDatetimeInput(input){
 }
 
 function askAuctionTakeCaption(){
+    const { caption } = auctionQuestionsTranslations['take'];
+    const { max } = lang['keywords'];
+
     const details = {
-        txt: `${auctionQuestionsTranslations['take']['caption']['phrase']}`,
+        txt: `${caption['phrase']}\n${max}: ${caption['max_length']}`,
         cmd: 'askTakeCaption',
         btns: []
     };

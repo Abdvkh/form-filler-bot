@@ -19,7 +19,7 @@ auction.lot.setLotProp('betStep', betStep + 1);
 
 sendCurrentBetStepMessage();
 
-sendGIFOnBetStep(betStep)
+// sendGIFOnBetStep(betStep);
 
 if (auction.isOver()) {
    const auctionID = auction.getAucProp('id');
@@ -90,6 +90,9 @@ function sendWinnerMessages() {
       [telegramid, msgToWinner],
       [group, auctionOver + utils.getLinkFor(user)],
    ];
+
+   //change reply keyboard to add variable of winner ID
+   replyKeyboard['inline_keyboard'][0][0]['url'] += ' ' + telegramid;
 
    messages.forEach(([chatID, message]) => {
       Api.sendMessage({
