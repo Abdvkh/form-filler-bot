@@ -72,7 +72,7 @@ function sendGIF(chatID, index) {
 function sendCurrentBetStepMessage() {
    const betKeyboard = Bot.getProperty('betKeyboard');
    const betStepText = betStep === 1 ? "Раз" : betStep === 2 ? "Два" : "Три";
-   const betMsg = '*' + betStepText + '* cтавка от ' + utils.getLinkFor(user) + ' ' + price;
+   const betMsg = `*${betStepText}*${utils.getLinkFor(user)} ${price}`;
 
    Api.sendMessage({
       chat_id: group,
@@ -88,12 +88,12 @@ function sendWinnerMessages() {
    const { user: betUser } = auction.getCurBet();
 
    const messages = [
-      [betUser.telegramid, msgToWinner],
+      [betUser['telegramid'], msgToWinner],
       [group, auctionOver + utils.getLinkFor(betUser)],
    ];
 
    //change reply keyboard to add variable of winner ID
-   replyKeyboard['inline_keyboard'][0][0]['url'] += ` ${betUser.telegramid}`;
+   replyKeyboard['inline_keyboard'][0][0]['url'] += ` ${betUser['telegramid']}`;
 
    messages.forEach(([chatID, msg]) => {
       Api.sendMessage({
