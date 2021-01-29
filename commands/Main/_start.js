@@ -14,7 +14,7 @@ if (params && (params === 'bet')) {
    });
 } else if (params.startsWith('form')) {
    const { notUser } = lang;
-   const winnerUserID = params.split(' ')[1];
+   const winnerUserID = params.split('-')[1];
 
    if (winnerUserID === user['telegramid']) {
       return Bot.run({command: 'getBox'});
