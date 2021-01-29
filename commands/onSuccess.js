@@ -1,5 +1,5 @@
 /*CMD
-  command: onsuccess
+  command: onSuccess
   help:
   need_reply:
   auto_retry_time:
@@ -12,5 +12,5 @@ const admin = Bot.getProperty('admin');
 
 Api.sendMessage({
    chat_id: admin,
-   text: 'Successfully added:\n\n' + inspect(options)
+   text: 'Успешно добавлен:\n\n' + inspect(options)
 });

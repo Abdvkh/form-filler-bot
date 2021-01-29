@@ -52,7 +52,7 @@ function sendGIFOnBetStep(betStep){
    if (betStep === 2) {
       const gifID = utils.getRandomInt(7, 9);
 
-      sendGIF(group, gifID)
+      sendGIF(group, gifID);
    }
 }
 
@@ -72,7 +72,7 @@ function sendGIF(chatID, index) {
 function sendCurrentBetStepMessage() {
    const betKeyboard = Bot.getProperty('betKeyboard');
    const betStepText = betStep === 1 ? "Раз" : betStep === 2 ? "Два" : "Три";
-   const betMsg = betStepText + ' cтавка от ' + utils.getLinkFor(user) + ' ' + price;
+   const betMsg = '*' + betStepText + '* cтавка от ' + utils.getLinkFor(user) + ' ' + price;
 
    Api.sendMessage({
       chat_id: group,
@@ -85,19 +85,20 @@ function sendCurrentBetStepMessage() {
 function sendWinnerMessages() {
    const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
    const { msgToWinner, auctionOver } = lang;
-   const { telegramid } = user;
+   const { user: betUser } = auction.getCurBet();
+
    const messages = [
-      [telegramid, msgToWinner],
-      [group, auctionOver + utils.getLinkFor(user)],
+      [betUser.telegramid, msgToWinner],
+      [group, auctionOver + utils.getLinkFor(betUser)],
    ];
 
    //change reply keyboard to add variable of winner ID
-   replyKeyboard['inline_keyboard'][0][0]['url'] += ' ' + telegramid;
+   replyKeyboard['inline_keyboard'][0][0]['url'] += ` ${betUser.telegramid}`;
 
-   messages.forEach(([chatID, message]) => {
+   messages.forEach(([chatID, msg]) => {
       Api.sendMessage({
          chat_id: chatID,
-         text: message,
+         text: msg,
          reply_markup: replyKeyboard,
          parse_mode: 'Markdown',
       });
