@@ -16,10 +16,11 @@ if (params && (params === 'bet')) {
    const { notUser } = lang;
    const winnerUserID = params.split('-')[1];
 
-   if (winnerUserID === user['telegramid']) {
-      return Bot.run({command: 'getBox'});
+   if (winnerUserID !== request.from['telegramid'] && winnerUserID) {
+      return Bot.sendMessage(notUser);
    }
-   return Bot.sendMessage(notUser);
+
+   return Bot.run({command: 'getBox'});
 }
 
 questionary.user.setup();
