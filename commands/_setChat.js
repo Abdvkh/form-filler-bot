@@ -1,12 +1,12 @@
 /*CMD
   command: /setChat
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
-  folder:
+  auto_retry_time: 
+  folder: 
   answer: Отправьте Telegram ID чата
-  keyboard:
-  aliases:
+  keyboard: 
+  aliases: 
 CMD*/
 
 Bot.setProperty('chat', message, 'Number');

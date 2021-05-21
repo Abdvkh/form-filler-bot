@@ -1,3 +1,14 @@
+/*CMD
+  command: request
+  help: 
+  need_reply: 
+  auto_retry_time: 
+  folder: 
+  answer: 
+  keyboard: 
+  aliases: 
+CMD*/
+
 const [acception, userId] = params.split("|");
 
 if (acception === '0') {

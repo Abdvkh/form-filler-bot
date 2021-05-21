@@ -1,12 +1,12 @@
 /*CMD
   command: /removeLot
-  help:
-  need_reply:
-  auto_retry_time:
+  help: 
+  need_reply: 
+  auto_retry_time: 
   folder: Lot
-  answer:
+  answer: 
   keyboard: Главное меню
-  aliases:
+  aliases: 
 CMD*/
 
 let msg;

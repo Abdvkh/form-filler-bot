@@ -1,12 +1,12 @@
 /*CMD
   command: /createAuction
-  help:
-  need_reply:
-  auto_retry_time:
+  help: 
+  need_reply: 
+  auto_retry_time: 
   folder: Auction
-  answer:
+  answer: 
   keyboard: Главное меню
-  aliases: ➕Создать аукцион
+  aliases: ➕создать аукцион
 CMD*/
 
 const { id } = lang['auction']['questions'];

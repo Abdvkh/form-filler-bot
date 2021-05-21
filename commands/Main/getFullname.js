@@ -1,12 +1,12 @@
 /*CMD
   command: getFullname
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Main
-  answer:
-  keyboard:
-  aliases:
+  answer: 
+  keyboard: 
+  aliases: 
 CMD*/
 
 if (message.length >= questions['fullname']['min_length'] && message.split(' ').length >= 2) {

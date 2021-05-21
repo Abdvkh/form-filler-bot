@@ -1,12 +1,12 @@
 /*CMD
   command: /stat
-  help:
-  need_reply:
-  auto_retry_time:
-  folder:
+  help: 
+  need_reply: 
+  auto_retry_time: 
+  folder: 
   answer: Отправьте пароль админки
-  keyboard:
-  aliases: 📊Статистика
+  keyboard: 
+  aliases: 📊статистика
 CMD*/
 
 const admin = Bot.getProperty('admin');

@@ -1,3 +1,14 @@
+/*CMD
+  command: setup
+  help: 
+  need_reply: 
+  auto_retry_time: 
+  folder: 
+  answer: 
+  keyboard: 
+  aliases: 
+CMD*/
+
 Bot.setProperty('admin', 469750202, 'Number');
 Bot.sendMessage('Admin is set!');
 

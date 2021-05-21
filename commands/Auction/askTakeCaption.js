@@ -1,12 +1,12 @@
 /*CMD
   command: askTakeCaption
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Auction
-  answer:
-  keyboard:
-  aliases: 🥡Заголовок беру
+  answer: 
+  keyboard: 
+  aliases: 🥡заголовок беру
 CMD*/
 
 auction.setCreatingAucProp('takeCaption', message);

@@ -1,12 +1,12 @@
 /*CMD
   command: askStartingPrice
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Lot
-  answer:
-  keyboard:
-  aliases:
+  answer: 
+  keyboard: 
+  aliases: 
 CMD*/
 
 const price = parseInt(message);
