@@ -16,7 +16,7 @@ if (params && (params === 'bet')) {
    const { notUser } = lang;
    const winnerUserID = params.split('-')[1];
 
-   if (winnerUserID !== request.from['telegramid'] && winnerUserID) {
+   if (winnerUserID !== request.from['id'] && winnerUserID) {
       return Bot.sendMessage(notUser);
    }
 

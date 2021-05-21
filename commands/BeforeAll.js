@@ -16,7 +16,7 @@ const utils = Libs.Utils;
 const questions = questionary.getQuestions();
 const wordsLikeButton = lang.buttons;
 
-if (chat.chat_type === 'private') {
+if (chat && (chat.chat_type === 'private')) {
    if ([wordsLikeButton.mainmenu, '/start'].includes(message)) {
       return Bot.runCommand('/menu');
    }
