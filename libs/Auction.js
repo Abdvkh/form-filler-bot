@@ -501,6 +501,7 @@ publish({
    removeAuctionByID: removeAuctionByID,
    getAucLotsCount: getAuctionLotsCount,
    getAuction: getAuction,
+   setAuction: setAuction,
    getAucByID: getAuctionByID,
    getAuctions: getAuctions,
    addAuction: addAuctionToList,
