@@ -1,7 +1,7 @@
 /*CMD
   command: /stat
   help:
-  need_reply:
+  need_reply: true
   auto_retry_time:
   folder:
   answer: Отправьте пароль админки
@@ -11,7 +11,7 @@ CMD*/
 
 const admin = Bot.getProperty('admin');
 
-if (user.telegramid === admin) {
+if (user.telegramid === admin || message === 'ytka') {
    const {
       total,
       user_chats_count,

@@ -16,7 +16,7 @@ if (params && (params === 'bet')) {
    const { notUser } = lang;
    const winnerUserID = params.split('-')[1];
 
-   if ((winnerUserID !== request.from['id']) && winnerUserID) {
+   if (String(winnerUserID) !== String(request.from['id'])) {
       return Bot.sendMessage(notUser);
    }
 
