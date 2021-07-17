@@ -517,6 +517,7 @@ publish({
    startNexLot: startNexLot,
    getAucIndex: getAuctionIndex,
    lot: {
+      set: setLot,
       endLot: endLot,
       saveCreatedLot: saveCreatedLot,
       setLotProp: setLotProperty,
