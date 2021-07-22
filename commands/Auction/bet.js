@@ -11,11 +11,12 @@ CMD*/
 
 const { auctionOver } = lang;
 const { user: betUser, price: betPrice } = auction.getCurBet();
+const currentAuctionID = auction.getAucProp('id');
 const group = Bot.getProperty('chat');
 
-Bot.clearRunAfter({label: 'startAuction' + auction.getAucProp('id')});
+Bot.clearRunAfter({label: 'startAuction' + currentAuctionID});
 
-if (auction.isOver()) {
+if (auction.isOver() || auction.lot.getLotProp('status', auctionID=currentAuctionID)) {
    //say that auction is over
    return Api.answerCallbackQuery({
       callback_query_id: request.id,

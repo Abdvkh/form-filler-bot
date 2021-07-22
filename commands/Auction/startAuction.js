@@ -28,6 +28,8 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
       startAuction(gifIndex);
    } else {
       auction.setAucProp('status', 'ended', null, auctionID);
+
+      Api.sendMessage({text: lotEnded});
       sendTakeSection();
    }
 } else {

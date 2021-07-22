@@ -53,7 +53,7 @@ function setAuctionByID(data, auctionID){
 function getAuctionByID(auctionID){
    const auctions = getAuctions();
 
-   return auctions.filter(({ id }) => id === auctionID)[0];
+   return auctions.find(({ id }) => id === auctionID);
 }
 
 /** Set specified type of auction data
@@ -337,6 +337,8 @@ function addAuctionLot(auctionID, lot) {
 function startNexLot(after) {
    const { id: currentID } = getAuction();
 
+   setAuctionLotProperty('status', 'ended', currentID, getLotProperty('id'));
+
    Bot.clearRunAfter({label: 'startAuction' + currentID});
    Bot.run({
       command: 'startAuction',
@@ -501,6 +503,7 @@ publish({
    removeAuctionByID: removeAuctionByID,
    getAucLotsCount: getAuctionLotsCount,
    getAuction: getAuction,
+   setAuction: setAuction,
    getAucByID: getAuctionByID,
    getAuctions: getAuctions,
    addAuction: addAuctionToList,
@@ -516,6 +519,7 @@ publish({
    startNexLot: startNexLot,
    getAucIndex: getAuctionIndex,
    lot: {
+      set: setLot,
       endLot: endLot,
       saveCreatedLot: saveCreatedLot,
       setLotProp: setLotProperty,
