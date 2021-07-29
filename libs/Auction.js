@@ -287,10 +287,10 @@ function launchAuctionAt(chatsID) {
             video: video,
             caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
             parse_mode: 'HTML',
-            reply_markup: !latestLot.photo.length ? betKeyboard : null,
+            reply_markup: !picture ? betKeyboard : null,
          });
       }
-      if (latestLot.photo.length){
+      if (picture){
          Api.sendPhoto({
             chat_id: chatId,
             photo: picture,
