@@ -273,21 +273,32 @@ function launchAuctionAt(chatsID) {
 
    }
 
-   const firstLot = [...currentLots].shift();// takes 1st lot(from list of lots sorted by datetime)
-   const { id, title, startingPrice, description, picture } = firstLot;
+   const latestLot = [...currentLots].shift();// takes 1st lot(from list of lots sorted by datetime)
+   const { id, title, startingPrice, description, picture } = latestLot;
 
-   setLot(firstLot); // sets as current lot
+   setLot(latestLot); // sets as current lot
    setupLot();// setup given lot(with necessary variables)
    setupAuctionLot(id, auctionID); // setup current auction's state
 
    chatsID.forEach((chatId) => {
-      Api.sendPhoto({
-         chat_id: chatId,
-         photo: picture,
-         caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
-         parse_mode: 'HTML',
-         reply_markup: betKeyboard
-      });
+      if (latestLot.video){
+         Api.sendVideo({
+            chat_id: chatId,
+            video: video,
+            caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
+            parse_mode: 'HTML',
+            reply_markup: !latestLot.photo.length ? betKeyboard : null,
+         });
+      }
+      if (latestLot.photo.length){
+         Api.sendPhoto({
+            chat_id: chatId,
+            photo: picture,
+            caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
+            parse_mode: 'HTML',
+            reply_markup: latestLot.video ? betKeyboard : null,
+         });
+      }
    });
 }
 
