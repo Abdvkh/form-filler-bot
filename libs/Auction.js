@@ -296,7 +296,7 @@ function launchAuctionAt(chatsID) {
             photo: picture,
             caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
             parse_mode: 'HTML',
-            reply_markup: latestLot.video ? betKeyboard : null,
+            reply_markup: !latestLot.video ? betKeyboard : null,
          });
       }
    });
