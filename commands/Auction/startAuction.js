@@ -61,14 +61,24 @@ function startAuction(gifIndex='0') {
 function sendTakeSection(){
    const group = Bot.getProperty('chat');
    const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
-   const { takeCaption, takePicture } = auction.getAuction();
+   const { takeCaption, takePicture, takeVideo } = auction.getAuction();
 
-   // sending "Беру"
-   Api.sendPhoto({
-      chat_id: group,
-      photo: takePicture,
-      caption: takeCaption || defaultTakeSectionCaption,
-      parse_mode: 'HTML',
-      reply_markup: replyKeyboard,
-   });
+   if (takeVideo){
+      Api.sendVideo({
+         chat_id: group,
+         video: takeVideo,
+         caption: takeCaption || defaultTakeSectionCaption,
+         parse_mode: 'HTML',
+         reply_markup: !picture ? replyKeyboard : [],
+      });
+   }
+   if (takePicture){
+      Api.sendPhoto({
+         chat_id: group,
+         photo: takePicture,
+         caption: takeCaption || defaultTakeSectionCaption,
+         parse_mode: 'HTML',
+         reply_markup: !latestLot.video ? replyKeyboard : [],
+      });
+   }
 }
