@@ -284,7 +284,7 @@ function launchAuctionAt(chatsID) {
       if (latestLot.video){
          Api.sendVideo({
             chat_id: chatId,
-            video: video,
+            video: latestLot.video,
             caption: `📌${title}\n\nНачальная цена: ${startingPrice}\n\nОписание: ${description}`,
             parse_mode: 'HTML',
             reply_markup: !picture ? betKeyboard : [],
