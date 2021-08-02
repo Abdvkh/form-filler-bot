@@ -69,7 +69,7 @@ function sendTakeSection(){
          video: takeVideo,
          caption: takeCaption || defaultTakeSectionCaption,
          parse_mode: 'HTML',
-         reply_markup: !picture ? replyKeyboard : [],
+         reply_markup: !takePicture ? replyKeyboard : [],
       });
    }
    if (takePicture){
@@ -78,7 +78,7 @@ function sendTakeSection(){
          photo: takePicture,
          caption: takeCaption || defaultTakeSectionCaption,
          parse_mode: 'HTML',
-         reply_markup: !latestLot.video ? replyKeyboard : [],
+         reply_markup: !takeVideo ? replyKeyboard : [],
       });
    }
 }
