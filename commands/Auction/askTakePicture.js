@@ -14,12 +14,15 @@ const { takeCaption, takePicture, save, wrongPicture, questions: auctionQuestion
 
 if (request.video.file_id || request.photo.length > 0) {
    const { phrase: confirmationPhrase } = auctionQuestions['confirmation'];
+   const video_file_id, picture_file_id;
 
    if (request.video.file_id) {
-      auction.setCreatingAucProp('takeVideo', request.video.file_id);
+      video_file_id = request.video.file_id;
    } else {
-      auction.setCreatingAucProp('takePicture', request.photo[1]['file_id']);
+      picture_file_id = request.photo[1]['file_id'];
    }
+   auction.setCreatingAucProp('takeVideo', video_file_id);
+   auction.setCreatingAucProp('takePicture', picture_file_id);
 
    commandDetails = {
       btns: [save],
