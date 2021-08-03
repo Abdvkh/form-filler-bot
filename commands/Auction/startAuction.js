@@ -71,8 +71,7 @@ function sendTakeSection(){
          parse_mode: 'HTML',
          reply_markup: replyKeyboard,
       });
-   }
-   if (takePicture){
+   } else if (takePicture){
       Api.sendPhoto({
          chat_id: group,
          photo: takePicture,

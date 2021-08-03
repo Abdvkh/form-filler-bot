@@ -289,8 +289,7 @@ function launchAuctionAt(chatsID) {
             parse_mode: 'HTML',
             reply_markup: betKeyboard,
          });
-      }
-      if (picture){
+      } else if (picture){
          Api.sendPhoto({
             chat_id: chatId,
             photo: picture,
