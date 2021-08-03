@@ -30,7 +30,6 @@ if (request.video.file_id || request.photo.length > 0) {
       cmd: 'askAuctionConfirmation'
    };
 } else {
-
    commandDetails = {
       btns: [],
       txt: wrongPicture,
