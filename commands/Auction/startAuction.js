@@ -28,6 +28,7 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
       startAuction(gifIndex);
    } else {
       auction.setAucProp('status', 'ended', null, auctionID);
+      auction.setAucLotProp('status', 'ended', auctionID, auction.lot.getLotProp('id'));
 
       Api.sendMessage({text: lotEnded});
       sendTakeSection();
