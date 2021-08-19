@@ -12,7 +12,7 @@ CMD*/
 const { picture,  } = lang['lot'];
 const { save, confirm } = lang['keywords'];
 
-if (request.video.file_id || request.photo.length > 0) {
+if (request.video || request.photo.length > 0) {
    let video_file_id, picture_file_id;
 
    if (request.video.file_id) {

@@ -12,7 +12,7 @@ CMD*/
 let commandDetails;
 const { takeCaption, takePicture, save, wrongPicture, questions: auctionQuestions } = lang['auction'];
 
-if (request.video.file_id || request.photo.length > 0) {
+if (request.video || request.photo.length > 0) {
    const { phrase: confirmationPhrase } = auctionQuestions['confirmation'];
    let video_file_id, picture_file_id;
 
