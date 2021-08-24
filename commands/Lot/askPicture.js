@@ -15,7 +15,7 @@ const { save, confirm } = lang['keywords'];
 if (request.video || request.photo.length > 0) {
    let video_file_id, picture_file_id;
 
-   if (request.video.file_id) {
+   if (request.video && request.video.file_id) {
       video_file_id = request.video.file_id;
    } else {
       picture_file_id = request.photo[1]['file_id'];
