@@ -1,12 +1,12 @@
 /*CMD
   command: getGif
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Auction
   answer: Please send the gif
   keyboard: Главное меню
-  aliases:
+  aliases: 
 CMD*/
 
 let gifs = Bot.getProperty('gifs');

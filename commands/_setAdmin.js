@@ -1,12 +1,12 @@
 /*CMD
   command: /setAdmin
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
-  folder:
+  auto_retry_time: 
+  folder: 
   answer: Отправьте Telegram ID админа
-  keyboard:
-  aliases:
+  keyboard: 
+  aliases: 
 CMD*/
 
 Bot.setProperty('admin', message, 'Number');

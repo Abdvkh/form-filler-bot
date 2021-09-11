@@ -1,12 +1,12 @@
 /*CMD
   command: /showAuctions
-  help:
-  need_reply:
-  auto_retry_time:
+  help: 
+  need_reply: 
+  auto_retry_time: 
   folder: Auction
-  answer:
-  keyboard:
-  aliases: 🗂Аукционы
+  answer: 
+  keyboard: 
+  aliases: 🗂аукционы
 CMD*/
 
 let msg, buttons = [];

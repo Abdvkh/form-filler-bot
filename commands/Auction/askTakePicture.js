@@ -1,12 +1,12 @@
 /*CMD
   command: askTakePicture
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Auction
-  answer:
-  keyboard:
-  aliases: 🖼Картинка беру
+  answer: 
+  keyboard: 
+  aliases: 🖼картинка беру
 CMD*/
 
 let commandDetails;

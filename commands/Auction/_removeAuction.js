@@ -1,12 +1,12 @@
 /*CMD
   command: /removeAuction
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Auction
   answer: 🆔Введите идентификатор аукциона
   keyboard: Главное меню
-  aliases:
+  aliases: 
 CMD*/
 
 Bot.run({

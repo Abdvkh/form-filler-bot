@@ -1,12 +1,12 @@
 /*CMD
   command: askAuctionConfirmation
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Auction
-  answer:
-  keyboard:
-  aliases:
+  answer: 
+  keyboard: 
+  aliases: 
 CMD*/
 
 const { save, not } = lang['auction'];

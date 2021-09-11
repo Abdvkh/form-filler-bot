@@ -1,12 +1,12 @@
 /*CMD
   command: changeAuction
-  help:
-  need_reply:
-  auto_retry_time:
+  help: 
+  need_reply: 
+  auto_retry_time: 
   folder: Auction
-  answer:
+  answer: 
   keyboard: Главное меню
-  aliases:
+  aliases: 
 CMD*/
 
 const auctionID = params || options['auctionID'];

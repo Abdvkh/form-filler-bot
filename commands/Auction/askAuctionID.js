@@ -1,12 +1,12 @@
 /*CMD
   command: askAuctionID
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Auction
-  answer:
+  answer: 
   keyboard: Главное меню
-  aliases: 🆔Идентификатор аукциона
+  aliases: 🆔идентификатор аукциона
 CMD*/
 
 const { id, questions: auctionQuestions, alreadyExists } = lang['auction'];

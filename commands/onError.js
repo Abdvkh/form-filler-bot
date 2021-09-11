@@ -1,11 +1,12 @@
 /*CMD
   command: onError
-  help:
-  need_reply:
-  auto_retry_time:
-  answer:
-  keyboard:
-  aliases:
+  help: 
+  need_reply: 
+  auto_retry_time: 
+  folder: 
+  answer: 
+  keyboard: 
+  aliases: 
 CMD*/
 
 const admin = Bot.getProperty('admin');

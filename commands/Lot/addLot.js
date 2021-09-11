@@ -1,12 +1,12 @@
 /*CMD
   command: addLot
-  help:
-  need_reply:
-  auto_retry_time:
+  help: 
+  need_reply: 
+  auto_retry_time: 
   folder: Lot
-  answer:
-  keyboard:
-  aliases:
+  answer: 
+  keyboard: 
+  aliases: 
 CMD*/
 
 const auctionID = params || options['auctionID'];
