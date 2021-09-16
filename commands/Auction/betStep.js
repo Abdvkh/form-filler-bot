@@ -1,12 +1,12 @@
 /*CMD
   command: betStep
-  help:
-  need_reply:
-  auto_retry_time:
+  help: 
+  need_reply: 
+  auto_retry_time: 
   folder: Auction
-  answer:
-  keyboard:
-  aliases:
+  answer: 
+  keyboard: 
+  aliases: 
 CMD*/
 
 const group = Bot.getProperty('chat');
@@ -104,4 +104,3 @@ function sendWinnerMessages() {
       });
    });
 }
-

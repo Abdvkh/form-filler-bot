@@ -1,12 +1,12 @@
 /*CMD
   command: getPhone
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Main
-  answer:
-  keyboard:
-  aliases:
+  answer: 
+  keyboard: 
+  aliases: 
 CMD*/
 
 if (message.length >= questions['phone']['min_length']) {

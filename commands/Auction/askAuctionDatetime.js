@@ -1,12 +1,12 @@
 /*CMD
   command: askAuctionDatetime
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Auction
-  answer:
-  keyboard:
-  aliases: 🕰Время проведения
+  answer: 
+  keyboard: 
+  aliases: 🕰время проведения
 CMD*/
 
 const auctionTranslations = lang['auction']

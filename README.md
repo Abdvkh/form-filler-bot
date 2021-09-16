@@ -1,5 +1,5 @@
-# Abduvakhidovsbot - chat bot
-It is repository for chat bot: [@Busstray_ytka_Aukcion_BOT](https://t.me/Busstray_ytka_Aukcion_BOT)
+# Bustrayytka_bot - chat bot
+It is repository for chat bot: [@Bustrayytka_bot](https://t.me/Bustrayytka_bot)
 
 ## What it is?
 This repository can be imported to [Bots.Business](https://bots.business) as a worked chat bot.

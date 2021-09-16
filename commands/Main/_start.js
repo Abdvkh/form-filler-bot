@@ -1,3 +1,13 @@
+/*CMD
+  command: /start
+  help: 
+  need_reply: 
+  auto_retry_time: 
+  folder: Main
+  answer: 
+  keyboard: 
+  aliases: 
+CMD*/
 
 if (params && (params === 'bet')) {
    const { auctionOver, enterBetAmount } = lang;

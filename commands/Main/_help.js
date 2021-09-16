@@ -1,12 +1,12 @@
 /*CMD
   command: /help
-  help:
-  need_reply:
-  auto_retry_time:
-  folder:
-  answer:
-  keyboard:
-  aliases: 🔖Помощь
+  help: 
+  need_reply: 
+  auto_retry_time: 
+  folder: Main
+  answer: 
+  keyboard: 
+  aliases: 🔖помощь
 CMD*/
 
 const { help } = lang;

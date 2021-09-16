@@ -1,12 +1,12 @@
 /*CMD
   command: /setupGit
-  help:
-  need_reply:
-  auto_retry_time:
+  help: 
+  need_reply: 
+  auto_retry_time: 
   folder: Git
-  answer:
-  keyboard:
-  aliases:
+  answer: 
+  keyboard: 
+  aliases: 
 CMD*/
 
 const url = Libs.Webhooks.getUrlFor(

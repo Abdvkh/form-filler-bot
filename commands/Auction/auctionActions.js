@@ -1,12 +1,12 @@
 /*CMD
   command: auctionActions
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Auction
-  answer:
+  answer: 
   keyboard: Главное меню
-  aliases:
+  aliases: 
 CMD*/
 
 let lotsDetails;

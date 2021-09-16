@@ -1,12 +1,12 @@
 /*CMD
   command: askPicture
-  help:
+  help: 
   need_reply: true
-  auto_retry_time:
+  auto_retry_time: 
   folder: Lot
-  answer:
-  keyboard:
-  aliases:
+  answer: 
+  keyboard: 
+  aliases: 
 CMD*/
 
 const { picture,  } = lang['lot'];
@@ -33,4 +33,3 @@ if (request.video || request.photo.length > 0) {
    Api.sendMessage({text: send + '\n' + picture});
    Bot.run({command: 'askPicture'});
 }
-
