@@ -64,6 +64,9 @@ function sendTakeSection(){
    const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
    const { takeCaption, takePicture, takeVideo } = auction.getAuction();
 
+   setLotProperty('isOver', true);
+   setLotProperty('status', 'ended');
+
    if (takeVideo){
       Api.sendVideo({
          chat_id: group,
