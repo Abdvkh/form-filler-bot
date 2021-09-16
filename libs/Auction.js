@@ -347,7 +347,8 @@ function addAuctionLot(auctionID, lot) {
 function startNexLot(after) {
    const { id: currentID } = getAuction();
 
-   setAuctionLotProperty('status', 'ended', currentID, getLotProperty('id'));
+   setLotProperty('isOver', true);
+   setLotProperty('status', 'ended');
 
    Bot.clearRunAfter({label: 'startAuction' + currentID});
    Bot.run({
