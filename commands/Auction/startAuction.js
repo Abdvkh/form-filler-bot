@@ -64,8 +64,8 @@ function sendTakeSection(){
    const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
    const { takeCaption, takePicture, takeVideo } = auction.getAuction();
 
-   setLotProperty('isOver', true);
-   setLotProperty('status', 'ended');
+   auction.lot.setLotProp('isOver', true);
+   auction.lot.setLotProp('status', 'ended');
 
    if (takeVideo){
       Api.sendVideo({
