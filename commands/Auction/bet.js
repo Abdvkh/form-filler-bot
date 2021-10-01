@@ -9,18 +9,25 @@
   aliases: 
 CMD*/
 
-const { auctionOver } = lang;
+const { auctionOver, lotEnded } = lang;
 const { user: betUser, price: betPrice } = auction.getCurBet();
 const currentAuctionID = auction.getAucProp('id');
 const group = Bot.getProperty('chat');
 
 Bot.clearRunAfter({label: 'startAuction' + currentAuctionID});
 
-if (auction.isOver() || auction.takeSection.isSent()) {
+if (auction.isOver()) {
    //say that auction is over
    return Api.answerCallbackQuery({
       callback_query_id: request.id,
       text: auctionOver + utils.getLinkFor(betUser),
+      show_alert: true
+   });
+} else if (auction.takeSection.isSent()) {
+   //say that auction is over
+   return Api.answerCallbackQuery({
+      callback_query_id: request.id,
+      text: lotEnded,
       show_alert: true
    });
 }
