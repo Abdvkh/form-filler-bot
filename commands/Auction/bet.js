@@ -16,7 +16,7 @@ const group = Bot.getProperty('chat');
 
 Bot.clearRunAfter({label: 'startAuction' + currentAuctionID});
 
-if (auction.isOver()) {
+if (auction.isOver() || auction.takeSection.isSent()) {
    //say that auction is over
    return Api.answerCallbackQuery({
       callback_query_id: request.id,

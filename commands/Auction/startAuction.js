@@ -30,8 +30,13 @@ if (auction.setupCurAuc(auctionID)){// if auction successfully setup(if status i
       auction.setAucProp('status', 'ended', null, auctionID);
       auction.setAucLotProp('status', 'ended', auctionID, auction.lot.getLotProp('id'));
 
+      auction.lot.setProperty('isOver', true);
+      auction.lot.setProperty('status', 'ended');
+      auction.takeSection.setSentState(true);
+
       Api.sendMessage({text: lotEnded});
-      sendTakeSection();
+
+      auction.takeSection.send();
    }
 } else {
    Api.sendMessage({
@@ -55,33 +60,4 @@ function startAuction(gifIndex='0') {
       run_after: 10,
       label: 'start_gif',
    });
-}
-
-/** Sends take section of auction to the given chat with inline reply keyboard
- * */
-function sendTakeSection(){
-   const group = Bot.getProperty('chat');
-   const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
-   const { takeCaption, takePicture, takeVideo } = auction.getAuction();
-
-   auction.lot.setLotProp('isOver', true);
-   auction.lot.setLotProp('status', 'ended');
-
-   if (takeVideo){
-      Api.sendVideo({
-         chat_id: group,
-         video: takeVideo,
-         caption: takeCaption || defaultTakeSectionCaption,
-         parse_mode: 'HTML',
-         reply_markup: replyKeyboard,
-      });
-   } else if (takePicture){
-      Api.sendPhoto({
-         chat_id: group,
-         photo: takePicture,
-         caption: takeCaption || defaultTakeSectionCaption,
-         parse_mode: 'HTML',
-         reply_markup: replyKeyboard,
-      });
-   }
 }

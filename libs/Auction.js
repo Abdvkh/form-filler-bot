@@ -276,6 +276,7 @@ function launchAuctionAt(chatsID) {
    const latestLot = [...currentLots].shift();// takes 1st lot(from list of lots sorted by datetime)
    const { id, title, startingPrice, description, picture } = latestLot;
 
+   setTakeSectionSentState(false);
    setLot(latestLot); // sets as current lot
    setupLot();// setup given lot(with necessary variables)
    setupAuctionLot(id, auctionID); // setup current auction's state
@@ -504,6 +505,40 @@ function getLotIndex(auctionID){
 
 /* </LOT> */
 
+/* <Take Section> */
+
+function setTakeSectionSentState(state) {
+   Bot.setProperty('isTakeSection', state, 'Boolean');
+}
+
+function isTakeSectionSent() {
+   return Bot.getProperty('isTakeSection');
+}
+
+/** Sends take section of auction to the given chat with inline reply keyboard
+ * */
+function sendTakeSection(){
+   const group = Bot.getProperty('chat');
+   const replyKeyboard = Bot.getProperty('fillFormInlineKeyboard');
+   const { takeCaption, takePicture, takeVideo } = getAuction();
+
+   const options = {
+      chat_id: group,
+      caption: takeCaption || defaultTakeSectionCaption,
+      parse_mode: 'HTML',
+      reply_markup: replyKeyboard,
+   };
+
+   if (takeVideo){
+      options.video = takeVideo;
+      Api.sendVideo(options);
+   } else if (takePicture){
+      options.photo = takePicture;
+      Api.sendPhoto(options);
+   }
+}
+
+/* </Take Section> */
 
 publish({
    launchAuctionAt: launchAuctionAt,
@@ -530,8 +565,14 @@ publish({
       set: setLot,
       endLot: endLot,
       saveCreatedLot: saveCreatedLot,
+      setProperty: setLotProperty,
       setLotProp: setLotProperty,
       getLotProp: getLotProperty,
       getIndex: getLotIndex,
+   },
+   takeSection: {
+      isSent: isTakeSectionSent,
+      send: sendTakeSection,
+      setSentState: setTakeSectionSentState,
    }
 })
