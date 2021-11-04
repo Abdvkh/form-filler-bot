@@ -17,18 +17,14 @@ const {
     count,
     noLots,
     id: idText,
-    title: titleText,
-    description: descriptionText,
     startingPrice: startingPriceText
 } = lang['lot'];
 
 if (lots.length > 0) {
     lotsDetails = count.replace('{lots_length}', lots.length) + '\n';
 
-    lots.forEach(({id, title, status, description, startingPrice}) => {
+    lots.forEach(({id, status, startingPrice}) => {
         lotsDetails += `\n${idText}: ${id}`
-            + `\n${titleText}: ${title}`
-            + `\n${descriptionText}: ${description}`
             + `\n${keywords.status}: ${keywords[status]}`
             + `\n${startingPriceText}: ${startingPrice}\n\n`;
     });
