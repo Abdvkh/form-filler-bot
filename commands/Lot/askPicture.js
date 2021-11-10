@@ -21,8 +21,8 @@ if (request.video || request.photo.length > 0) {
       picture_file_id = request.photo[1]['file_id'];
    }
 
-   auction.lot.setLotProp('video', video_file_id);
-   auction.lot.setLotProp('picture', picture_file_id);
+   auction.lot.setLotProp('video', video_file_id, 'creating');
+   auction.lot.setLotProp('picture', picture_file_id, 'creating');
 
    utils.runCommandWithKeyboard({
       cmd: 'askLotConfirmation',
